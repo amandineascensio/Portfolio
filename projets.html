@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mes projets — Amandine Ascensio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="cursor--figma">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header__container">
+      <a href="index.html" class="header__logo" aria-label="Accueil">
+        <img src="assets/svg/logo.svg" alt="AA+" width="60" height="56">
+      </a>
+      <nav class="header__nav">
+        <a href="contact.html" class="btn btn--primary header__cta">Contact</a>
+        <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false">
+          <span class="burger__line"></span>
+          <span class="burger__line"></span>
+          <span class="burger__line"></span>
+        </button>
+      </nav>
+      <div class="mobile-menu">
+        <ul class="mobile-menu__links">
+          <li><a href="index.html#a-propos">À propos</a></li>
+          <li><a href="index.html#projets">Projets</a></li>
+          <li><a href="index.html#competences">Compétences</a></li>
+          <li><a href="index.html#experience">Expérience</a></li>
+          <li><a href="index.html#formations">Formations</a></li>
+        </ul>
+        <a href="contact.html" class="btn btn--primary">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- PAGE PROJETS -->
+  <section class="page-projets">
+    <a href="index.html" class="back-btn" aria-label="Retour">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M15 19L8 12L15 5" stroke="#1B1340" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <h1 class="page-projets__title">Mes projets</h1>
+
+    <div class="projets__list">
+
+      <!-- Projet 1 — MASM -->
+      <article class="projet-card">
+        <div class="projet-card__image projet-card__image--masm">
+          <img src="assets/images/masm-1.png" alt="MASM — haut de page" class="masm-img masm-img--1">
+          <img src="assets/images/masm-2.png" alt="MASM — bas de page" class="masm-img masm-img--2">
+        </div>
+        <div class="projet-card__content">
+          <div class="projet-card__tags">
+            <span class="tag">Figma</span>
+            <span class="tag">UI/UX</span>
+            <span class="tag">Wordpress</span>
+          </div>
+          <h3 class="projet-card__name">MASM menuiserie</h3>
+          <p class="projet-card__subtitle">Création de charte graphique • Refonte du site vitrine</p>
+          <p class="projet-card__desc">Création du site vitrine pour MASM, une entreprise de menuiserie. Travail sur un interface moderne, élégante et orientée conversion.</p>
+          <a href="projet-masm.html" class="btn btn--primary">Voir le projet</a>
+        </div>
+      </article>
+
+      <!-- Projet 2 — Spoonia -->
+      <article class="projet-card projet-card--reverse">
+        <div class="projet-card__content">
+          <div class="projet-card__tags">
+            <span class="tag">Figma</span>
+            <span class="tag">UI/UX</span>
+            <span class="tag">CM</span>
+          </div>
+          <h3 class="projet-card__name">Spoonia</h3>
+          <p class="projet-card__subtitle">Parcours UX • Maquettes UI</p>
+          <p class="projet-card__desc">De la recherche utilisateur au prototype interactif : audit UX, personas, parcours utilisateur et prototypage haute-fidélité sur Figma.</p>
+          <a href="projet-spoonia.html" class="btn btn--primary">Voir le projet</a>
+        </div>
+        <div class="projet-card__image">
+          <img src="assets/images/spoonia-mockup.png" alt="Mockups Spoonia sur iPhone" class="spoonia-img">
+        </div>
+      </article>
+
+      <!-- Projet 3 — BeatWay -->
+      <article class="projet-card">
+        <div class="projet-card__image projet-card__image--beatway">
+          <img src="assets/images/beatway-mockup.png" alt="Mockup BeatWay sur iPhone">
+        </div>
+        <div class="projet-card__content">
+          <div class="projet-card__tags">
+            <span class="tag">Figma</span>
+            <span class="tag">UI/UX</span>
+            <span class="tag">2050</span>
+          </div>
+          <h3 class="projet-card__name">BeatWay</h3>
+          <p class="projet-card__subtitle">Concours étudiant • Vivre en 20250</p>
+          <p class="projet-card__desc">Application de navigation UX/UI pensée pour proposer des trajets adaptés au rythme, au stress et à l'environnement de l'utilisateur.</p>
+          <a href="projet-beatway.html" class="btn btn--primary">Voir le projet</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact">
+    <div class="contact__deco">
+      <img src="assets/svg/etoile-3.svg" alt="" class="contact__star contact__star--1" aria-hidden="true">
+      <img src="assets/svg/etoile-3.svg" alt="" class="contact__star contact__star--2" aria-hidden="true">
+    </div>
+    <h2 class="contact__title">Un projet en tête ?</h2>
+    <p class="contact__text">Discutons de votre projet autour d'un café virtuel.<br>Je serais ravie de donner vie à vos idées !</p>
+    <div class="contact__actions">
+      <a href="mailto:amandine.ascensio@hotmail.fr" class="btn btn--dark">Envoyer un mail</a>
+      <a href="https://www.linkedin.com/in/amandine-ascensio-46ab17260/" target="_blank" rel="noopener" class="btn btn--outline-dark">LinkedIn</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <svg class="footer__wave" viewBox="0 0 1512 106" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0 96.0516C0 96.0516 257.881 14.5078 504 64.0344C750.119 113.561 923.952 126.068 1172.75 64.0344C1420.12 22.5 1512 64.0344 1512 64.0344V0H0V96.0516Z" fill="#FBDAEB"/>
+    </svg>
+    <div class="footer__content">
+      <h3 class="footer__name">Amandine Ascensio</h3>
+      <p class="footer__role">Webdesigner & UX/UI Designer • Région Parisienne</p>
+      <nav class="footer__links">
+        <a href="index.html#a-propos">À propos</a>
+        <a href="projets.html">Projets</a>
+        <a href="index.html#competences">Compétences</a>
+        <a href="index.html#experience">Expérience</a>
+        <a href="index.html#formations">Formations</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="footer__separator"></div>
+      <div class="footer__bottom">
+        <p class="footer__copy">&copy; 2026 Amandine Ascensio. Conçu avec passion et pixels.</p>
+        <div class="footer__legal">
+          <a href="mentions-legales.html">Mentions légales</a>
+          <span>•</span>
+          <a href="politique-confidentialite.html">Politique de confidentialité</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="burger.js"></script>
+  <script src="cursor.js"></script>
+  <script src="accessibility.js"></script>
+</body>
+</html>

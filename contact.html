@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Amandine Ascensio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="contact.css">
+</head>
+<body class="cursor--figma">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header__container">
+      <a href="index.html" class="header__logo" aria-label="Accueil">
+        <img src="assets/svg/logo.svg" alt="AA+" width="60" height="56">
+      </a>
+      <nav class="header__nav">
+        <a href="contact.html" class="btn btn--primary header__cta">Contact</a>
+        <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false">
+          <span class="burger__line"></span>
+          <span class="burger__line"></span>
+          <span class="burger__line"></span>
+        </button>
+      </nav>
+      <div class="mobile-menu">
+        <ul class="mobile-menu__links">
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="projets.html">Projets</a></li>
+          <li><a href="index.html#competences">Compétences</a></li>
+          <li><a href="index.html#experience">Expérience</a></li>
+        </ul>
+        <a href="contact.html" class="btn btn--primary">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- PAGE CONTACT -->
+  <section class="page-contact">
+    <div class="page-contact__container">
+
+      <div class="page-contact__form-side">
+        <a href="index.html" class="back-btn" aria-label="Retour">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M15 19L8 12L15 5" stroke="#1B1340" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <h1 class="page-contact__title">Discutons de votre <span>projet</span></h1>
+
+        <form class="page-contact__form" action="#" method="post">
+          <div class="form-group">
+            <label for="prenom">Prénom</label>
+            <input type="text" id="prenom" name="prenom" placeholder="Amandine">
+          </div>
+          <div class="form-group">
+            <label for="nom">Nom</label>
+            <input type="text" id="nom" name="nom" placeholder="Ascensio">
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="amandine.ascensio@exemple.fr">
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="6" placeholder="Ceci est mon message"></textarea>
+          </div>
+          <button type="submit" class="btn btn--primary btn--lg">Envoyer la demande</button>
+        </form>
+      </div>
+
+      <div class="page-contact__visual">
+        <div class="page-contact__circle"></div>
+        <img src="assets/images/contact-avatar.png" alt="Amandine Ascensio — Let's connect" class="page-contact__avatar">
+        <img src="assets/svg/etoile-3.svg" alt="" class="page-contact__star page-contact__star--1" aria-hidden="true">
+        <img src="assets/svg/etoile-3.svg" alt="" class="page-contact__star page-contact__star--2" aria-hidden="true">
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION ROSE PRE-FOOTER -->
+  <section class="contact" id="contact-cta">
+    <div class="contact__deco">
+      <img src="assets/svg/etoile-3.svg" alt="" class="contact__star contact__star--1" aria-hidden="true">
+      <img src="assets/svg/etoile-3.svg" alt="" class="contact__star contact__star--2" aria-hidden="true">
+    </div>
+    <h2 class="contact__title">Un projet en tête ?</h2>
+    <p class="contact__text">Discutons de votre projet autour d'un café virtuel.<br>Je serais ravie de donner vie à vos idées !</p>
+    <div class="contact__actions">
+      <a href="mailto:amandine.ascensio@hotmail.fr" class="btn btn--dark">Envoyer un mail</a>
+      <a href="https://www.linkedin.com/in/amandine-ascensio-46ab17260/" target="_blank" rel="noopener" class="btn btn--outline-dark">LinkedIn</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <svg class="footer__wave" viewBox="0 0 1512 106" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0 96.0516C0 96.0516 257.881 14.5078 504 64.0344C750.119 113.561 923.952 126.068 1172.75 64.0344C1420.12 22.5 1512 64.0344 1512 64.0344V0H0V96.0516Z" fill="#FBDAEB"/>
+    </svg>
+    <div class="footer__content">
+      <h3 class="footer__name">Amandine Ascensio</h3>
+      <p class="footer__role">Webdesigner & UX/UI Designer • Région Parisienne</p>
+      <nav class="footer__links">
+        <a href="index.html#a-propos">À propos</a>
+        <a href="projets.html">Projets</a>
+        <a href="index.html#competences">Compétences</a>
+        <a href="index.html#experience">Expérience</a>
+        <a href="index.html#formations">Formations</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="footer__separator"></div>
+      <div class="footer__bottom">
+        <p class="footer__copy">&copy; 2026 Amandine Ascensio. Conçu avec passion et pixels.</p>
+        <div class="footer__legal">
+          <a href="mentions-legales.html">Mentions légales</a>
+          <span>•</span>
+          <a href="politique-confidentialite.html">Politique de confidentialité</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="burger.js"></script>
+  <script src="cursor.js"></script>
+  <script src="accessibility.js"></script>
+</body>
+</html>

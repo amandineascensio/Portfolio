@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amandine Ascensio — UI/UX Designer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="cursor--figma">
+
+  <!-- LOADER -->
+  <div class="loader" id="loader">
+    <img src="assets/svg/logo.svg" alt="" class="loader__logo">
+  </div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header__container">
+      <a href="#" class="header__logo" aria-label="Accueil">
+        <img src="assets/svg/logo.svg" alt="AA+" width="60" height="56">
+      </a>
+      <nav class="header__nav">
+        <ul class="header__links">
+          <li><a href="#a-propos">À propos</a></li>
+          <li><a href="#projets">Projets</a></li>
+          <li><a href="#competences">Compétences</a></li>
+          <li><a href="#experience">Expérience</a></li>
+          <li><a href="#formations">Formations</a></li>
+        </ul>
+        <a href="contact.html" class="btn btn--primary header__cta">Contact</a>
+        <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false">
+          <span class="burger__line"></span>
+          <span class="burger__line"></span>
+          <span class="burger__line"></span>
+        </button>
+      </nav>
+      <div class="mobile-menu">
+        <ul class="mobile-menu__links">
+          <li><a href="#a-propos">À propos</a></li>
+          <li><a href="#projets">Projets</a></li>
+          <li><a href="#competences">Compétences</a></li>
+          <li><a href="#experience">Expérience</a></li>
+          <li><a href="#formations">Formations</a></li>
+        </ul>
+        <a href="contact.html" class="btn btn--primary">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <!-- Ligne décorative (fond, hors marges) -->
+    <img src="assets/svg/decoratif.svg" alt="" class="hero__curve" aria-hidden="true">
+
+    <div class="hero__container">
+      <div class="hero__visual">
+        <div class="hero__circle"></div>
+        <img src="assets/images/avatar.png" alt="Illustration 3D d'Amandine Ascensio" class="hero__avatar">
+        <img src="assets/svg/etoile-3.svg" alt="" class="hero__star hero__star--1" aria-hidden="true">
+        <img src="assets/svg/etoile-1.svg" alt="" class="hero__star hero__star--2" aria-hidden="true">
+        <img src="assets/svg/etoile-2.svg" alt="" class="hero__star hero__star--3" aria-hidden="true">
+        <img src="assets/svg/etoile-1.svg" alt="" class="hero__star hero__star--4" aria-hidden="true">
+      </div>
+
+      <div class="hero__content">
+        <span class="hero__subtitle">UI/UX Designer</span>
+        <h1 class="hero__title">Amandine<br>Ascensio</h1>
+        <p class="hero__description">Je conçois des expériences web belles, claires et mémorables qui allient design UI/UX, accessibilité et identité visuelle.</p>
+        <div class="hero__actions">
+          <a href="projets.html" class="btn btn--primary btn--lg">Voir mes projets</a>
+          <a href="contact.html" class="btn btn--outline btn--lg">Me contacter</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- À PROPOS -->
+  <section class="apropos" id="a-propos">
+    <div class="apropos__deco">
+      <img src="assets/svg/etoile-3.svg" alt="" class="apropos__star apropos__star--1" aria-hidden="true">
+      <img src="assets/svg/etoile-3.svg" alt="" class="apropos__star apropos__star--2" aria-hidden="true">
+      <img src="assets/svg/etoile-1.svg" alt="" class="apropos__star apropos__star--3" aria-hidden="true">
+    </div>
+
+    <h2 class="apropos__title fade-in">À propos</h2>
+
+    <div class="apropos__container">
+      <div class="apropos__text fade-in-left">
+        <h3 class="apropos__subtitle">Designer UX/UI passionnée par l'humain et le détail</h3>
+        <p>Basée en région parisienne, je conçois des expériences web qui allient sens esthétique et rigueur UX. Mon cœur de métier : transformer une identité de marque en un site web à la fois beau, clair et fonctionnel.</p>
+        <p>Je travaille avec WordPress et Elementor pour le développement, Figma pour le design UI et le prototypage, et j'accorde une attention particulière à l'accessibilité web et aux bonnes pratiques WCAG. Chaque projet est une opportunité de créer quelque chose qui tient la route, et qui donne envie de rester.</p>
+        <p>En alternance chez Fedipat, je conçois des interfaces responsive web et mobile, crée et maintiens des composants UI dans Figma, et contribue à l'évolution du design system en respectant les règles d'accessibilité et de cohérence visuelle.</p>
+      </div>
+      <div class="apropos__image fade-in-right">
+        <img src="assets/images/about-new.png" alt="Amandine à son bureau avec ses outils de design">
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJETS -->
+  <section class="projets" id="projets">
+    <img src="assets/svg/etoile-3.svg" alt="" class="projets__star" aria-hidden="true">
+    <h2 class="projets__title fade-in">Mes derniers projets</h2>
+
+    <div class="projets__list">
+
+      <!-- Projet 1 — MASM -->
+      <article class="projet-card fade-in">
+        <div class="projet-card__image projet-card__image--masm">
+          <img src="assets/images/masm-1.png" alt="MASM — haut de page" class="masm-img masm-img--1">
+          <img src="assets/images/masm-2.png" alt="MASM — bas de page" class="masm-img masm-img--2">
+        </div>
+        <div class="projet-card__content">
+          <div class="projet-card__tags">
+            <span class="tag">Figma</span>
+            <span class="tag">Wordpress</span>
+            <span class="tag">Elementor</span>
+          </div>
+          <h3 class="projet-card__name">MASM menuiserie</h3>
+          <p class="projet-card__subtitle">Création de charte graphique • Refonte du site vitrine</p>
+          <p class="projet-card__desc">Refonte complète du site d'une entreprise artisanale. Nouveau design, optimisation SEO et amélioration de l'expérience utilisateur sur mobile.</p>
+          <a href="projet-masm.html" class="btn btn--primary">Voir le projet</a>
+        </div>
+      </article>
+
+      <!-- Projet 2 — Spoonia -->
+      <article class="projet-card projet-card--reverse fade-in">
+        <div class="projet-card__content">
+          <div class="projet-card__tags">
+            <span class="tag">Figma</span>
+            <span class="tag">UI/UX</span>
+            <span class="tag">CM</span>
+          </div>
+          <h3 class="projet-card__name">Spoonia</h3>
+          <p class="projet-card__subtitle">Parcours UX • Maquettes UI</p>
+          <p class="projet-card__desc">De la recherche utilisateur au prototype interactif : audit UX, personas, parcours utilisateur et prototypage haute-fidélité sur Figma.</p>
+          <a href="projet-spoonia.html" class="btn btn--primary">Voir le projet</a>
+        </div>
+        <div class="projet-card__image">
+          <img src="assets/images/spoonia-mockup.png" alt="Mockups Spoonia sur iPhone" class="spoonia-img">
+        </div>
+      </article>
+
+    </div>
+
+    <div class="projets__cta">
+      <a href="projets.html" class="btn btn--outline">Voir tous les projets</a>
+    </div>
+  </section>
+
+  <!-- CE QUE JE FAIS -->
+  <section class="competences" id="competences">
+    <img src="assets/svg/etoile-3.svg" alt="" class="competences__star" aria-hidden="true">
+
+    <div class="competences__card fade-in">
+      <h2 class="competences__title">Ce que<br>je fais</h2>
+
+      <div class="competences__item">
+        <h3>Product Design</h3>
+        <p>Conception d'interfaces responsive web & mobile centrées utilisateur.</p>
+      </div>
+
+      <div class="competences__separator"></div>
+
+      <div class="competences__item">
+        <h3>Intégration Web</h3>
+        <p>Intégration de sites WordPress sur mesure, performants et évolutifs.</p>
+      </div>
+
+      <div class="competences__separator"></div>
+
+      <div class="competences__item">
+        <h3>Design System</h3>
+        <p>Création et maintenance de bibliothèques de composants cohérentes.</p>
+      </div>
+
+      <div class="competences__separator"></div>
+
+      <div class="competences__item">
+        <h3>Prototypage</h3>
+        <p>Prototypes interactifs pour tester et valider les expériences.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPÉRIENCE -->
+  <section class="experience" id="experience">
+    <div class="experience__deco">
+      <img src="assets/svg/Fraise.svg" alt="" class="experience__fraise" aria-hidden="true">
+      <img src="assets/svg/Group 3.svg" alt="" class="experience__swirl experience__swirl--left" aria-hidden="true">
+      <img src="assets/svg/Group 4.svg" alt="" class="experience__swirl experience__swirl--right" aria-hidden="true">
+      <img src="assets/svg/Tourbillon.svg" alt="" class="experience__tourbillon" aria-hidden="true">
+    </div>
+
+    <h2 class="experience__title fade-in">Expérience</h2>
+
+    <div class="timeline">
+
+      <!-- Expérience 1 -->
+      <div class="timeline__item timeline__item--right fade-in">
+        <div class="timeline__date">Sept. 2024 — Présent</div>
+        <div class="timeline__dot"></div>
+        <div class="timeline__card">
+          <h3>Product Designer, Alternance</h3>
+          <span class="timeline__company">Bamptee, Saint-Soupplets</span>
+          <p>Conception d'interfaces responsive (web/mobile), déclinaison de maquettes selon le design system existant, création et maintenance de composants UI dans Figma, contribution à l'évolution du design system, respect des règles d'accessibilité et de cohérence visuelle.</p>
+          <div class="timeline__tags">
+            <span class="tag">Figma</span>
+            <span class="tag">Design System</span>
+            <span class="tag">Responsive</span>
+            <span class="tag">Composants UI</span>
+            <span class="tag">Accessibilité</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Expérience 2 -->
+      <div class="timeline__item timeline__item--left fade-in">
+        <div class="timeline__date">Sept. 2023 — Sept. 2024</div>
+        <div class="timeline__dot"></div>
+        <div class="timeline__card">
+          <h3>Assistance Marketing & RH, Alternance</h3>
+          <span class="timeline__company">Dentaurum France, Lognes</span>
+          <p>Organisation d'évènements, création et diffusion de newsletters, traitement du courrier, mise en place de tableaux Excel, contrôle de factures.</p>
+          <div class="timeline__tags">
+            <span class="tag">Marketing</span>
+            <span class="tag">Communication</span>
+            <span class="tag">Excel</span>
+            <span class="tag">RH</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Expérience 3 -->
+      <div class="timeline__item timeline__item--right fade-in">
+        <div class="timeline__date">Sept. 2020 — Sept. 2023</div>
+        <div class="timeline__dot"></div>
+        <div class="timeline__card">
+          <h3>Hôtesse de caisse, Superviseur, Service financier</h3>
+          <span class="timeline__company">E.Leclerc, Mareuil-lès-Meaux</span>
+          <p>Management d'une équipe d'hôtesses de caisse, gestion d'un planning, vérification des modes de règlement, fixation d'objectifs, accueil et renseignement clientèle.</p>
+          <div class="timeline__tags">
+            <span class="tag">Management</span>
+            <span class="tag">Gestion d'équipe</span>
+            <span class="tag">Service client</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FORMATIONS -->
+  <section class="formations" id="formations">
+    <h2 class="formations__title fade-in">Formations</h2>
+
+    <div class="formations__grid fade-in">
+      <div class="formations__card">
+        <span class="formations__date">2025 – 2026</span>
+        <h3 class="formations__name">Bachelor 3 - Webdesign</h3>
+        <p class="formations__school">My Digital School, Paris</p>
+      </div>
+
+      <div class="formations__card">
+        <span class="formations__date">2023 – 2025</span>
+        <h3 class="formations__name">Bachelor 1 & 2 - Gestion & Administration des Ventes</h3>
+        <p class="formations__school">Ascencia Business School, Lognes</p>
+      </div>
+
+      <div class="formations__card">
+        <span class="formations__date">2020 – 2022</span>
+        <h3 class="formations__name">Licence en Langues Étrangères Appliquées</h3>
+        <p class="formations__school">Université Gustave Eiffel, Champs-sur-Marne</p>
+      </div>
+
+      <div class="formations__card">
+        <span class="formations__date">2019</span>
+        <h3 class="formations__name">Baccalauréat Littéraire</h3>
+        <p class="formations__school">Lycée Jean Vilar, Meaux</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MES OUTILS -->
+  <section class="outils" id="outils">
+    <h2 class="outils__title fade-in">Mes Outils</h2>
+
+    <div class="outils__grid fade-in">
+      <div class="outils__item">
+        <img src="assets/svg/Figma-logo.svg [Vectorized].svg" alt="Figma">
+        <span>Figma</span>
+      </div>
+      <div class="outils__item">
+        <img src="assets/svg/Group 5.svg" alt="Photoshop">
+        <span>Photoshop</span>
+      </div>
+      <div class="outils__item">
+        <img src="assets/svg/Group 6.svg" alt="Wordpress">
+        <span>Wordpress</span>
+      </div>
+      <div class="outils__item">
+        <img src="assets/svg/Vector.svg" alt="Élémentor">
+        <span>Élémentor</span>
+      </div>
+      <div class="outils__item">
+        <img src="assets/svg/Group 7.svg" alt="Slack">
+        <span>Slack</span>
+      </div>
+      <div class="outils__item">
+        <img src="assets/svg/Notion-logo.svg [Vectorized].svg" alt="Notion">
+        <span>Notion</span>
+      </div>
+      <div class="outils__item">
+        <img src="assets/svg/2111656 [Vectorized].svg" alt="Trello">
+        <span>Trello</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="contact__deco">
+      <img src="assets/svg/etoile-3.svg" alt="" class="contact__star contact__star--1" aria-hidden="true">
+      <img src="assets/svg/etoile-3.svg" alt="" class="contact__star contact__star--2" aria-hidden="true">
+    </div>
+    <h2 class="contact__title fade-in">Un projet en tête ?</h2>
+    <p class="contact__text">Discutons de votre projet autour d'un café virtuel.<br>Je serais ravie de donner vie à vos idées !</p>
+    <div class="contact__actions">
+      <a href="mailto:amandine.ascensio@hotmail.fr" class="btn btn--dark">Envoyer un mail</a>
+      <a href="https://www.linkedin.com/in/amandine-ascensio-46ab17260/" target="_blank" rel="noopener" class="btn btn--outline-dark">LinkedIn</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <svg class="footer__wave" viewBox="0 0 1512 106" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0 96.0516C0 96.0516 257.881 14.5078 504 64.0344C750.119 113.561 923.952 126.068 1172.75 64.0344C1420.12 22.5 1512 64.0344 1512 64.0344V0H0V96.0516Z" fill="#FBDAEB"/>
+    </svg>
+    <div class="footer__content">
+      <h3 class="footer__name">Amandine Ascensio</h3>
+      <p class="footer__role">Webdesigner & UX/UI Designer • Région Parisienne</p>
+      <nav class="footer__links">
+        <a href="index.html#a-propos">À propos</a>
+        <a href="projets.html">Projets</a>
+        <a href="index.html#competences">Compétences</a>
+        <a href="index.html#experience">Expérience</a>
+        <a href="index.html#formations">Formations</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="footer__separator"></div>
+      <div class="footer__bottom">
+        <p class="footer__copy">&copy; 2026 Amandine Ascensio. Conçu avec passion et pixels.</p>
+        <div class="footer__legal">
+          <a href="mentions-legales.html">Mentions légales</a>
+          <span>•</span>
+          <a href="politique-confidentialite.html">Politique de confidentialité</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        document.getElementById('loader').classList.add('loader--hidden');
+      }, 1800);
+
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.15 });
+
+      document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right').forEach(function(el) {
+        observer.observe(el);
+      });
+
+    });
+
+    // Snap hero ↔ à propos (wheel/touch uniquement, n'affecte pas la nav)
+    (function() {
+      var hero = document.querySelector('.hero');
+      var apropos = document.querySelector('.apropos');
+      if (!hero || !apropos || window.innerWidth < 900) return;
+
+      var locked = false;
+
+      function snap(target) {
+        locked = true;
+        target.scrollIntoView({ behavior: 'smooth' });
+        setTimeout(function() { locked = false; }, 1000);
+      }
+
+      window.addEventListener('wheel', function(e) {
+        if (locked) return;
+        if (e.target.closest('.a11y-panel, .a11y-toggle, .cursor-switcher')) return;
+        var scrollY = window.scrollY;
+        var heroH = hero.offsetHeight;
+
+        if (e.deltaY > 0 && scrollY < heroH * 0.5) {
+          snap(apropos);
+        } else if (e.deltaY < 0 && scrollY > 0 && scrollY <= apropos.offsetTop + 10) {
+          snap(hero);
+        }
+      }, { passive: true });
+
+      var touchStartY = 0;
+      window.addEventListener('touchstart', function(e) {
+        touchStartY = e.touches[0].clientY;
+      }, { passive: true });
+
+      window.addEventListener('touchend', function(e) {
+        if (locked) return;
+        var delta = touchStartY - e.changedTouches[0].clientY;
+        var scrollY = window.scrollY;
+        var heroH = hero.offsetHeight;
+
+        if (delta > 50 && scrollY < heroH * 0.5) {
+          snap(apropos);
+        } else if (delta < -50 && scrollY > 0 && scrollY <= apropos.offsetTop + 10) {
+          snap(hero);
+        }
+      }, { passive: true });
+    })();
+
+    // Burger menu
+    var burger = document.querySelector('.burger');
+    var mobileMenu = document.querySelector('.mobile-menu');
+    if (burger && mobileMenu) {
+      burger.addEventListener('click', function() {
+        burger.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
+        burger.setAttribute('aria-expanded', burger.classList.contains('active'));
+      });
+      mobileMenu.querySelectorAll('a').forEach(function(link) {
+        link.addEventListener('click', function() {
+          burger.classList.remove('active');
+          mobileMenu.classList.remove('active');
+          burger.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+
+  </script>
+  <script src="cursor.js"></script>
+  <script src="accessibility.js"></script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(open /Users/amandineascensio/Desktop/Portfolio/projet-masm.html)",
+      "Bash(sips -g pixelWidth -g pixelHeight /Users/amandineascensio/Desktop/Portfolio/assets/images/masm-1.png)",
+      "Bash(find /Users/amandineascensio/Desktop -maxdepth 3 -name \"*.png\" -newer /Users/amandineascensio/Desktop/Portfolio/assets/images/masm-1.png 2>/dev/null | head -20)",
+      "Read(//Users/amandineascensio/Desktop/**)",
+      "Bash(find /Users/amandineascensio/Desktop /Users/amandineascensio/Downloads -maxdepth 2 -name \"*masm*\" -o -name \"*MASM*\" 2>/dev/null | head -20)",
+      "Read(//Users/amandineascensio/Downloads/**)",
+      "Bash(sips -g pixelWidth -g pixelHeight /Users/amandineascensio/Desktop/Portfolio/assets/images/masm-2.png)",
+      "Bash(sips -g pixelWidth -g pixelHeight /Users/amandineascensio/Desktop/Portfolio/assets/images/masm-mobile.png)",
+      "Bash(find /Users/amandineascensio -maxdepth 4 -name \"screencapture_1781270211286*\" 2>/dev/null)",
+      "Read(//Users/amandineascensio/**)",
+      "Bash(open /Users/amandineascensio/Desktop/Portfolio/projet-spoonia.html)",
+      "Bash(python3)",
+      "Bash(python3 -c ' *)"
+    ]
+  }
+}

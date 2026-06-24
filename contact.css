@@ -1,0 +1,264 @@
+/* ===== PAGE CONTACT ===== */
+.page-contact {
+  padding-top: 80px;
+}
+
+.page-contact__container {
+  display: flex;
+  width: 100%;
+  padding: 0 100px;
+  gap: 40px;
+  min-height: calc(100vh - 80px);
+}
+
+/* ---- Côté formulaire ---- */
+.page-contact__form-side {
+  flex: 1;
+  padding: 50px 0 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.page-contact__title {
+  font-family: var(--font-display);
+  font-size: 2.6rem;
+  font-weight: 400;
+  color: var(--color-dark);
+  line-height: 1.15;
+}
+
+.page-contact__title span {
+  color: var(--color-pink);
+}
+
+/* ---- Formulaire ---- */
+.page-contact__form {
+  max-width: 460px;
+}
+
+.form-group {
+  margin-bottom: 14px;
+}
+
+.form-group label {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-dark);
+  margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 14px 16px;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--color-dark);
+  background-color: var(--color-white);
+  border: 1.5px solid rgba(27, 19, 64, 0.15);
+  border-radius: 10px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: rgba(27, 19, 64, 0.35);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--color-pink);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 110px;
+}
+
+.page-contact__form .btn {
+  margin-top: 12px;
+}
+
+/* ---- Côté visuel ---- */
+.page-contact__visual {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: visible;
+  min-height: 400px;
+}
+
+.page-contact__circle {
+  position: absolute;
+  width: min(680px, 95%);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background-color: var(--color-pink-bg);
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.page-contact__avatar {
+  position: relative;
+  z-index: 2;
+  width: auto;
+  max-width: 100%;
+  height: calc(100vh - 80px);
+  object-fit: contain;
+  object-position: bottom center;
+}
+
+.page-contact__star {
+  position: absolute;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.page-contact__star--1 {
+  width: 70px;
+  top: 12%;
+  left: -2%;
+}
+
+.page-contact__star--2 {
+  width: 90px;
+  top: 5%;
+  right: -2%;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .page-contact__container {
+    padding: 0 40px;
+  }
+
+  .page-contact__title {
+    font-size: 2.4rem;
+  }
+
+  .page-contact__circle {
+    width: min(350px, 75%);
+  }
+
+  .page-contact__avatar {
+    height: calc(100vh - 100px);
+  }
+
+  .page-contact__star--1 {
+    left: 5%;
+  }
+
+  .page-contact__star--2 {
+    right: 5%;
+  }
+}
+
+@media (max-width: 900px) {
+  .page-contact__container {
+    flex-direction: column;
+    padding: 0 24px;
+    min-height: auto;
+  }
+
+  .page-contact__visual {
+    order: 1;
+    width: 100%;
+    height: 60vh;
+    min-height: 400px;
+  }
+
+  .page-contact__avatar {
+    height: 100%;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    object-position: bottom center;
+  }
+
+  .page-contact__circle {
+    width: min(400px, 65%);
+    aspect-ratio: 1;
+    height: auto;
+  }
+
+  .page-contact__form-side {
+    padding: 40px 0 0;
+  }
+
+  .page-contact__form {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .page-contact__container {
+    padding: 0 16px;
+  }
+
+  .page-contact__title {
+    font-size: 1.8rem;
+  }
+
+  .page-contact__visual {
+    height: 50vh;
+    min-height: 340px;
+  }
+
+  .page-contact__circle {
+    width: 65%;
+    bottom: 0;
+  }
+
+  .page-contact__star--1 {
+    width: 50px;
+    top: 5%;
+    left: 5%;
+  }
+
+  .page-contact__star--2 {
+    width: 60px;
+    top: 2%;
+    right: 2%;
+  }
+
+  .page-contact__form-side {
+    padding: 32px 0 0;
+  }
+
+  .form-group label {
+    font-size: 0.82rem;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    font-size: 16px;
+    padding: 12px 14px;
+  }
+
+  .page-contact__form .btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 400px) {
+  .page-contact__title {
+    font-size: 1.5rem;
+  }
+
+  .page-contact__visual {
+    height: 42vh;
+    min-height: 280px;
+  }
+
+  .page-contact__circle {
+    width: 60%;
+  }
+}
