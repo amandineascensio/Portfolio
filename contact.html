@@ -49,22 +49,26 @@
         </a>
         <h1 class="page-contact__title">Discutons de votre <span>projet</span></h1>
 
-        <form class="page-contact__form" action="#" method="post">
+        <form class="page-contact__form" action="https://formsubmit.co/amandine.ascensio@hotmail.fr" method="POST">
+          <input type="hidden" name="_subject" value="Nouvelle demande depuis le portfolio">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_next" value="https://amandine-ascensio.vercel.app/contact.html">
+          <input type="text" name="_honey" style="display:none">
           <div class="form-group">
             <label for="prenom">Prénom</label>
-            <input type="text" id="prenom" name="prenom" placeholder="Amandine">
+            <input type="text" id="prenom" name="prenom" placeholder="Amandine" required>
           </div>
           <div class="form-group">
             <label for="nom">Nom</label>
-            <input type="text" id="nom" name="nom" placeholder="Ascensio">
+            <input type="text" id="nom" name="nom" placeholder="Ascensio" required>
           </div>
           <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="amandine.ascensio@exemple.fr">
+            <input type="email" id="email" name="email" placeholder="amandine.ascensio@exemple.fr" required>
           </div>
           <div class="form-group">
             <label for="message">Message</label>
-            <textarea id="message" name="message" rows="6" placeholder="Ceci est mon message"></textarea>
+            <textarea id="message" name="message" rows="6" placeholder="Ceci est mon message" required></textarea>
           </div>
           <button type="submit" class="btn btn--primary btn--lg">Envoyer la demande</button>
         </form>
@@ -88,9 +92,16 @@
     </div>
     <h2 class="contact__title">Un projet en tête ?</h2>
     <p class="contact__text">Discutons de votre projet autour d'un café virtuel.<br>Je serais ravie de donner vie à vos idées !</p>
-    <div class="contact__actions">
-      <a href="mailto:amandine.ascensio@hotmail.fr" class="btn btn--dark">Envoyer un mail</a>
-      <a href="https://www.linkedin.com/in/amandine-ascensio-46ab17260/" target="_blank" rel="noopener" class="btn btn--outline-dark">LinkedIn</a>
+    <div class="contact__socials">
+      <a href="mailto:amandine.ascensio@hotmail.fr" class="contact__social-link" aria-label="Email">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7L13.03 12.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+      </a>
+      <a href="https://www.linkedin.com/in/amandine-ascensio-46ab17260/" target="_blank" rel="noopener" class="contact__social-link" aria-label="LinkedIn">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      </a>
+      <a href="https://www.instagram.com/andastudio27/" target="_blank" rel="noopener" class="contact__social-link" aria-label="Instagram">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      </a>
     </div>
   </section>
 
