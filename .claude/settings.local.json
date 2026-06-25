@@ -13,7 +13,11 @@
       "Read(//Users/amandineascensio/**)",
       "Bash(open /Users/amandineascensio/Desktop/Portfolio/projet-spoonia.html)",
       "Bash(python3)",
-      "Bash(python3 -c ' *)"
+      "Bash(python3 -c ' *)",
+      "Bash(cp \"/Users/amandineascensio/Desktop/Portfolio/assets/svg/Notion-logo.svg [Vectorized].svg\" \"/Users/amandineascensio/Desktop/Portfolio/assets/svg/Notion-logo-dark.svg\" && cp \"/Users/amandineascensio/Desktop/Portfolio/assets/svg/Group 5.svg\" \"/Users/amandineascensio/Desktop/Portfolio/assets/svg/Group 5-dark.svg\")"
+    ],
+    "additionalDirectories": [
+      "/Users/amandineascensio/Desktop/Portfolio/assets/svg"
     ]
   }
 }
