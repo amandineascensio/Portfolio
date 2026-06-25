@@ -1413,15 +1413,29 @@ body.a11y-darkmode .back-btn:hover {
   gap: 0;
 }
 
+.competences__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 220px;
+  margin-right: 40px;
+  flex-shrink: 0;
+}
+
+.competences__star-deco--1 {
+  width: 40px;
+}
+
+.competences__star-deco--2 {
+  width: 30px;
+}
+
 .competences__title {
   font-family: var(--font-display);
   font-size: 3.2rem;
   font-weight: 400;
   color: var(--color-white);
   line-height: 1.1;
-  min-width: 220px;
-  margin-right: 40px;
-  flex-shrink: 0;
 }
 
 .competences__separator {
@@ -2151,9 +2165,12 @@ body.a11y-darkmode .back-btn:hover {
     padding: 40px;
   }
 
+  .competences__header {
+    min-width: 180px;
+  }
+
   .competences__title {
     font-size: 2.4rem;
-    min-width: 180px;
   }
 
   .formations {
@@ -2288,26 +2305,30 @@ body.a11y-darkmode .back-btn:hover {
   }
 
   .competences__card {
-    flex-direction: column;
-    padding: 40px 32px;
-    gap: 32px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 28px;
     text-align: center;
   }
 
-  .competences__title {
+  .competences__header {
+    grid-column: 1 / -1;
     min-width: auto;
     margin-right: 0;
+    padding-bottom: 12px;
+    border-bottom: 2px dashed rgba(255, 255, 255, 0.15);
+    justify-content: center;
   }
 
   .competences__separator {
-    width: 60px;
-    height: 0;
-    border-left: none;
-    border-top: 2px dashed rgba(255, 255, 255, 0.3);
+    display: none;
   }
 
   .competences__item {
-    padding: 0;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
   }
 
   .formations {
@@ -2382,6 +2403,10 @@ body.a11y-darkmode .back-btn:hover {
 
   .projet-card--reverse {
     flex-direction: column;
+  }
+
+  .projet-card--reverse .projet-card__content {
+    order: 1;
   }
 
   .projet-card__image {
@@ -2493,8 +2518,9 @@ body.a11y-darkmode .back-btn:hover {
   }
 
   .competences__card {
-    padding: 28px 20px;
-    gap: 24px;
+    grid-template-columns: 1fr;
+    padding: 20px;
+    gap: 12px;
     border-radius: 16px;
   }
 
@@ -2503,9 +2529,9 @@ body.a11y-darkmode .back-btn:hover {
     line-height: 1.15;
   }
 
-  .competences__separator {
-    width: 40px;
-    margin: 0 auto;
+  .competences__item {
+    padding: 16px;
+    border-radius: 12px;
   }
 
   .competences__item h3 {
@@ -2809,8 +2835,8 @@ body.a11y-darkmode .back-btn:hover {
   }
 
   .competences__card {
-    padding: 24px 16px;
-    gap: 20px;
+    padding: 16px;
+    gap: 10px;
   }
 
   .competences__title {
