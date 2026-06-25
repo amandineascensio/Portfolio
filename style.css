@@ -2204,6 +2204,21 @@ body.a11y-darkmode .back-btn:hover {
 
 /* Tablette portrait */
 @media (max-width: 900px) {
+  .cursor-switcher {
+    display: none;
+  }
+
+  body.cursor--figma,
+  body.cursor--figma *,
+  body.cursor--circle,
+  body.cursor--circle *,
+  body.cursor--star,
+  body.cursor--star *,
+  body.cursor--fraise,
+  body.cursor--fraise * {
+    cursor: auto !important;
+  }
+
   .hero {
     height: auto;
     min-height: 100vh;
@@ -2809,16 +2824,6 @@ body.a11y-darkmode .back-btn:hover {
     bottom: 68px;
     max-height: calc(100vh - 100px);
     padding: 20px 16px;
-  }
-
-  .cursor-switcher {
-    bottom: 16px;
-    right: 16px;
-  }
-
-  .cursor-switcher__toggle {
-    width: 40px;
-    height: 40px;
   }
 
   .btn--lg {
