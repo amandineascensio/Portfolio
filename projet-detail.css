@@ -1164,9 +1164,18 @@
   display: flex;
   gap: 16px;
   align-items: stretch;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-bottom: 4px;
+}
+
+.projet-instagram__row::-webkit-scrollbar {
+  display: none;
 }
 
 .projet-instagram__slide {
+  flex: 0 0 auto;
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
@@ -1205,12 +1214,8 @@
   }
 
   .projet-instagram { padding: 0 24px 60px; }
-  .projet-instagram__row {
-    flex-wrap: wrap;
-    gap: 12px;
-  }
   .projet-instagram__slide {
-    flex: 0 0 calc(50% - 6px);
+    height: 160px;
   }
 
   .projet-process { padding: 0 24px 60px; }
