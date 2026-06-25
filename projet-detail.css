@@ -1,6 +1,6 @@
 /* ===== HERO PROJET ===== */
 .projet-hero {
-  padding: 140px 100px 50px;
+  padding: 140px 100px 100px;
   position: relative;
   overflow: hidden;
 }
@@ -9,6 +9,7 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
+  z-index: 0;
 }
 
 .projet-hero__star--1 {
@@ -44,6 +45,8 @@
   align-items: center;
   justify-content: space-between;
   gap: 40px;
+  position: relative;
+  z-index: 1;
 }
 
 .projet-hero__text {
@@ -115,7 +118,7 @@
 
 /* ===== DÉTAILS PROJET ===== */
 .projet-details {
-  padding: 0 100px 50px;
+  padding: 0 100px 100px;
 }
 
 .projet-details__card {
@@ -190,7 +193,7 @@
 
 /* ===== CONTEXTE PROJET ===== */
 .projet-contexte {
-  padding: 0 100px 40px;
+  padding: 0 100px 100px;
 }
 
 .projet-contexte__grid {
@@ -279,7 +282,7 @@
 
 /* ===== PROBLÉMATIQUE ===== */
 .projet-problematique {
-  padding: 0 100px 50px;
+  padding: 0 100px 100px;
 }
 
 .projet-problematique__card {
@@ -328,7 +331,7 @@
 
 /* ===== STATS RECHERCHE ===== */
 .projet-stats {
-  padding: 0 100px 50px;
+  padding: 0 100px 100px;
 }
 
 .projet-stats__card {
@@ -398,7 +401,9 @@
   font-size: 0.95rem;
   color: var(--color-text);
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 1;
 }
 
 .projet-apercu__embed {
@@ -432,7 +437,7 @@
 
 /* ===== APERÇU DU PROJET ===== */
 .projet-apercu {
-  padding: 0 100px 50px;
+  padding: 0 100px 100px;
   position: relative;
 }
 
@@ -441,6 +446,7 @@
   inset: 0;
   pointer-events: none;
   overflow: hidden;
+  z-index: 0;
 }
 
 .projet-apercu__swirl--1 {
@@ -469,7 +475,16 @@
   font-weight: 400;
   color: var(--color-dark);
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.projet-apercu__visuals,
+.projet-apercu__prototype,
+.projet-apercu__embed {
+  position: relative;
+  z-index: 1;
 }
 
 .projet-apercu__visuals {
@@ -875,7 +890,7 @@
 
 /* ===== PROCESS / TIMELINE ===== */
 .projet-process {
-  padding: 0 100px 50px;
+  padding: 0 100px 100px;
 }
 
 .projet-process__title {
@@ -963,7 +978,7 @@
 
 /* ===== PERSONAS ===== */
 .projet-personas {
-  padding: 0 100px 50px;
+  padding: 0 100px 100px;
 }
 
 .projet-personas__title {
@@ -1057,7 +1072,7 @@
 
 /* ===== A11Y BANNER ===== */
 .projet-a11y {
-  padding: 0 100px 50px;
+  padding: 0 100px 100px;
 }
 
 .projet-a11y__card {
@@ -1125,7 +1140,7 @@
 
 /* ===== INSTAGRAM CAROUSEL ===== */
 .projet-instagram {
-  padding: 0 100px 50px;
+  padding: 0 100px 100px;
 }
 
 .projet-instagram__title {
