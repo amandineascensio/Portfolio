@@ -759,10 +759,15 @@
     font-size: 0.8rem;
   }
 
-  .projet-hero__star--1,
   .projet-hero__star--2,
   .projet-hero__star--3 {
     display: none;
+  }
+
+  .projet-hero__star--1 {
+    width: 35px;
+    top: 100px;
+    right: 8%;
   }
 
   .projet-contexte {

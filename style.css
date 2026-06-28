@@ -2800,6 +2800,13 @@ body.a11y-darkmode .back-btn:hover {
     display: none;
   }
 
+  .experience__fraise {
+    width: 80px;
+    top: -20px;
+    left: auto;
+    right: 5%;
+  }
+
   .competences {
     padding: 60px 24px;
   }
@@ -2858,12 +2865,26 @@ body.a11y-darkmode .back-btn:hover {
     margin-bottom: 40px;
   }
 
-  .skills__deco {
-    display: none;
+  .skills__swirl--left {
+    width: 300px;
+    top: -100px;
   }
 
-  .outils__deco {
-    display: none;
+  .skills__deco-star--1 {
+    width: 50px;
+    top: 0;
+    left: 5%;
+  }
+
+  .outils__swirl--left {
+    width: 250px;
+    top: -120px;
+  }
+
+  .outils__fraise {
+    width: 90px;
+    top: 0;
+    right: 5%;
   }
 
   .skills__wrapper {
@@ -2908,9 +2929,14 @@ body.a11y-darkmode .back-btn:hover {
     font-size: 2.4rem;
   }
 
-  .contact__star--1,
   .contact__star--2 {
     display: none;
+  }
+
+  .contact__star--1 {
+    width: 50px;
+    top: 20px;
+    right: 8%;
   }
 
   .footer__name {
@@ -3044,8 +3070,35 @@ body.a11y-darkmode .back-btn:hover {
     font-size: 2rem;
   }
 
-  .apropos__star {
+  .apropos__star--1,
+  .apropos__star--2,
+  .apropos__star--3 {
     display: none;
+  }
+
+  .skills__swirl--left {
+    display: none;
+  }
+
+  .skills__deco-star--1 {
+    width: 35px;
+    top: 10px;
+    left: auto;
+    right: 10%;
+  }
+
+  .outils__swirl--left {
+    display: none;
+  }
+
+  .outils__fraise {
+    width: 60px;
+    top: -10px;
+    right: 5%;
+  }
+
+  .experience__fraise {
+    width: 50px;
   }
 
   .competences {
