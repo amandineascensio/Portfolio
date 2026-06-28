@@ -463,6 +463,10 @@
     </div>
   </footer>
 
+  <a href="#" class="back-to-top" aria-label="Retour en haut">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+  </a>
+
   <script>
     window.addEventListener('load', function() {
       setTimeout(function() {
@@ -544,6 +548,14 @@
           mobileMenu.classList.remove('active');
           burger.setAttribute('aria-expanded', 'false');
         });
+      });
+    }
+
+    // Back to top
+    var backToTop = document.querySelector('.back-to-top');
+    if (backToTop) {
+      window.addEventListener('scroll', function() {
+        backToTop.classList.toggle('visible', window.scrollY > 600);
       });
     }
 
