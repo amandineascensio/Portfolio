@@ -4,11 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Amandine Ascensio — UI/UX Designer</title>
+  <meta name="description" content="Portfolio d'Amandine Ascensio, UI/UX Designer spécialisée en product design, design system et accessibilité. Découvrez mes projets et mon parcours.">
   <link rel="icon" type="image/svg+xml" href="assets/svg/logo.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="preload" as="image" href="assets/images/avatar.png" fetchpriority="high">
 </head>
 <body class="cursor--figma">
 
@@ -53,6 +55,8 @@
     </div>
   </header>
 
+  <main>
+
   <!-- HERO -->
   <section class="hero">
     <!-- Ligne décorative (fond, hors marges) -->
@@ -61,7 +65,7 @@
     <div class="hero__container">
       <div class="hero__visual">
         <div class="hero__circle"></div>
-        <img src="assets/images/avatar.png" alt="Illustration 3D d'Amandine Ascensio" class="hero__avatar">
+        <img src="assets/images/avatar.png" alt="Illustration 3D d'Amandine Ascensio" class="hero__avatar" width="874" height="874" fetchpriority="high">
         <img src="assets/svg/etoile-3.svg" alt="" class="hero__star hero__star--1" aria-hidden="true">
         <img src="assets/svg/etoile-1.svg" alt="" class="hero__star hero__star--2" aria-hidden="true">
         <img src="assets/svg/etoile-2.svg" alt="" class="hero__star hero__star--3" aria-hidden="true">
@@ -99,7 +103,7 @@
         <p>Pour moi, un bon design est un design qui se fait oublier : il guide naturellement l'utilisateur tout en reflétant l'identité de la marque.</p>
       </div>
       <div class="apropos__image fade-in-right">
-        <img src="assets/images/about.png" alt="Amandine à son bureau avec ses outils de design">
+        <img src="assets/images/about.png" alt="Amandine à son bureau avec ses outils de design" width="1024" height="1024" loading="lazy">
       </div>
     </div>
   </section>
@@ -325,8 +329,8 @@
       <!-- Projet 1 — MASM -->
       <article class="projet-card fade-in">
         <div class="projet-card__image projet-card__image--masm">
-          <img src="assets/images/masm-1.png" alt="MASM — haut de page" class="masm-img masm-img--1">
-          <img src="assets/images/masm-2.png" alt="MASM — bas de page" class="masm-img masm-img--2">
+          <img src="assets/images/masm-1.png" alt="MASM — haut de page" class="masm-img masm-img--1" width="664" height="476" loading="lazy">
+          <img src="assets/images/masm-2.png" alt="MASM — bas de page" class="masm-img masm-img--2" width="360" height="417" loading="lazy">
         </div>
         <div class="projet-card__content">
           <div class="projet-card__tags">
@@ -355,7 +359,7 @@
           <a href="projet-spoonia.html" class="btn btn--primary">Voir le projet</a>
         </div>
         <div class="projet-card__image">
-          <img src="assets/images/spoonia-mockup.png" alt="Mockups Spoonia sur iPhone" class="spoonia-img">
+          <img src="assets/images/spoonia-mockup.png" alt="Mockups Spoonia sur iPhone" class="spoonia-img" width="701" height="436" loading="lazy">
         </div>
       </article>
 
@@ -428,6 +432,8 @@
       </a>
     </div>
   </section>
+
+  </main>
 
   <!-- FOOTER -->
   <footer class="footer">

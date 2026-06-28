@@ -14,7 +14,9 @@
       "Bash(open /Users/amandineascensio/Desktop/Portfolio/projet-spoonia.html)",
       "Bash(python3)",
       "Bash(python3 -c ' *)",
-      "Bash(cp \"/Users/amandineascensio/Desktop/Portfolio/assets/svg/Notion-logo.svg [Vectorized].svg\" \"/Users/amandineascensio/Desktop/Portfolio/assets/svg/Notion-logo-dark.svg\" && cp \"/Users/amandineascensio/Desktop/Portfolio/assets/svg/Group 5.svg\" \"/Users/amandineascensio/Desktop/Portfolio/assets/svg/Group 5-dark.svg\")"
+      "Bash(cp \"/Users/amandineascensio/Desktop/Portfolio/assets/svg/Notion-logo.svg [Vectorized].svg\" \"/Users/amandineascensio/Desktop/Portfolio/assets/svg/Notion-logo-dark.svg\" && cp \"/Users/amandineascensio/Desktop/Portfolio/assets/svg/Group 5.svg\" \"/Users/amandineascensio/Desktop/Portfolio/assets/svg/Group 5-dark.svg\")",
+      "Bash(sips -g pixelWidth -g pixelHeight /Users/amandineascensio/Desktop/Portfolio/assets/images/contact-avatar.png)",
+      "Bash(sips -g pixelWidth -g pixelHeight \"assets/images/Post Insta - Spoonia/Premier post/1.jpg\")"
     ],
     "additionalDirectories": [
       "/Users/amandineascensio/Desktop/Portfolio/assets/svg"

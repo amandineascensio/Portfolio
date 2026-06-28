@@ -79,9 +79,9 @@
   font-family: var(--font-body);
   font-size: 0.75rem;
   font-weight: 600;
-  color: #D03872;
+  color: #BF3369;
   background: none;
-  border: 1px solid #D03872;
+  border: 1px solid #BF3369;
   border-radius: 50px;
   padding: 5px 14px;
   cursor: pointer !important;
@@ -89,7 +89,7 @@
 }
 
 .a11y-panel__reset:hover {
-  background-color: #D03872;
+  background-color: #BF3369;
   color: #ffffff;
 }
 
@@ -149,7 +149,7 @@
 }
 
 .a11y-option.active .a11y-option__icon {
-  background-color: #D03872;
+  background-color: #BF3369;
 }
 
 .a11y-option__label {
@@ -183,7 +183,7 @@
 }
 
 .a11y-option.active .a11y-option__toggle {
-  background-color: #D03872;
+  background-color: #BF3369;
 }
 
 .a11y-option.active .a11y-option__toggle::after {
@@ -262,7 +262,7 @@
   font-family: var(--font-body);
   font-size: 0.8rem;
   font-weight: 600;
-  color: #D03872;
+  color: #BF3369;
   min-width: 40px;
   text-align: right;
 }
@@ -295,7 +295,7 @@
   width: 100%;
   height: 6px;
   border-radius: 3px;
-  background: linear-gradient(to right, #D03872 var(--slider-progress, 50%), rgba(255, 255, 255, 0.15) var(--slider-progress, 50%));
+  background: linear-gradient(to right, #BF3369 var(--slider-progress, 50%), rgba(255, 255, 255, 0.15) var(--slider-progress, 50%));
   outline: none;
   cursor: pointer !important;
 }
@@ -307,7 +307,7 @@
   height: 20px;
   border-radius: 50%;
   background: #ffffff;
-  border: 3px solid #D03872;
+  border: 3px solid #BF3369;
   cursor: pointer !important;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
@@ -317,7 +317,7 @@
   height: 20px;
   border-radius: 50%;
   background: #ffffff;
-  border: 3px solid #D03872;
+  border: 3px solid #BF3369;
   cursor: pointer !important;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
@@ -643,13 +643,13 @@ body.a11y-darkmode .back-btn svg path {
 }
 
 body.a11y-darkmode .projet-process__number {
-  background-color: #D03872 !important;
+  background-color: #BF3369 !important;
   color: #ffffff !important;
 }
 
 body.a11y-darkmode .btn--dark {
-  background-color: #D03872;
-  border-color: #D03872;
+  background-color: #BF3369;
+  border-color: #BF3369;
   color: #ffffff;
 }
 
@@ -664,8 +664,8 @@ body.a11y-darkmode .btn--outline-dark {
 }
 
 body.a11y-darkmode .btn--outline-dark:hover {
-  background-color: #D03872;
-  border-color: #D03872;
+  background-color: #BF3369;
+  border-color: #BF3369;
   color: #ffffff;
 }
 
@@ -860,7 +860,7 @@ body.cursor--default * {
 }
 
 .cursor-switcher__option.active {
-  background-color: #D03872;
+  background-color: #BF3369;
 }
 
 .cursor-switcher__option svg,
@@ -1004,7 +1004,7 @@ body.page-loaded {
 :root {
   --color-bg: #F8F3EE;
   --color-dark: #1B1340;
-  --color-pink: #D03872;
+  --color-pink: #BF3369;
   --color-pink-light: #F9C6D9;
   --color-pink-bg: #FBDAEB;
   --color-text: #4A4A5A;
@@ -1178,8 +1178,8 @@ body.a11y-darkmode .back-btn svg path {
 }
 
 body.a11y-darkmode .back-btn:hover {
-  background-color: #D03872;
-  border-color: #D03872;
+  background-color: #BF3369;
+  border-color: #BF3369;
 }
 
 /* ===== BURGER & MOBILE MENU ===== */

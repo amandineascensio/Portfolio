@@ -11,8 +11,8 @@
         '</button>' +
         '<button class="cursor-switcher__option" data-cursor="circle">' +
           '<svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">' +
-            '<circle cx="16" cy="16" r="14" stroke="#D03872" stroke-width="2.5"/>' +
-            '<circle cx="16" cy="16" r="3" fill="#D03872"/>' +
+            '<circle cx="16" cy="16" r="14" stroke="#BF3369" stroke-width="2.5"/>' +
+            '<circle cx="16" cy="16" r="3" fill="#BF3369"/>' +
           '</svg>' +
           '<span class="cursor-switcher__label">Cercle</span>' +
         '</button>' +
