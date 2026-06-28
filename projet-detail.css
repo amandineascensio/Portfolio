@@ -894,7 +894,8 @@
 }
 
 /* ===== PROCESS / TIMELINE ===== */
-.projet-process {
+.projet-process,
+.projet-userflow {
   padding: 0 100px 100px;
 }
 
@@ -1198,28 +1199,88 @@
   flex: 0 0 auto;
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   height: 220px;
+  background: var(--color-bg);
 }
 
 .projet-instagram__slide:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
 .projet-instagram__slide img {
   height: 100%;
   width: auto;
   display: block;
+  border-radius: 16px;
+}
+
+.projet-instagram__slide--banner {
+  height: 160px;
+  width: auto;
+}
+
+.projet-instagram__slide--banner img {
+  height: 100%;
+  width: auto;
+}
+
+/* ===== GALERIE GRILLE (V for Vape) ===== */
+.projet-galerie {
+  padding: 0 100px 100px;
+}
+
+.projet-galerie__title {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  font-weight: 400;
+  color: var(--color-dark);
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.projet-galerie__subtitle {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--color-text);
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.projet-galerie__grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.projet-galerie__grid img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  display: block;
+}
+
+.projet-galerie__row {
+  display: flex;
+  gap: 16px;
+}
+
+.projet-galerie__row img {
+  flex: 1;
+  min-width: 0;
+  object-fit: cover;
 }
 
 /* ===== RESPONSIVE NEW SECTIONS ===== */
 @media (max-width: 1280px) {
   .projet-visual-break { padding: 0 60px; }
-  .projet-process { padding: 0 60px 80px; }
+  .projet-process,
+  .projet-userflow { padding: 0 60px 80px; }
   .projet-personas { padding: 0 60px 80px; }
   .projet-a11y { padding: 0 60px 80px; }
+  .projet-galerie { padding: 0 60px 80px; }
 }
 
 @media (max-width: 900px) {
@@ -1234,11 +1295,15 @@
   }
 
   .projet-instagram { padding: 0 24px 60px; }
+  .projet-galerie { padding: 0 24px 60px; }
+  .projet-galerie__grid { gap: 12px; }
+  .projet-galerie__grid img { border-radius: 8px; }
   .projet-instagram__slide {
     height: 160px;
   }
 
-  .projet-process { padding: 0 24px 60px; }
+  .projet-process,
+  .projet-userflow { padding: 0 24px 60px; }
   .projet-process__steps {
     flex-direction: column;
     gap: 24px;

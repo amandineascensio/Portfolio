@@ -16,7 +16,11 @@
       "Bash(python3 -c ' *)",
       "Bash(cp \"/Users/amandineascensio/Desktop/Portfolio/assets/svg/Notion-logo.svg [Vectorized].svg\" \"/Users/amandineascensio/Desktop/Portfolio/assets/svg/Notion-logo-dark.svg\" && cp \"/Users/amandineascensio/Desktop/Portfolio/assets/svg/Group 5.svg\" \"/Users/amandineascensio/Desktop/Portfolio/assets/svg/Group 5-dark.svg\")",
       "Bash(sips -g pixelWidth -g pixelHeight /Users/amandineascensio/Desktop/Portfolio/assets/images/contact-avatar.png)",
-      "Bash(sips -g pixelWidth -g pixelHeight \"assets/images/Post Insta - Spoonia/Premier post/1.jpg\")"
+      "Bash(sips -g pixelWidth -g pixelHeight \"assets/images/Post Insta - Spoonia/Premier post/1.jpg\")",
+      "Bash(find /Users/amandineascensio/Desktop -maxdepth 3 -type d -iname \"*vape*\" -o -iname \"*v for*\" -o -iname \"*vfv*\" 2>/dev/null | head -10)",
+      "Bash(find /Users/amandineascensio/Desktop -maxdepth 3 -type d 2>/dev/null | grep -iv 'node_modules\\\\|\\\\.git\\\\|\\\\.claude' | head -30)",
+      "Bash(find /Users/amandineascensio -maxdepth 4 -type d -iname \"*vape*\" -o -iname \"*protect*\" -o -iname \"*banner*\" 2>/dev/null | grep -v 'Library\\\\|\\\\.Trash\\\\|node_modules' | head -10)",
+      "Bash(find /Users/amandineascensio/Downloads -maxdepth 2 -type f \\\\\\( -name \"*.png\" -o -name \"*.jpg\" -o -name \"*.jpeg\" \\\\\\) 2>/dev/null | head -20)"
     ],
     "additionalDirectories": [
       "/Users/amandineascensio/Desktop/Portfolio/assets/svg"
