@@ -20,10 +20,45 @@
       "Bash(find /Users/amandineascensio/Desktop -maxdepth 3 -type d -iname \"*vape*\" -o -iname \"*v for*\" -o -iname \"*vfv*\" 2>/dev/null | head -10)",
       "Bash(find /Users/amandineascensio/Desktop -maxdepth 3 -type d 2>/dev/null | grep -iv 'node_modules\\\\|\\\\.git\\\\|\\\\.claude' | head -30)",
       "Bash(find /Users/amandineascensio -maxdepth 4 -type d -iname \"*vape*\" -o -iname \"*protect*\" -o -iname \"*banner*\" 2>/dev/null | grep -v 'Library\\\\|\\\\.Trash\\\\|node_modules' | head -10)",
-      "Bash(find /Users/amandineascensio/Downloads -maxdepth 2 -type f \\\\\\( -name \"*.png\" -o -name \"*.jpg\" -o -name \"*.jpeg\" \\\\\\) 2>/dev/null | head -20)"
+      "Bash(find /Users/amandineascensio/Downloads -maxdepth 2 -type f \\\\\\( -name \"*.png\" -o -name \"*.jpg\" -o -name \"*.jpeg\" \\\\\\) 2>/dev/null | head -20)",
+      "Bash(npx create-next-app@latest MASM --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --use-npm)",
+      "Bash(npx create-next-app@latest masm --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --use-npm)",
+      "Bash(npm cache *)",
+      "Bash(ls -la /Users/amandineascensio/Desktop/masm 2>&1)",
+      "Read(//Users/amandineascensio/Desktop/masm/**)",
+      "Bash(sudo chown -R 501:20 \"/Users/amandineascensio/.npm\")",
+      "Bash(npm install *)",
+      "Bash(rm -rf /Users/amandineascensio/Desktop/masm/.npm-tmp-cache 2>&1)",
+      "Bash(ls /Users/amandineascensio/Desktop/masm/)",
+      "Bash(npx create-next-app@latest masm --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --use-npm --cache /Users/amandineascensio/Desktop/.npm-tmp-cache)",
+      "Bash(npx create-next-app@latest masm-app --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --use-npm)",
+      "Read(//Users/amandineascensio/Desktop/masm-app/**)",
+      "Bash(ls -la /Users/amandineascensio/Desktop/masm/)",
+      "Read(//Users/amandineascensio/Desktop/MASM/**)",
+      "Read(//Users/amandineascensio/Desktop/MASM/Logo/**)",
+      "Read(//Users/amandineascensio/Desktop/MASM/Photos/**)",
+      "Bash(mkdir -p /Users/amandineascensio/Desktop/masm-app/public/images)",
+      "Bash(cp \"/Users/amandineascensio/Desktop/masm/Logo/MASM-text.svg\" /Users/amandineascensio/Desktop/masm-app/public/images/logo.svg)",
+      "Bash(cp \"/Users/amandineascensio/Desktop/masm/Photos/65.jpg\" /Users/amandineascensio/Desktop/masm-app/public/images/hero-bg.jpg)",
+      "Bash(mkdir -p /Users/amandineascensio/Desktop/masm-app/src/components)",
+      "Bash(npm run *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000)",
+      "Bash(cp \"/Users/amandineascensio/Desktop/masm/Logo/Fichier 4.png\" /Users/amandineascensio/Desktop/masm-app/public/images/logo.png)",
+      "Bash(curl -s http://localhost:3000)",
+      "Bash(rm -rf /Users/amandineascensio/Desktop/masm-app)",
+      "Bash(cp \"/Users/amandineascensio/Desktop/masm/Logo/Fichier 4.png\" /Users/amandineascensio/Desktop/masm-app/assets/images/logo.png)",
+      "Bash(cp \"/Users/amandineascensio/Desktop/masm/Photos/65.jpg\" /Users/amandineascensio/Desktop/masm-app/assets/images/hero-bg.jpg)",
+      "Bash(cp \"/Users/amandineascensio/Desktop/masm/1ce1f0cf-de1f-4eed-b28e-ad61400e4ef2.png\" /Users/amandineascensio/Desktop/masm-app/assets/images/hero-bg.jpg)",
+      "Bash(python3 -m http.server 8080)",
+      "Bash(curl -s http://localhost:8080)"
     ],
     "additionalDirectories": [
-      "/Users/amandineascensio/Desktop/Portfolio/assets/svg"
+      "/Users/amandineascensio/Desktop/Portfolio/assets/svg",
+      "/Users/amandineascensio/Desktop/masm/.npm-tmp-cache",
+      "/Users/amandineascensio/Desktop/masm-app/src",
+      "/Users/amandineascensio/Desktop/MASM/Logo",
+      "/Users/amandineascensio/Desktop/masm-app",
+      "/Users/amandineascensio/Desktop/MASM"
     ]
   }
 }
