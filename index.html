@@ -249,6 +249,36 @@
       margin-top: 4px;
     }
 
+    /* ===== LANGUE TOGGLE ===== */
+    .lang-toggle {
+      display: flex;
+      align-items: center;
+      background: var(--color-pink-bg);
+      border-radius: 20px;
+      padding: 3px;
+      border: 1px solid rgba(191,51,105,0.15);
+      gap: 2px;
+    }
+    .lang-toggle__btn {
+      padding: 4px 10px;
+      border-radius: 16px;
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border: none;
+      background: transparent;
+      color: rgba(27,19,64,0.35);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      line-height: 1;
+    }
+    .lang-toggle__btn[aria-pressed="true"] {
+      background: var(--color-pink);
+      color: #fff;
+    }
+
     /* ===== RESPONSIVE flip track ===== */
     @media (max-width: 1280px) {
       .projets__track-outer { margin: -50px -60px; }
@@ -291,14 +321,18 @@
       </a>
       <nav class="header__nav">
         <ul class="header__links">
-          <li><a href="#a-propos">À propos</a></li>
-          <li><a href="#services">Mes services</a></li>
-          <li><a href="#experience">Expérience</a></li>
-          <li><a href="#formations">Formations</a></li>
-          <li><a href="#competences">Compétences</a></li>
-          <li><a href="#projets">Projets</a></li>
+          <li><a href="#a-propos" data-i18n="nav-about">À propos</a></li>
+          <li><a href="#services" data-i18n="nav-services">Mes services</a></li>
+          <li><a href="#experience" data-i18n="nav-experience">Expérience</a></li>
+          <li><a href="#formations" data-i18n="nav-formations">Formations</a></li>
+          <li><a href="#competences" data-i18n="nav-skills">Compétences</a></li>
+          <li><a href="#projets" data-i18n="nav-projects">Projets</a></li>
         </ul>
-        <a href="contact.html" class="btn btn--primary header__cta">Contact</a>
+        <div class="lang-toggle" role="group" aria-label="Langue / Language">
+          <button class="lang-toggle__btn" data-lang="fr" aria-pressed="true" onclick="setLang('fr')">FR</button>
+          <button class="lang-toggle__btn" data-lang="en" aria-pressed="false" onclick="setLang('en')">EN</button>
+        </div>
+        <a href="contact.html" class="btn btn--primary header__cta" data-i18n="nav-contact">Contact</a>
         <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false">
           <span class="burger__line"></span>
           <span class="burger__line"></span>
@@ -307,14 +341,14 @@
       </nav>
       <div class="mobile-menu">
         <ul class="mobile-menu__links">
-          <li><a href="#a-propos">À propos</a></li>
-          <li><a href="#services">Mes services</a></li>
-          <li><a href="#experience">Expérience</a></li>
-          <li><a href="#formations">Formations</a></li>
-          <li><a href="#competences">Compétences</a></li>
-          <li><a href="#projets">Projets</a></li>
+          <li><a href="#a-propos" data-i18n="nav-about">À propos</a></li>
+          <li><a href="#services" data-i18n="nav-services">Mes services</a></li>
+          <li><a href="#experience" data-i18n="nav-experience">Expérience</a></li>
+          <li><a href="#formations" data-i18n="nav-formations">Formations</a></li>
+          <li><a href="#competences" data-i18n="nav-skills">Compétences</a></li>
+          <li><a href="#projets" data-i18n="nav-projects">Projets</a></li>
         </ul>
-        <a href="contact.html" class="btn btn--primary">Contact</a>
+        <a href="contact.html" class="btn btn--primary" data-i18n="nav-contact">Contact</a>
       </div>
     </div>
   </header>
@@ -338,10 +372,10 @@
       <div class="hero__content">
         <span class="hero__subtitle">UI/UX Designer</span>
         <h1 class="hero__title">Amandine<br>Ascensio</h1>
-        <p class="hero__description">Je conçois des expériences web belles, claires et mémorables qui allient design UI/UX, accessibilité et identité visuelle.</p>
+        <p class="hero__description" data-i18n="hero-desc">Je crée des interfaces qui donnent envie de rester — belles, intuitives, et vraiment pensées pour les gens qui les utilisent.</p>
         <div class="hero__actions">
-          <a href="projets.html" class="btn btn--primary btn--lg">Voir mes projets</a>
-          <a href="contact.html" class="btn btn--outline btn--lg">Me contacter</a>
+          <a href="projets.html" class="btn btn--primary btn--lg" data-i18n="hero-cta-projects">Voir mes projets</a>
+          <a href="contact.html" class="btn btn--outline btn--lg" data-i18n="hero-cta-contact">Me contacter</a>
         </div>
       </div>
     </div>
@@ -355,15 +389,15 @@
       <img src="assets/svg/etoile-1.svg" alt="" class="apropos__star apropos__star--3" aria-hidden="true">
     </div>
 
-    <h2 class="apropos__title fade-in">À propos</h2>
+    <h2 class="apropos__title fade-in" data-i18n="about-title">À propos</h2>
 
     <div class="apropos__container">
       <div class="apropos__text fade-in-left">
-        <h3 class="apropos__subtitle">Designer UX/UI passionnée par l'humain et le détail</h3>
-        <p>Mon parcours est guidé par un fil rouge : la curiosité pour l'humain. D'abord en langues étrangères appliquées, puis dans le commerce et le management d'équipe chez E.Leclerc, j'ai appris à écouter, organiser et communiquer. C'est en découvrant le design que j'ai trouvé comment réunir toutes ces compétences : comprendre les utilisateurs, structurer l'information et créer des expériences qui ont du sens.</p>
-        <p>Aujourd'hui, je suis en alternance chez Bamptee, où je participe à la conception d'interfaces web et mobiles, à la création de composants dans Figma et à l'évolution du design system. J'interviens également sur le développement de sites WordPress avec Elementor, ce qui me permet de suivre un projet du design jusqu'à sa mise en ligne.</p>
-        <p>Je suis quelqu'un de curieuse, attentive aux détails et toujours prête à apprendre. J'accorde beaucoup d'importance à l'accessibilité, à la cohérence visuelle et à la qualité des expériences que je conçois.</p>
-        <p>Pour moi, un bon design est un design qui se fait oublier : il guide naturellement l'utilisateur tout en reflétant l'identité de la marque.</p>
+        <h3 class="apropos__subtitle" data-i18n="about-subtitle">Curieuse de nature, designer par conviction.</h3>
+        <p data-i18n="about-p1">Mon parcours ne ressemble pas vraiment à un chemin tout droit. Langues étrangères, commerce, management chez E.Leclerc... À chaque étape, j'ai appris à écouter les gens, à comprendre ce qu'ils veulent vraiment et à trouver des façons claires de le leur donner. Le design a été la pièce qui manquait.</p>
+        <p data-i18n="about-p2">Aujourd'hui je suis en alternance chez Bamptee, où je conçois des interfaces web et mobiles, crée des composants dans Figma et fais évoluer le design system. J'aime suivre un projet de bout en bout — du premier trait sur Figma jusqu'à l'intégration en HTML et CSS.</p>
+        <p data-i18n="about-p3">J'ai un œil pour les détails qui n'ont l'air de rien mais qui changent tout. L'accessibilité, la cohérence visuelle, l'expérience réelle de l'utilisateur — c'est ce qui m'intéresse vraiment dans ce métier.</p>
+        <p data-i18n="about-p4">Un bon design, pour moi, c'est celui qui ne se fait pas remarquer. Celui qui guide sans forcer, qui rassure sans expliquer, et qui laisse de la place à ce qui compte : le contenu et les gens.</p>
       </div>
       <div class="apropos__image fade-in-right">
         <img src="assets/images/about.png" alt="Amandine à son bureau avec ses outils de design" width="1024" height="1024" loading="lazy">
@@ -376,35 +410,35 @@
     <img src="assets/svg/etoile-3.svg" alt="" class="competences__star" aria-hidden="true">
     <div class="competences__card fade-in">
       <div class="competences__header">
-        <h3 class="competences__title">Ce que je fais</h3>
+        <h3 class="competences__title" data-i18n="svc-title">Ce que je fais</h3>
         <img src="assets/svg/etoile-3.svg" alt="" class="competences__star-deco competences__star-deco--1" aria-hidden="true">
         <img src="assets/svg/etoile-3.svg" alt="" class="competences__star-deco competences__star-deco--2" aria-hidden="true">
       </div>
 
       <div class="competences__item">
-        <h3>Product Design</h3>
-        <p>Conception d'interfaces responsive web & mobile centrées utilisateur.</p>
+        <h3 data-i18n="svc1-title">Product Design</h3>
+        <p data-i18n="svc1-desc">Conception d'interfaces responsive web & mobile centrées utilisateur.</p>
       </div>
 
       <div class="competences__separator"></div>
 
       <div class="competences__item">
-        <h3>Intégration Web</h3>
-        <p>Intégration de sites WordPress sur mesure, performants et évolutifs.</p>
+        <h3 data-i18n="svc2-title">Intégration Web</h3>
+        <p data-i18n="svc2-desc">Intégration de sites WordPress sur mesure, performants et évolutifs.</p>
       </div>
 
       <div class="competences__separator"></div>
 
       <div class="competences__item">
-        <h3>Design System</h3>
-        <p>Création et maintenance de bibliothèques de composants cohérentes.</p>
+        <h3 data-i18n="svc3-title">Design System</h3>
+        <p data-i18n="svc3-desc">Création et maintenance de bibliothèques de composants cohérentes.</p>
       </div>
 
       <div class="competences__separator"></div>
 
       <div class="competences__item">
-        <h3>Prototypage</h3>
-        <p>Prototypes interactifs pour tester et valider les expériences.</p>
+        <h3 data-i18n="svc4-title">Prototypage</h3>
+        <p data-i18n="svc4-desc">Prototypes interactifs pour tester et valider les expériences.</p>
       </div>
     </div>
   </section>
@@ -418,17 +452,17 @@
       <img src="assets/svg/Tourbillon.svg" alt="" class="experience__tourbillon" aria-hidden="true">
     </div>
 
-    <h2 class="experience__title fade-in">Expérience</h2>
+    <h2 class="experience__title fade-in" data-i18n="exp-title">Expérience</h2>
 
     <div class="timeline">
 
       <div class="timeline__item timeline__item--right fade-in">
-        <div class="timeline__date">Sept. 2024 — Présent</div>
+        <div class="timeline__date" data-i18n="exp1-date">Sept. 2024 — Présent</div>
         <div class="timeline__dot"></div>
         <div class="timeline__card">
-          <h3>Product Designer, Alternance</h3>
+          <h3 data-i18n="exp1-title">Product Designer, Alternance</h3>
           <span class="timeline__company">Bamptee, Saint-Soupplets</span>
-          <p>Conception d'interfaces responsive (web/mobile), déclinaison de maquettes selon le design system existant, création et maintenance de composants UI dans Figma, contribution à l'évolution du design system, respect des règles d'accessibilité et de cohérence visuelle.</p>
+          <p data-i18n="exp1-desc">Conception d'interfaces responsive (web/mobile), déclinaison de maquettes selon le design system existant, création et maintenance de composants UI dans Figma, contribution à l'évolution du design system, respect des règles d'accessibilité et de cohérence visuelle.</p>
           <div class="timeline__tags">
             <span class="tag">Figma</span>
             <span class="tag">Design System</span>
@@ -440,12 +474,12 @@
       </div>
 
       <div class="timeline__item timeline__item--left fade-in">
-        <div class="timeline__date">Sept. 2023 — Sept. 2024</div>
+        <div class="timeline__date" data-i18n="exp2-date">Sept. 2023 — Sept. 2024</div>
         <div class="timeline__dot"></div>
         <div class="timeline__card">
-          <h3>Assistance Marketing & RH, Alternance</h3>
+          <h3 data-i18n="exp2-title">Assistance Marketing & RH, Alternance</h3>
           <span class="timeline__company">Dentaurum France, Lognes</span>
-          <p>Organisation d'évènements, création et diffusion de newsletters, traitement du courrier, mise en place de tableaux Excel, contrôle de factures.</p>
+          <p data-i18n="exp2-desc">Organisation d'évènements, création et diffusion de newsletters, traitement du courrier, mise en place de tableaux Excel, contrôle de factures.</p>
           <div class="timeline__tags">
             <span class="tag">Marketing</span>
             <span class="tag">Communication</span>
@@ -456,12 +490,12 @@
       </div>
 
       <div class="timeline__item timeline__item--right fade-in">
-        <div class="timeline__date">Sept. 2020 — Sept. 2023</div>
+        <div class="timeline__date" data-i18n="exp3-date">Sept. 2020 — Sept. 2023</div>
         <div class="timeline__dot"></div>
         <div class="timeline__card">
-          <h3>Hôtesse de caisse, Superviseur, Service financier</h3>
+          <h3 data-i18n="exp3-title">Hôtesse de caisse, Superviseur, Service financier</h3>
           <span class="timeline__company">E.Leclerc, Mareuil-lès-Meaux</span>
-          <p>Management d'une équipe d'hôtesses de caisse, gestion d'un planning, vérification des modes de règlement, fixation d'objectifs, accueil et renseignement clientèle.</p>
+          <p data-i18n="exp3-desc">Management d'une équipe d'hôtesses de caisse, gestion d'un planning, vérification des modes de règlement, fixation d'objectifs, accueil et renseignement clientèle.</p>
           <div class="timeline__tags">
             <span class="tag">Management</span>
             <span class="tag">Gestion d'équipe</span>
@@ -475,14 +509,14 @@
 
   <!-- FORMATIONS -->
   <section class="formations" id="formations">
-    <h2 class="formations__title fade-in">Formations</h2>
+    <h2 class="formations__title fade-in" data-i18n="form-title">Formations</h2>
 
     <div class="formations__list fade-in">
 
       <div class="formations__card">
         <div class="formations__info">
-          <span class="formations__label">Webdesign</span>
-          <h3 class="formations__name">Bachelor 3 – Webdesign</h3>
+          <span class="formations__label" data-i18n="form1-label">Webdesign</span>
+          <h3 class="formations__name" data-i18n="form1-name">Bachelor 3 – Webdesign</h3>
           <p class="formations__school">My Digital School, Paris</p>
         </div>
         <span class="formations__year-display" aria-hidden="true">2025<br>2026</span>
@@ -490,8 +524,8 @@
 
       <div class="formations__card">
         <div class="formations__info">
-          <span class="formations__label">Commerce</span>
-          <h3 class="formations__name">Bachelor 1 & 2 – Gestion & Administration des Ventes</h3>
+          <span class="formations__label" data-i18n="form2-label">Commerce</span>
+          <h3 class="formations__name" data-i18n="form2-name">Bachelor 1 & 2 – Gestion & Administration des Ventes</h3>
           <p class="formations__school">Ascencia Business School, Lognes</p>
         </div>
         <span class="formations__year-display" aria-hidden="true">2023<br>2025</span>
@@ -499,8 +533,8 @@
 
       <div class="formations__card">
         <div class="formations__info">
-          <span class="formations__label">Langues</span>
-          <h3 class="formations__name">Licence en Langues Étrangères Appliquées</h3>
+          <span class="formations__label" data-i18n="form3-label">Langues</span>
+          <h3 class="formations__name" data-i18n="form3-name">Licence en Langues Étrangères Appliquées</h3>
           <p class="formations__school">Université Gustave Eiffel, Champs-sur-Marne</p>
         </div>
         <span class="formations__year-display" aria-hidden="true">2020<br>2022</span>
@@ -508,8 +542,8 @@
 
       <div class="formations__card">
         <div class="formations__info">
-          <span class="formations__label">Baccalauréat</span>
-          <h3 class="formations__name">Baccalauréat Littéraire</h3>
+          <span class="formations__label" data-i18n="form4-label">Baccalauréat</span>
+          <h3 class="formations__name" data-i18n="form4-name">Baccalauréat Littéraire</h3>
           <p class="formations__school">Lycée Jean Vilar, Meaux</p>
         </div>
         <span class="formations__year-display" aria-hidden="true">2019</span>
@@ -524,7 +558,7 @@
       <img src="assets/svg/Group 3.svg" alt="" class="skills__swirl skills__swirl--left" aria-hidden="true">
       <img src="assets/svg/etoile-1.svg" alt="" class="skills__deco-star skills__deco-star--1" aria-hidden="true">
     </div>
-    <h2 class="skills__title fade-in">Compétences</h2>
+    <h2 class="skills__title fade-in" data-i18n="skills-title">Compétences</h2>
 
     <div class="skills__wrapper fade-in">
 
@@ -557,11 +591,11 @@
           </div>
           <div class="skills__hex">
             <svg class="skills__hex-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
-            <span>Prototypage</span>
+            <span data-i18n="skill-proto">Prototypage</span>
           </div>
           <div class="skills__hex">
             <svg class="skills__hex-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-            <span>Accessibilité</span>
+            <span data-i18n="skill-a11y">Accessibilité</span>
           </div>
           <div class="skills__hex">
             <svg class="skills__hex-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
@@ -577,16 +611,16 @@
           <h3 class="skills__label">Soft Skills</h3>
         </div>
         <div class="skills__bubbles">
-          <span class="skills__bubble">Créativité</span>
-          <span class="skills__bubble">Sens du détail</span>
-          <span class="skills__bubble">Communication</span>
-          <span class="skills__bubble">Curiosité</span>
-          <span class="skills__bubble">Esprit d'équipe</span>
-          <span class="skills__bubble">Autonomie</span>
-          <span class="skills__bubble">Organisation</span>
-          <span class="skills__bubble">Adaptabilité</span>
-          <span class="skills__bubble">Écoute active</span>
-          <span class="skills__bubble">Gestion du temps</span>
+          <span class="skills__bubble" data-i18n="soft-creativity">Créativité</span>
+          <span class="skills__bubble" data-i18n="soft-detail">Sens du détail</span>
+          <span class="skills__bubble" data-i18n="soft-communication">Communication</span>
+          <span class="skills__bubble" data-i18n="soft-curiosity">Curiosité</span>
+          <span class="skills__bubble" data-i18n="soft-teamwork">Esprit d'équipe</span>
+          <span class="skills__bubble" data-i18n="soft-autonomy">Autonomie</span>
+          <span class="skills__bubble" data-i18n="soft-organisation">Organisation</span>
+          <span class="skills__bubble" data-i18n="soft-adaptability">Adaptabilité</span>
+          <span class="skills__bubble" data-i18n="soft-listening">Écoute active</span>
+          <span class="skills__bubble" data-i18n="soft-time">Gestion du temps</span>
         </div>
       </div>
 
@@ -596,7 +630,7 @@
   <!-- PROJETS -->
   <section class="projets" id="projets">
     <img src="assets/svg/etoile-3.svg" alt="" class="projets__star" aria-hidden="true">
-    <h2 class="projets__title fade-in">Mes derniers projets</h2>
+    <h2 class="projets__title fade-in" data-i18n="proj-title">Mes derniers projets</h2>
 
     <div class="projets__track-outer fade-in" id="flipTrack">
     <div class="projets__flip-grid">
@@ -620,9 +654,9 @@
               <span class="tag">Elementor</span>
             </div>
             <h3 class="flip-card__back-title">MASM menuiserie</h3>
-            <p class="flip-card__back-sub">Création de charte graphique · Refonte du site vitrine</p>
-            <p class="flip-card__back-desc">Refonte complète du site d'une entreprise artisanale. Nouveau design, optimisation SEO et amélioration de l'expérience utilisateur sur mobile.</p>
-            <a href="projet-masm.html" class="btn btn--primary">Voir le projet</a>
+            <p class="flip-card__back-sub" data-i18n="masm-sub">Création de charte graphique · Refonte du site vitrine</p>
+            <p class="flip-card__back-desc" data-i18n="masm-desc">Refonte complète du site d'une entreprise artisanale. Nouveau design, optimisation SEO et amélioration de l'expérience utilisateur sur mobile.</p>
+            <a href="projet-masm.html" class="btn btn--primary" data-i18n="card-cta">Voir le projet</a>
           </div>
         </div>
       </div>
@@ -646,9 +680,9 @@
               <span class="tag">CM</span>
             </div>
             <h3 class="flip-card__back-title">Spoonia</h3>
-            <p class="flip-card__back-sub">Parcours UX · Maquettes UI</p>
-            <p class="flip-card__back-desc">De la recherche utilisateur au prototype interactif : audit UX, personas, parcours utilisateur et prototypage haute-fidélité sur Figma.</p>
-            <a href="projet-spoonia.html" class="btn btn--primary">Voir le projet</a>
+            <p class="flip-card__back-sub" data-i18n="spoonia-sub">Parcours UX · Maquettes UI</p>
+            <p class="flip-card__back-desc" data-i18n="spoonia-desc">De la recherche utilisateur au prototype interactif : audit UX, personas, parcours utilisateur et prototypage haute-fidélité sur Figma.</p>
+            <a href="projet-spoonia.html" class="btn btn--primary" data-i18n="card-cta">Voir le projet</a>
           </div>
         </div>
       </div>
@@ -672,9 +706,9 @@
               <span class="tag">UI Design</span>
             </div>
             <h3 class="flip-card__back-title">BeatWay</h3>
-            <p class="flip-card__back-sub">App mobile · Design UI</p>
-            <p class="flip-card__back-desc">Conception d'une application musicale mobile, de l'idéation au prototype interactif haute-fidélité sur Figma.</p>
-            <a href="projet-beatway.html" class="btn btn--primary">Voir le projet</a>
+            <p class="flip-card__back-sub" data-i18n="beatway-sub">App mobile · Design UI</p>
+            <p class="flip-card__back-desc" data-i18n="beatway-desc">Conception d'une application musicale mobile, de l'idéation au prototype interactif haute-fidélité sur Figma.</p>
+            <a href="projet-beatway.html" class="btn btn--primary" data-i18n="card-cta">Voir le projet</a>
           </div>
         </div>
       </div>
@@ -698,9 +732,9 @@
               <span class="tag">Création visuelle</span>
             </div>
             <h3 class="flip-card__back-title">V For Vape</h3>
-            <p class="flip-card__back-sub">Community Manager · Graphiste</p>
-            <p class="flip-card__back-desc">32 bannières produits créées sur Photoshop et gestion des réseaux sociaux pour une boutique de vape pendant un an.</p>
-            <a href="projet-vforvape.html" class="btn btn--primary">Voir le projet</a>
+            <p class="flip-card__back-sub" data-i18n="vfv-sub">Community Manager · Graphiste</p>
+            <p class="flip-card__back-desc" data-i18n="vfv-desc">32 bannières produits créées sur Photoshop et gestion des réseaux sociaux pour une boutique de vape pendant un an.</p>
+            <a href="projet-vforvape.html" class="btn btn--primary" data-i18n="card-cta">Voir le projet</a>
           </div>
         </div>
       </div>
@@ -716,7 +750,7 @@
       <img src="assets/svg/Group 3.svg" alt="" class="outils__swirl outils__swirl--left" aria-hidden="true">
       <img src="assets/svg/Fraise.svg" alt="" class="outils__fraise" aria-hidden="true">
     </div>
-    <h2 class="outils__title fade-in">Mes Outils</h2>
+    <h2 class="outils__title fade-in" data-i18n="tools-title">Mes Outils</h2>
 
     <div class="outils__grid fade-in">
       <div class="outils__item">
@@ -758,8 +792,8 @@
       <img src="assets/svg/etoile-3.svg" alt="" class="contact__star contact__star--1" aria-hidden="true">
       <img src="assets/svg/etoile-3.svg" alt="" class="contact__star contact__star--2" aria-hidden="true">
     </div>
-    <h2 class="contact__title fade-in">Un projet en tête ?</h2>
-    <p class="contact__text">Discutons de votre projet autour d'un café virtuel.<br>Je serais ravie de donner vie à vos idées !</p>
+    <h2 class="contact__title fade-in" data-i18n="contact-title">Un projet en tête ?</h2>
+    <p class="contact__text" data-i18n="contact-text">Discutons de votre projet autour d'un café virtuel.<br>Je serais ravie de donner vie à vos idées !</p>
     <div class="contact__socials">
       <a href="mailto:amandine.ascensio@hotmail.fr" class="contact__social-link" aria-label="Email">
         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7L13.03 12.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
@@ -782,18 +816,18 @@
     </svg>
     <div class="footer__content">
       <h3 class="footer__name">Amandine Ascensio</h3>
-      <p class="footer__role">Webdesigner & UX/UI Designer · Région Parisienne</p>
+      <p class="footer__role" data-i18n="footer-role">Webdesigner & UX/UI Designer · Région Parisienne</p>
       <nav class="footer__links">
-        <a href="index.html#a-propos">À propos</a>
-        <a href="projets.html">Projets</a>
-        <a href="index.html#competences">Compétences</a>
-        <a href="index.html#experience">Expérience</a>
-        <a href="index.html#formations">Formations</a>
-        <a href="contact.html">Contact</a>
+        <a href="index.html#a-propos" data-i18n="nav-about">À propos</a>
+        <a href="projets.html" data-i18n="nav-projects">Projets</a>
+        <a href="index.html#competences" data-i18n="nav-skills">Compétences</a>
+        <a href="index.html#experience" data-i18n="nav-experience">Expérience</a>
+        <a href="index.html#formations" data-i18n="nav-formations">Formations</a>
+        <a href="contact.html" data-i18n="nav-contact">Contact</a>
       </nav>
       <div class="footer__separator"></div>
       <div class="footer__bottom">
-        <p class="footer__copy">&copy; 2026 Amandine Ascensio. Conçu avec passion et pixels.</p>
+        <p class="footer__copy" data-i18n="footer-copy">&copy; 2026 Amandine Ascensio. Conçu avec passion et pixels.</p>
         <div class="footer__legal">
           <a href="mentions-legales.html">Mentions légales</a>
           <span>·</span>
@@ -928,5 +962,154 @@
 </script>
   <script src="cursor.js"></script>
   <script src="accessibility.js"></script>
+
+  <script>
+    var translations = {
+      fr: {
+        'nav-about': 'À propos',
+        'nav-services': 'Mes services',
+        'nav-experience': 'Expérience',
+        'nav-formations': 'Formations',
+        'nav-skills': 'Compétences',
+        'nav-projects': 'Projets',
+        'nav-contact': 'Contact',
+        'hero-desc': 'Je crée des interfaces qui donnent envie de rester — belles, intuitives, et vraiment pensées pour les gens qui les utilisent.',
+        'hero-cta-projects': 'Voir mes projets',
+        'hero-cta-contact': 'Me contacter',
+        'about-title': 'À propos',
+        'about-subtitle': 'Curieuse de nature, designer par conviction.',
+        'about-p1': 'Mon parcours ne ressemble pas vraiment à un chemin tout droit. Langues étrangères, commerce, management chez E.Leclerc... À chaque étape, j\'ai appris à écouter les gens, à comprendre ce qu\'ils veulent vraiment et à trouver des façons claires de le leur donner. Le design a été la pièce qui manquait.',
+        'about-p2': 'Aujourd\'hui je suis en alternance chez Bamptee, où je conçois des interfaces web et mobiles, crée des composants dans Figma et fais évoluer le design system. J\'aime suivre un projet de bout en bout — du premier trait sur Figma jusqu\'à l\'intégration en HTML et CSS.',
+        'about-p3': 'J\'ai un œil pour les détails qui n\'ont l\'air de rien mais qui changent tout. L\'accessibilité, la cohérence visuelle, l\'expérience réelle de l\'utilisateur — c\'est ce qui m\'intéresse vraiment dans ce métier.',
+        'about-p4': 'Un bon design, pour moi, c\'est celui qui ne se fait pas remarquer. Celui qui guide sans forcer, qui rassure sans expliquer, et qui laisse de la place à ce qui compte : le contenu et les gens.',
+        'svc-title': 'Ce que je fais',
+        'svc1-title': 'Product Design',
+        'svc1-desc': 'Conception d\'interfaces responsive web & mobile centrées utilisateur.',
+        'svc2-title': 'Intégration Web',
+        'svc2-desc': 'Intégration de sites sur mesure, performants et évolutifs.',
+        'svc3-title': 'Design System',
+        'svc3-desc': 'Création et maintenance de bibliothèques de composants cohérentes.',
+        'svc4-title': 'Prototypage',
+        'svc4-desc': 'Prototypes interactifs pour tester et valider les expériences.',
+        'exp-title': 'Expérience',
+        'exp1-date': 'Sept. 2024 — Présent',
+        'exp1-title': 'Product Designer, Alternance',
+        'exp1-desc': 'Conception d\'interfaces responsive (web/mobile), déclinaison de maquettes selon le design system existant, création et maintenance de composants UI dans Figma, contribution à l\'évolution du design system, respect des règles d\'accessibilité et de cohérence visuelle.',
+        'exp2-date': 'Sept. 2023 — Sept. 2024',
+        'exp2-title': 'Assistance Marketing & RH, Alternance',
+        'exp2-desc': 'Organisation d\'évènements, création et diffusion de newsletters, traitement du courrier, mise en place de tableaux Excel, contrôle de factures.',
+        'exp3-date': 'Sept. 2020 — Sept. 2023',
+        'exp3-title': 'Hôtesse de caisse, Superviseur, Service financier',
+        'exp3-desc': 'Management d\'une équipe d\'hôtesses de caisse, gestion d\'un planning, vérification des modes de règlement, fixation d\'objectifs, accueil et renseignement clientèle.',
+        'form-title': 'Formations',
+        'form1-label': 'Webdesign', 'form1-name': 'Bachelor 3 – Webdesign',
+        'form2-label': 'Commerce', 'form2-name': 'Bachelor 1 & 2 – Gestion & Administration des Ventes',
+        'form3-label': 'Langues', 'form3-name': 'Licence en Langues Étrangères Appliquées',
+        'form4-label': 'Baccalauréat', 'form4-name': 'Baccalauréat Littéraire',
+        'skills-title': 'Compétences',
+        'skill-proto': 'Prototypage', 'skill-a11y': 'Accessibilité',
+        'soft-creativity': 'Créativité', 'soft-detail': 'Sens du détail',
+        'soft-communication': 'Communication', 'soft-curiosity': 'Curiosité',
+        'soft-teamwork': 'Esprit d\'équipe', 'soft-autonomy': 'Autonomie',
+        'soft-organisation': 'Organisation', 'soft-adaptability': 'Adaptabilité',
+        'soft-listening': 'Écoute active', 'soft-time': 'Gestion du temps',
+        'proj-title': 'Mes derniers projets',
+        'masm-sub': 'Création de charte graphique · Refonte du site vitrine',
+        'masm-desc': 'Refonte complète du site d\'une entreprise artisanale. Nouveau design, optimisation SEO et amélioration de l\'expérience utilisateur sur mobile.',
+        'spoonia-sub': 'Parcours UX · Maquettes UI',
+        'spoonia-desc': 'De la recherche utilisateur au prototype interactif : audit UX, personas, parcours utilisateur et prototypage haute-fidélité sur Figma.',
+        'beatway-sub': 'App mobile · Design UI',
+        'beatway-desc': 'Conception d\'une application musicale mobile, de l\'idéation au prototype interactif haute-fidélité sur Figma.',
+        'vfv-sub': 'Community Manager · Graphiste',
+        'vfv-desc': '32 bannières produits créées sur Photoshop et gestion des réseaux sociaux pour une boutique de vape pendant un an.',
+        'card-cta': 'Voir le projet',
+        'tools-title': 'Mes Outils',
+        'contact-title': 'Un projet en tête ?',
+        'contact-text': 'Discutons de votre projet autour d\'un café virtuel.<br>Je serais ravie de donner vie à vos idées !',
+        'footer-role': 'Webdesigner & UX/UI Designer · Région Parisienne',
+        'footer-copy': '© 2026 Amandine Ascensio. Conçu avec passion et pixels.'
+      },
+      en: {
+        'nav-about': 'About',
+        'nav-services': 'Services',
+        'nav-experience': 'Experience',
+        'nav-formations': 'Education',
+        'nav-skills': 'Skills',
+        'nav-projects': 'Projects',
+        'nav-contact': 'Contact',
+        'hero-desc': 'I design interfaces that make you want to stay — beautiful, intuitive, and genuinely built around the people who use them.',
+        'hero-cta-projects': 'View my projects',
+        'hero-cta-contact': 'Get in touch',
+        'about-title': 'About',
+        'about-subtitle': 'Naturally curious, designer by conviction.',
+        'about-p1': 'My path doesn\'t follow a straight line. Applied languages, business management, team supervision at E.Leclerc... At every step, I learned to listen to people, understand what they really need, and find clear ways to deliver it. Design was the missing piece.',
+        'about-p2': 'Today I\'m a work-study designer at Bamptee, where I design web and mobile interfaces, build components in Figma, and help evolve the design system. I love seeing a project through from start to finish — from the first sketch in Figma to the final HTML and CSS.',
+        'about-p3': 'I have an eye for details that seem small but change everything. Accessibility, visual consistency, the real experience of the user — that\'s what genuinely interests me in this field.',
+        'about-p4': 'Good design, to me, is design that goes unnoticed. It guides without pushing, reassures without explaining, and leaves room for what truly matters: the content and the people.',
+        'svc-title': 'What I do',
+        'svc1-title': 'Product Design',
+        'svc1-desc': 'Designing user-centred responsive interfaces for web & mobile.',
+        'svc2-title': 'Web Integration',
+        'svc2-desc': 'Building custom, performant and scalable websites.',
+        'svc3-title': 'Design System',
+        'svc3-desc': 'Creating and maintaining consistent component libraries.',
+        'svc4-title': 'Prototyping',
+        'svc4-desc': 'Interactive prototypes to test and validate experiences.',
+        'exp-title': 'Experience',
+        'exp1-date': 'Sept. 2024 — Present',
+        'exp1-title': 'Product Designer, Apprenticeship',
+        'exp1-desc': 'Designing responsive interfaces (web/mobile), adapting mockups to the existing design system, creating and maintaining UI components in Figma, contributing to design system evolution, ensuring accessibility and visual consistency standards.',
+        'exp2-date': 'Sept. 2023 — Sept. 2024',
+        'exp2-title': 'Marketing & HR Assistant, Apprenticeship',
+        'exp2-desc': 'Event organisation, creating and distributing newsletters, mail processing, setting up Excel spreadsheets, invoice checking.',
+        'exp3-date': 'Sept. 2020 — Sept. 2023',
+        'exp3-title': 'Cashier, Supervisor, Financial Services',
+        'exp3-desc': 'Managing a team of cashiers, scheduling, verifying payment methods, setting targets, welcoming and informing customers.',
+        'form-title': 'Education',
+        'form1-label': 'Web Design', 'form1-name': 'Bachelor 3 – Web Design',
+        'form2-label': 'Business', 'form2-name': 'Bachelor 1 & 2 – Sales Management & Administration',
+        'form3-label': 'Languages', 'form3-name': 'BA in Applied Foreign Languages',
+        'form4-label': 'High School', 'form4-name': 'French Baccalauréat, Literature',
+        'skills-title': 'Skills',
+        'skill-proto': 'Prototyping', 'skill-a11y': 'Accessibility',
+        'soft-creativity': 'Creativity', 'soft-detail': 'Attention to detail',
+        'soft-communication': 'Communication', 'soft-curiosity': 'Curiosity',
+        'soft-teamwork': 'Team spirit', 'soft-autonomy': 'Autonomy',
+        'soft-organisation': 'Organisation', 'soft-adaptability': 'Adaptability',
+        'soft-listening': 'Active listening', 'soft-time': 'Time management',
+        'proj-title': 'My latest projects',
+        'masm-sub': 'Brand identity · Website redesign',
+        'masm-desc': 'Full redesign for a craft business. New visual identity, SEO optimisation, and improved mobile user experience.',
+        'spoonia-sub': 'UX Research · UI Design',
+        'spoonia-desc': 'From user research to interactive prototype: UX audit, personas, user journeys and high-fidelity prototyping in Figma.',
+        'beatway-sub': 'Mobile app · UI Design',
+        'beatway-desc': 'Designing a music mobile app from ideation to high-fidelity interactive prototype in Figma.',
+        'vfv-sub': 'Community Manager · Graphic Designer',
+        'vfv-desc': '32 product banners created in Photoshop and social media management for a vape shop over one year.',
+        'card-cta': 'View project',
+        'tools-title': 'My Tools',
+        'contact-title': 'Got a project in mind?',
+        'contact-text': 'Let\'s talk about it over a virtual coffee.<br>I\'d love to bring your ideas to life!',
+        'footer-role': 'Webdesigner & UX/UI Designer · Paris Region',
+        'footer-copy': '© 2026 Amandine Ascensio. Designed with passion and pixels.'
+      }
+    };
+
+    function setLang(lang) {
+      document.querySelectorAll('[data-i18n]').forEach(function(el) {
+        var key = el.getAttribute('data-i18n');
+        var text = translations[lang][key];
+        if (text !== undefined) el.innerHTML = text;
+      });
+      document.querySelectorAll('.lang-toggle__btn').forEach(function(btn) {
+        btn.setAttribute('aria-pressed', btn.getAttribute('data-lang') === lang ? 'true' : 'false');
+      });
+      document.documentElement.lang = lang === 'en' ? 'en' : 'fr';
+      localStorage.setItem('portfolio-lang', lang);
+    }
+
+    var savedLang = localStorage.getItem('portfolio-lang') || 'fr';
+    setLang(savedLang);
+  </script>
 </body>
 </html>
