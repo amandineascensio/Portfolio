@@ -11,6 +11,270 @@
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <link rel="preload" as="image" href="assets/images/avatar.png" fetchpriority="high">
+
+  <style>
+    /* ===== FLIP CARDS — projets ===== */
+
+    /* Hint glisser */
+    .projets__drag-hint {
+      text-align: center;
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--color-pink);
+      opacity: 0.6;
+      margin-bottom: 28px;
+      letter-spacing: 0.5px;
+    }
+
+    /* Étoile déco derrière les cartes */
+    .projets__star { z-index: 0; }
+    .projets__track-outer { position: relative; z-index: 1; }
+
+    /* Wrapper qui gère le scroll horizontal sans clipper verticalement */
+    .projets__track-outer {
+      overflow-x: auto;
+      overflow-y: visible;
+      padding: 50px 0;
+      margin: -50px -100px;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .projets__track-outer::-webkit-scrollbar { display: none; }
+    .projets__track-outer.grabbing { cursor: grabbing; }
+
+    .projets__flip-grid {
+      display: flex;
+      gap: 24px;
+      padding: 0 100px;
+      scroll-snap-type: x mandatory;
+      cursor: grab;
+      width: max-content;
+    }
+
+    .flip-card {
+      flex: 0 0 360px;
+      height: 460px;
+      perspective: 1100px;
+      cursor: pointer;
+      scroll-snap-align: start;
+    }
+
+    .flip-card__inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.85s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    /* flip au hover sur desktop */
+    @media (hover: hover) {
+      .flip-card:hover .flip-card__inner {
+        transform: rotateY(180deg);
+      }
+    }
+    /* flip au clic (toggle classe) */
+    .flip-card.flipped .flip-card__inner {
+      transform: rotateY(180deg);
+    }
+
+    .flip-card__front,
+    .flip-card__back {
+      position: absolute;
+      inset: 0;
+      border-radius: 24px;
+      overflow: hidden;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+
+    /* ---- FACE ---- */
+    .flip-card__front {
+      background-color: var(--color-pink-bg);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .flip-card__img {
+      flex: 1;
+      position: relative;
+      background-color: #F2AFCC;
+      overflow: hidden;
+    }
+
+    /* image pleine — recadrée */
+    .flip-card__img img.fc-cover {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      transition: transform 0.5s ease;
+    }
+    .flip-card:hover .flip-card__img img.fc-cover {
+      transform: scale(1.05);
+    }
+
+    /* Spoonia — image entière sans recadrage */
+    .flip-card__img--spoonia {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .flip-card__img--spoonia img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transition: transform 0.5s ease;
+    }
+    .flip-card:hover .flip-card__img--spoonia img {
+      transform: scale(1.04);
+    }
+
+    /* MASM — 2 screenshots superposés */
+    .flip-card__img--masm {
+      display: block;
+    }
+    .masm-f1, .masm-f2 {
+      position: absolute;
+      object-fit: cover;
+      object-position: top;
+      border-radius: 0;
+      filter: drop-shadow(4px 4px 12px rgba(0,0,0,.12));
+    }
+    .masm-f1 { left: 16px; top: 16px; width: 52%; height: 88%; z-index: 2; }
+    .masm-f2 { right: 16px; top: 32px; width: 52%; height: 80%; z-index: 1; }
+
+    /* BeatWay — image calée en bas */
+    .flip-card__img--beatway {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 12px 16px 0;
+    }
+    .flip-card__img--beatway img {
+      height: 96%;
+      width: auto;
+      object-fit: contain;
+      object-position: bottom;
+    }
+
+    /* V For Vape */
+    .flip-card__img--vforvape {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .flip-card__img--vforvape img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .flip-card__front-label {
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .flip-card__name {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--color-dark);
+    }
+
+    .flip-card__hint {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--color-pink);
+      opacity: 0.7;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* ---- DOS ---- */
+    .flip-card__back {
+      background-color: var(--color-dark);
+      transform: rotateY(180deg);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 40px 36px;
+      gap: 16px;
+    }
+
+    .flip-card__back-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .flip-card__back-tags .tag {
+      border-color: rgba(255,255,255,.25);
+      color: rgba(255,255,255,.8);
+    }
+    .flip-card__back-tags .tag:hover {
+      background-color: rgba(255,255,255,.1);
+      color: #fff;
+    }
+
+    .flip-card__back-title {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--color-white);
+      line-height: 1.1;
+    }
+
+    .flip-card__back-sub {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--color-pink);
+    }
+
+    .flip-card__back-desc {
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: rgba(255,255,255,.75);
+    }
+
+    .flip-card__back .btn--primary {
+      align-self: flex-start;
+      margin-top: 4px;
+    }
+
+    /* ===== RESPONSIVE flip track ===== */
+    @media (max-width: 1280px) {
+      .projets__track-outer { margin: -50px -60px; }
+      .projets__flip-grid { padding: 0 60px; }
+    }
+    @media (max-width: 1024px) {
+      .projets__track-outer { margin: -50px -40px; }
+      .projets__flip-grid { padding: 0 40px; gap: 20px; }
+      .flip-card { flex: 0 0 300px; height: 420px; }
+    }
+    @media (max-width: 768px) {
+      .projets__track-outer { margin: -50px -24px; }
+      .projets__flip-grid { padding: 0 24px; gap: 16px; }
+      .flip-card { flex: 0 0 76vw; height: 400px; }
+    }
+    @media (max-width: 480px) {
+      .projets__track-outer { margin: -50px -20px; }
+      .projets__flip-grid { padding: 0 20px; gap: 14px; }
+      .flip-card { flex: 0 0 82vw; height: 380px; }
+    }
+    @media (max-width: 375px) {
+      .projets__track-outer { margin: -50px -16px; }
+      .projets__flip-grid { padding: 0 16px; gap: 12px; }
+      .flip-card { flex: 0 0 86vw; height: 360px; }
+    }
+  </style>
 </head>
 <body class="cursor--figma">
 
@@ -59,7 +323,6 @@
 
   <!-- HERO -->
   <section class="hero">
-    <!-- Ligne décorative (fond, hors marges) -->
     <img src="assets/svg/decoratif.svg" alt="" class="hero__curve" aria-hidden="true">
 
     <div class="hero__container">
@@ -159,7 +422,6 @@
 
     <div class="timeline">
 
-      <!-- Expérience 1 -->
       <div class="timeline__item timeline__item--right fade-in">
         <div class="timeline__date">Sept. 2024 — Présent</div>
         <div class="timeline__dot"></div>
@@ -177,7 +439,6 @@
         </div>
       </div>
 
-      <!-- Expérience 2 -->
       <div class="timeline__item timeline__item--left fade-in">
         <div class="timeline__date">Sept. 2023 — Sept. 2024</div>
         <div class="timeline__dot"></div>
@@ -194,7 +455,6 @@
         </div>
       </div>
 
-      <!-- Expérience 3 -->
       <div class="timeline__item timeline__item--right fade-in">
         <div class="timeline__date">Sept. 2020 — Sept. 2023</div>
         <div class="timeline__dot"></div>
@@ -217,30 +477,44 @@
   <section class="formations" id="formations">
     <h2 class="formations__title fade-in">Formations</h2>
 
-    <div class="formations__grid fade-in">
+    <div class="formations__list fade-in">
+
       <div class="formations__card">
-        <span class="formations__date">2025 – 2026</span>
-        <h3 class="formations__name">Bachelor 3 - Webdesign</h3>
-        <p class="formations__school">My Digital School, Paris</p>
+        <div class="formations__info">
+          <span class="formations__label">Webdesign</span>
+          <h3 class="formations__name">Bachelor 3 – Webdesign</h3>
+          <p class="formations__school">My Digital School, Paris</p>
+        </div>
+        <span class="formations__year-display" aria-hidden="true">2025<br>2026</span>
       </div>
 
       <div class="formations__card">
-        <span class="formations__date">2023 – 2025</span>
-        <h3 class="formations__name">Bachelor 1 & 2 - Gestion & Administration des Ventes</h3>
-        <p class="formations__school">Ascencia Business School, Lognes</p>
+        <div class="formations__info">
+          <span class="formations__label">Commerce</span>
+          <h3 class="formations__name">Bachelor 1 & 2 – Gestion & Administration des Ventes</h3>
+          <p class="formations__school">Ascencia Business School, Lognes</p>
+        </div>
+        <span class="formations__year-display" aria-hidden="true">2023<br>2025</span>
       </div>
 
       <div class="formations__card">
-        <span class="formations__date">2020 – 2022</span>
-        <h3 class="formations__name">Licence en Langues Étrangères Appliquées</h3>
-        <p class="formations__school">Université Gustave Eiffel, Champs-sur-Marne</p>
+        <div class="formations__info">
+          <span class="formations__label">Langues</span>
+          <h3 class="formations__name">Licence en Langues Étrangères Appliquées</h3>
+          <p class="formations__school">Université Gustave Eiffel, Champs-sur-Marne</p>
+        </div>
+        <span class="formations__year-display" aria-hidden="true">2020<br>2022</span>
       </div>
 
       <div class="formations__card">
-        <span class="formations__date">2019</span>
-        <h3 class="formations__name">Baccalauréat Littéraire</h3>
-        <p class="formations__school">Lycée Jean Vilar, Meaux</p>
+        <div class="formations__info">
+          <span class="formations__label">Baccalauréat</span>
+          <h3 class="formations__name">Baccalauréat Littéraire</h3>
+          <p class="formations__school">Lycée Jean Vilar, Meaux</p>
+        </div>
+        <span class="formations__year-display" aria-hidden="true">2019</span>
       </div>
+
     </div>
   </section>
 
@@ -324,50 +598,116 @@
     <img src="assets/svg/etoile-3.svg" alt="" class="projets__star" aria-hidden="true">
     <h2 class="projets__title fade-in">Mes derniers projets</h2>
 
-    <div class="projets__list">
+    <div class="projets__track-outer fade-in" id="flipTrack">
+    <div class="projets__flip-grid">
 
-      <!-- Projet 1 — MASM -->
-      <article class="projet-card fade-in">
-        <div class="projet-card__image projet-card__image--masm">
-          <img src="assets/images/masm-1.png" alt="MASM — haut de page" class="masm-img masm-img--1" width="664" height="476" loading="lazy">
-          <img src="assets/images/masm-2.png" alt="MASM — bas de page" class="masm-img masm-img--2" width="360" height="417" loading="lazy">
-        </div>
-        <div class="projet-card__content">
-          <div class="projet-card__tags">
-            <span class="tag">Figma</span>
-            <span class="tag">Wordpress</span>
-            <span class="tag">Elementor</span>
+      <!-- MASM -->
+      <div class="flip-card" role="article" aria-label="Projet MASM menuiserie">
+        <div class="flip-card__inner">
+          <div class="flip-card__front">
+            <div class="flip-card__img flip-card__img--spoonia">
+              <img src="assets/images/Group 8.svg" alt="MASM menuiserie" loading="lazy">
+            </div>
+            <div class="flip-card__front-label">
+              <h3 class="flip-card__name">MASM menuiserie</h3>
+              
+            </div>
           </div>
-          <h3 class="projet-card__name">MASM menuiserie</h3>
-          <p class="projet-card__subtitle">Création de charte graphique • Refonte du site vitrine</p>
-          <p class="projet-card__desc">Refonte complète du site d'une entreprise artisanale. Nouveau design, optimisation SEO et amélioration de l'expérience utilisateur sur mobile.</p>
-          <a href="projet-masm.html" class="btn btn--primary">Voir le projet</a>
-        </div>
-      </article>
-
-      <!-- Projet 2 — Spoonia -->
-      <article class="projet-card projet-card--reverse fade-in">
-        <div class="projet-card__content">
-          <div class="projet-card__tags">
-            <span class="tag">Figma</span>
-            <span class="tag">UI/UX</span>
-            <span class="tag">CM</span>
+          <div class="flip-card__back">
+            <div class="flip-card__back-tags">
+              <span class="tag">Figma</span>
+              <span class="tag">Wordpress</span>
+              <span class="tag">Elementor</span>
+            </div>
+            <h3 class="flip-card__back-title">MASM menuiserie</h3>
+            <p class="flip-card__back-sub">Création de charte graphique · Refonte du site vitrine</p>
+            <p class="flip-card__back-desc">Refonte complète du site d'une entreprise artisanale. Nouveau design, optimisation SEO et amélioration de l'expérience utilisateur sur mobile.</p>
+            <a href="projet-masm.html" class="btn btn--primary">Voir le projet</a>
           </div>
-          <h3 class="projet-card__name">Spoonia</h3>
-          <p class="projet-card__subtitle">Parcours UX • Maquettes UI</p>
-          <p class="projet-card__desc">De la recherche utilisateur au prototype interactif : audit UX, personas, parcours utilisateur et prototypage haute-fidélité sur Figma.</p>
-          <a href="projet-spoonia.html" class="btn btn--primary">Voir le projet</a>
         </div>
-        <div class="projet-card__image">
-          <img src="assets/images/spoonia-mockup.png" alt="Mockups Spoonia sur iPhone" class="spoonia-img" width="701" height="436" loading="lazy">
+      </div>
+
+      <!-- Spoonia -->
+      <div class="flip-card" role="article" aria-label="Projet Spoonia">
+        <div class="flip-card__inner">
+          <div class="flip-card__front">
+            <div class="flip-card__img flip-card__img--spoonia">
+              <img src="assets/images/Design sans titre (2) 1.png" alt="Mockups Spoonia sur iPhone" loading="lazy">
+            </div>
+            <div class="flip-card__front-label">
+              <h3 class="flip-card__name">Spoonia</h3>
+              
+            </div>
+          </div>
+          <div class="flip-card__back">
+            <div class="flip-card__back-tags">
+              <span class="tag">Figma</span>
+              <span class="tag">UI/UX</span>
+              <span class="tag">CM</span>
+            </div>
+            <h3 class="flip-card__back-title">Spoonia</h3>
+            <p class="flip-card__back-sub">Parcours UX · Maquettes UI</p>
+            <p class="flip-card__back-desc">De la recherche utilisateur au prototype interactif : audit UX, personas, parcours utilisateur et prototypage haute-fidélité sur Figma.</p>
+            <a href="projet-spoonia.html" class="btn btn--primary">Voir le projet</a>
+          </div>
         </div>
-      </article>
+      </div>
 
-    </div>
+      <!-- BeatWay -->
+      <div class="flip-card" role="article" aria-label="Projet BeatWay">
+        <div class="flip-card__inner">
+          <div class="flip-card__front">
+            <div class="flip-card__img flip-card__img--beatway">
+              <img src="assets/images/BeatWayMobile.png" alt="BeatWay sur mobile" loading="lazy">
+            </div>
+            <div class="flip-card__front-label">
+              <h3 class="flip-card__name">BeatWay</h3>
+              
+            </div>
+          </div>
+          <div class="flip-card__back">
+            <div class="flip-card__back-tags">
+              <span class="tag">Figma</span>
+              <span class="tag">Mobile</span>
+              <span class="tag">UI Design</span>
+            </div>
+            <h3 class="flip-card__back-title">BeatWay</h3>
+            <p class="flip-card__back-sub">App mobile · Design UI</p>
+            <p class="flip-card__back-desc">Conception d'une application musicale mobile, de l'idéation au prototype interactif haute-fidélité sur Figma.</p>
+            <a href="projet-beatway.html" class="btn btn--primary">Voir le projet</a>
+          </div>
+        </div>
+      </div>
 
-    <div class="projets__cta">
-      <a href="projets.html" class="btn btn--outline">Voir tous les projets</a>
-    </div>
+      <!-- V For Vape -->
+      <div class="flip-card" role="article" aria-label="Projet V For Vape">
+        <div class="flip-card__inner">
+          <div class="flip-card__front">
+            <div class="flip-card__img flip-card__img--vforvape">
+              <img src="assets/images/vforvape/Couverture Vforvape.svg" alt="V For Vape" loading="lazy">
+            </div>
+            <div class="flip-card__front-label">
+              <h3 class="flip-card__name">V For Vape</h3>
+              
+            </div>
+          </div>
+          <div class="flip-card__back">
+            <div class="flip-card__back-tags">
+              <span class="tag">Photoshop</span>
+              <span class="tag">Community Management</span>
+              <span class="tag">Création visuelle</span>
+            </div>
+            <h3 class="flip-card__back-title">V For Vape</h3>
+            <p class="flip-card__back-sub">Community Manager · Graphiste</p>
+            <p class="flip-card__back-desc">32 bannières produits créées sur Photoshop et gestion des réseaux sociaux pour une boutique de vape pendant un an.</p>
+            <a href="projet-vforvape.html" class="btn btn--primary">Voir le projet</a>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /projets__flip-grid -->
+    </div><!-- /projets__track-outer -->
+
   </section>
 
   <!-- MES OUTILS -->
@@ -442,7 +782,7 @@
     </svg>
     <div class="footer__content">
       <h3 class="footer__name">Amandine Ascensio</h3>
-      <p class="footer__role">Webdesigner & UX/UI Designer • Région Parisienne</p>
+      <p class="footer__role">Webdesigner & UX/UI Designer · Région Parisienne</p>
       <nav class="footer__links">
         <a href="index.html#a-propos">À propos</a>
         <a href="projets.html">Projets</a>
@@ -456,7 +796,7 @@
         <p class="footer__copy">&copy; 2026 Amandine Ascensio. Conçu avec passion et pixels.</p>
         <div class="footer__legal">
           <a href="mentions-legales.html">Mentions légales</a>
-          <span>•</span>
+          <span>·</span>
           <a href="politique-confidentialite.html">Politique de confidentialité</a>
         </div>
       </div>
@@ -468,11 +808,13 @@
   </a>
 
   <script>
+    // Loader
     window.addEventListener('load', function() {
       setTimeout(function() {
         document.getElementById('loader').classList.add('loader--hidden');
       }, 1800);
 
+      // Fade-in observer
       var observer = new IntersectionObserver(function(entries) {
         entries.forEach(function(entry) {
           if (entry.isIntersecting) {
@@ -484,52 +826,38 @@
       document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right').forEach(function(el) {
         observer.observe(el);
       });
-
     });
 
-    // Snap hero ↔ à propos (wheel/touch uniquement, n'affecte pas la nav)
+    // Snap hero ↔ à propos
     (function() {
       var hero = document.querySelector('.hero');
       var apropos = document.querySelector('.apropos');
       if (!hero || !apropos || window.innerWidth < 900) return;
-
       var locked = false;
-
       function snap(target) {
         locked = true;
         target.scrollIntoView({ behavior: 'smooth' });
         setTimeout(function() { locked = false; }, 1000);
       }
-
       window.addEventListener('wheel', function(e) {
         if (locked) return;
         if (e.target.closest('.a11y-panel, .a11y-toggle, .cursor-switcher')) return;
         var scrollY = window.scrollY;
         var heroH = hero.offsetHeight;
-
-        if (e.deltaY > 0 && scrollY < heroH * 0.5) {
-          snap(apropos);
-        } else if (e.deltaY < 0 && scrollY > 0 && scrollY <= apropos.offsetTop + 10) {
-          snap(hero);
-        }
+        if (e.deltaY > 0 && scrollY < heroH * 0.5) snap(apropos);
+        else if (e.deltaY < 0 && scrollY > 0 && scrollY <= apropos.offsetTop + 10) snap(hero);
       }, { passive: true });
-
       var touchStartY = 0;
       window.addEventListener('touchstart', function(e) {
         touchStartY = e.touches[0].clientY;
       }, { passive: true });
-
       window.addEventListener('touchend', function(e) {
         if (locked) return;
         var delta = touchStartY - e.changedTouches[0].clientY;
         var scrollY = window.scrollY;
         var heroH = hero.offsetHeight;
-
-        if (delta > 50 && scrollY < heroH * 0.5) {
-          snap(apropos);
-        } else if (delta < -50 && scrollY > 0 && scrollY <= apropos.offsetTop + 10) {
-          snap(hero);
-        }
+        if (delta > 50 && scrollY < heroH * 0.5) snap(apropos);
+        else if (delta < -50 && scrollY > 0 && scrollY <= apropos.offsetTop + 10) snap(hero);
       }, { passive: true });
     })();
 
@@ -559,7 +887,46 @@
       });
     }
 
-  </script>
-  <script src="cursor.js"></script>  <script src="accessibility.js"></script>
+    // Flip cards — clic pour mobile (touch devices sans hover)
+    document.querySelectorAll('.flip-card').forEach(function(card) {
+      card.addEventListener('click', function() {
+        if (window.matchMedia('(hover: none)').matches) {
+          card.classList.toggle('flipped');
+        }
+      });
+    });
+
+    // Drag-to-scroll sur le carousel
+    var flipTrack = document.getElementById('flipTrack');
+    if (flipTrack) {
+      var isDragging = false, dragStartX, dragScrollLeft;
+      flipTrack.addEventListener('mousedown', function(e) {
+        isDragging = true;
+        flipTrack.classList.add('grabbing');
+        dragStartX = e.pageX - flipTrack.offsetLeft;
+        dragScrollLeft = flipTrack.scrollLeft;
+      });
+      document.addEventListener('mouseup', function() {
+        isDragging = false;
+        flipTrack.classList.remove('grabbing');
+      });
+      flipTrack.addEventListener('mousemove', function(e) {
+        if (!isDragging) return;
+        e.preventDefault();
+        flipTrack.scrollLeft = dragScrollLeft - (e.pageX - flipTrack.offsetLeft - dragStartX) * 1.5;
+      });
+      // Touch
+      var touchDragStartX, touchDragScrollLeft;
+      flipTrack.addEventListener('touchstart', function(e) {
+        touchDragStartX = e.touches[0].pageX - flipTrack.offsetLeft;
+        touchDragScrollLeft = flipTrack.scrollLeft;
+      }, { passive: true });
+      flipTrack.addEventListener('touchmove', function(e) {
+        flipTrack.scrollLeft = touchDragScrollLeft - (e.touches[0].pageX - flipTrack.offsetLeft - touchDragStartX) * 1.5;
+      }, { passive: true });
+    }
+</script>
+  <script src="cursor.js"></script>
+  <script src="accessibility.js"></script>
 </body>
 </html>

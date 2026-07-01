@@ -50,7 +50,9 @@
       "Bash(cp \"/Users/amandineascensio/Desktop/masm/Photos/65.jpg\" /Users/amandineascensio/Desktop/masm-app/assets/images/hero-bg.jpg)",
       "Bash(cp \"/Users/amandineascensio/Desktop/masm/1ce1f0cf-de1f-4eed-b28e-ad61400e4ef2.png\" /Users/amandineascensio/Desktop/masm-app/assets/images/hero-bg.jpg)",
       "Bash(python3 -m http.server 8080)",
-      "Bash(curl -s http://localhost:8080)"
+      "Bash(curl -s http://localhost:8080)",
+      "Bash(find /Users/amandineascensio/Desktop -iname \"*group 8*\" 2>/dev/null)",
+      "Bash(cp \"/Users/amandineascensio/Desktop/masm-app/assets/images/Group 8.svg\" \"/Users/amandineascensio/Desktop/Portfolio/assets/images/Group 8.svg\")"
     ],
     "additionalDirectories": [
       "/Users/amandineascensio/Desktop/Portfolio/assets/svg",
@@ -58,7 +60,8 @@
       "/Users/amandineascensio/Desktop/masm-app/src",
       "/Users/amandineascensio/Desktop/MASM/Logo",
       "/Users/amandineascensio/Desktop/masm-app",
-      "/Users/amandineascensio/Desktop/MASM"
+      "/Users/amandineascensio/Desktop/MASM",
+      "/Users/amandineascensio/Desktop/masm-app/assets/images"
     ]
   }
 }

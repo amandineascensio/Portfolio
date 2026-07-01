@@ -10,6 +10,216 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* ===== GRILLE FLIP CARDS ===== */
+    .projets-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+    }
+
+    .flip-card {
+      height: 480px;
+      perspective: 1100px;
+    }
+
+    .flip-card__inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.85s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    @media (hover: hover) {
+      .flip-card:hover .flip-card__inner {
+        transform: rotateY(180deg);
+      }
+    }
+    .flip-card.flipped .flip-card__inner {
+      transform: rotateY(180deg);
+    }
+
+    .flip-card__front,
+    .flip-card__back {
+      position: absolute;
+      inset: 0;
+      border-radius: 24px;
+      overflow: hidden;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+
+    /* ---- FACE ---- */
+    .flip-card__front {
+      background-color: var(--color-pink-bg);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .flip-card__img {
+      flex: 1;
+      position: relative;
+      background-color: #F2AFCC;
+      overflow: hidden;
+    }
+
+    .flip-card__img img.fc-cover {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      transition: transform 0.5s ease;
+    }
+    .flip-card:hover .flip-card__img img.fc-cover {
+      transform: scale(1.05);
+    }
+
+    /* Spoonia — image entière sans recadrage */
+    .flip-card__img--spoonia {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .flip-card__img--spoonia img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transition: transform 0.5s ease;
+    }
+    .flip-card:hover .flip-card__img--spoonia img {
+      transform: scale(1.04);
+    }
+
+    /* MASM — 2 screenshots */
+    .flip-card__img--masm { display: block; }
+    .masm-f1, .masm-f2 {
+      position: absolute;
+      object-fit: cover;
+      object-position: top;
+      filter: drop-shadow(4px 4px 12px rgba(0,0,0,.12));
+    }
+    .masm-f1 { left: 16px; top: 16px; width: 52%; height: 88%; z-index: 2; }
+    .masm-f2 { right: 16px; top: 32px; width: 52%; height: 80%; z-index: 1; }
+
+    /* BeatWay */
+    .flip-card__img--beatway {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 24px 24px 0;
+    }
+    .flip-card__img--beatway img {
+      height: 92%;
+      width: auto;
+      object-fit: contain;
+      object-position: bottom;
+    }
+
+    /* V For Vape */
+    .flip-card__img--vforvape {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .flip-card__img--vforvape img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .flip-card__front-label {
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .flip-card__name {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--color-dark);
+    }
+
+    .flip-card__hint {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--color-pink);
+      opacity: 0.7;
+    }
+
+    /* ---- DOS ---- */
+    .flip-card__back {
+      background-color: var(--color-dark);
+      transform: rotateY(180deg);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 40px 36px;
+      gap: 16px;
+    }
+
+    .flip-card__back-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .flip-card__back-tags .tag {
+      border-color: rgba(255,255,255,.25);
+      color: rgba(255,255,255,.8);
+    }
+    .flip-card__back-tags .tag:hover {
+      background-color: rgba(255,255,255,.1);
+      color: #fff;
+    }
+
+    .flip-card__back-title {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--color-white);
+      line-height: 1.1;
+    }
+
+    .flip-card__back-sub {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--color-pink);
+    }
+
+    .flip-card__back-desc {
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: rgba(255,255,255,.75);
+    }
+
+    .flip-card__back .btn--primary {
+      align-self: flex-start;
+      margin-top: 4px;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .projets-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+      .flip-card { height: 420px; }
+    }
+
+    @media (max-width: 600px) {
+      .projets-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .flip-card { height: 400px; }
+    }
+  </style>
 </head>
 <body class="cursor--figma">
 
@@ -42,86 +252,117 @@
 
   <main>
 
-  <!-- PAGE PROJETS -->
   <section class="page-projets">
-    <a href="index.html" class="back-btn" aria-label="Retour">
+    <a href="index.html" class="back-btn" aria-label="Retour à l'accueil">
       <svg viewBox="0 0 24 24" fill="none"><path d="M15 19L8 12L15 5" stroke="#1B1340" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </a>
     <h1 class="page-projets__title">Mes projets</h1>
 
-    <div class="projets__list">
+    <div class="projets-grid">
 
-      <!-- Projet 1 — MASM -->
-      <article class="projet-card">
-        <div class="projet-card__image projet-card__image--masm">
-          <img src="assets/images/masm-1.png" alt="MASM — haut de page" class="masm-img masm-img--1" width="664" height="476" loading="lazy">
-          <img src="assets/images/masm-2.png" alt="MASM — bas de page" class="masm-img masm-img--2" width="360" height="417" loading="lazy">
-        </div>
-        <div class="projet-card__content">
-          <div class="projet-card__tags">
-            <span class="tag">Figma</span>
-            <span class="tag">UI/UX</span>
-            <span class="tag">Wordpress</span>
+      <!-- MASM -->
+      <div class="flip-card" role="article" aria-label="Projet MASM menuiserie">
+        <div class="flip-card__inner">
+          <div class="flip-card__front">
+            <div class="flip-card__img flip-card__img--spoonia">
+              <img src="assets/images/Group 8.svg" alt="MASM menuiserie" loading="lazy">
+            </div>
+            <div class="flip-card__front-label">
+              <h2 class="flip-card__name">MASM menuiserie</h2>
+              <span class="flip-card__hint">Survoler ↻</span>
+            </div>
           </div>
-          <h3 class="projet-card__name">MASM menuiserie</h3>
-          <p class="projet-card__subtitle">Création de charte graphique • Refonte du site vitrine</p>
-          <p class="projet-card__desc">Création du site vitrine pour MASM, une entreprise de menuiserie. Travail sur un interface moderne, élégante et orientée conversion.</p>
-          <a href="projet-masm.html" class="btn btn--primary">Voir le projet</a>
+          <div class="flip-card__back">
+            <div class="flip-card__back-tags">
+              <span class="tag">Figma</span>
+              <span class="tag">UI/UX</span>
+              <span class="tag">Wordpress</span>
+            </div>
+            <h2 class="flip-card__back-title">MASM menuiserie</h2>
+            <p class="flip-card__back-sub">Création de charte graphique · Refonte du site vitrine</p>
+            <p class="flip-card__back-desc">Création du site vitrine pour MASM, une entreprise de menuiserie. Travail sur une interface moderne, élégante et orientée conversion.</p>
+            <a href="projet-masm.html" class="btn btn--primary">Voir le projet</a>
+          </div>
         </div>
-      </article>
+      </div>
 
-      <!-- Projet 2 — Spoonia -->
-      <article class="projet-card projet-card--reverse">
-        <div class="projet-card__content">
-          <div class="projet-card__tags">
-            <span class="tag">Figma</span>
-            <span class="tag">UI/UX</span>
-            <span class="tag">CM</span>
+      <!-- Spoonia -->
+      <div class="flip-card" role="article" aria-label="Projet Spoonia">
+        <div class="flip-card__inner">
+          <div class="flip-card__front">
+            <div class="flip-card__img flip-card__img--spoonia">
+              <img src="assets/images/spoonia-mockup.png" alt="Mockups Spoonia sur iPhone" loading="lazy">
+            </div>
+            <div class="flip-card__front-label">
+              <h2 class="flip-card__name">Spoonia</h2>
+              <span class="flip-card__hint">Survoler ↻</span>
+            </div>
           </div>
-          <h3 class="projet-card__name">Spoonia</h3>
-          <p class="projet-card__subtitle">Parcours UX • Maquettes UI</p>
-          <p class="projet-card__desc">De la recherche utilisateur au prototype interactif : audit UX, personas, parcours utilisateur et prototypage haute-fidélité sur Figma.</p>
-          <a href="projet-spoonia.html" class="btn btn--primary">Voir le projet</a>
+          <div class="flip-card__back">
+            <div class="flip-card__back-tags">
+              <span class="tag">Figma</span>
+              <span class="tag">UI/UX</span>
+              <span class="tag">CM</span>
+            </div>
+            <h2 class="flip-card__back-title">Spoonia</h2>
+            <p class="flip-card__back-sub">Parcours UX · Maquettes UI</p>
+            <p class="flip-card__back-desc">De la recherche utilisateur au prototype interactif : audit UX, personas, parcours utilisateur et prototypage haute-fidélité sur Figma.</p>
+            <a href="projet-spoonia.html" class="btn btn--primary">Voir le projet</a>
+          </div>
         </div>
-        <div class="projet-card__image">
-          <img src="assets/images/spoonia-mockup.png" alt="Mockups Spoonia sur iPhone" class="spoonia-img" width="701" height="436" loading="lazy">
-        </div>
-      </article>
+      </div>
 
-      <!-- Projet 3 — BeatWay -->
-      <article class="projet-card">
-        <div class="projet-card__image projet-card__image--beatway">
-          <img src="assets/images/beatway-mockup.png" alt="Mockup BeatWay sur iPhone" width="491" height="436" loading="lazy">
-        </div>
-        <div class="projet-card__content">
-          <div class="projet-card__tags">
-            <span class="tag">Figma</span>
-            <span class="tag">UI/UX</span>
-            <span class="tag">2050</span>
+      <!-- BeatWay -->
+      <div class="flip-card" role="article" aria-label="Projet BeatWay">
+        <div class="flip-card__inner">
+          <div class="flip-card__front">
+            <div class="flip-card__img flip-card__img--beatway">
+              <img src="assets/images/beatway-mockup.png" alt="Mockup BeatWay sur iPhone" loading="lazy">
+            </div>
+            <div class="flip-card__front-label">
+              <h2 class="flip-card__name">BeatWay</h2>
+              <span class="flip-card__hint">Survoler ↻</span>
+            </div>
           </div>
-          <h3 class="projet-card__name">BeatWay</h3>
-          <p class="projet-card__subtitle">Concours étudiant • Vivre en 2050</p>
-          <p class="projet-card__desc">Application de navigation UX/UI pensée pour proposer des trajets adaptés au rythme, au stress et à l'environnement de l'utilisateur.</p>
-          <a href="projet-beatway.html" class="btn btn--primary">Voir le projet</a>
+          <div class="flip-card__back">
+            <div class="flip-card__back-tags">
+              <span class="tag">Figma</span>
+              <span class="tag">UI/UX</span>
+              <span class="tag">2050</span>
+            </div>
+            <h2 class="flip-card__back-title">BeatWay</h2>
+            <p class="flip-card__back-sub">Concours étudiant · Vivre en 2050</p>
+            <p class="flip-card__back-desc">Application de navigation pensée pour proposer des trajets adaptés au rythme, au stress et à l'environnement de l'utilisateur.</p>
+            <a href="projet-beatway.html" class="btn btn--primary">Voir le projet</a>
+          </div>
         </div>
-      </article>
+      </div>
 
-      <!-- Projet 4 — V for Vape -->
-      <article class="projet-card projet-card--reverse">
-        <div class="projet-card__content">
-          <div class="projet-card__tags">
-            <span class="tag">Photoshop</span>
-            <span class="tag">Community Management</span>
+      <!-- V For Vape -->
+      <div class="flip-card" role="article" aria-label="Projet V For Vape">
+        <div class="flip-card__inner">
+          <div class="flip-card__front">
+            <div class="flip-card__img flip-card__img--vforvape">
+              <img src="assets/images/vforvape/Couverture Vforvape.svg" alt="V For Vape — Couverture" loading="lazy">
+            </div>
+            <div class="flip-card__front-label">
+              <h2 class="flip-card__name">V For Vape</h2>
+              <span class="flip-card__hint">Survoler ↻</span>
+            </div>
           </div>
-          <h3 class="projet-card__name">V for Vape</h3>
-          <p class="projet-card__subtitle">Création visuelle • Réseaux sociaux</p>
-          <p class="projet-card__desc">32 bannières produits créées sur Photoshop et gestion des réseaux sociaux pour une boutique de vape en ligne pendant un an.</p>
-          <a href="projet-vforvape.html" class="btn btn--primary">Voir le projet</a>
+          <div class="flip-card__back">
+            <div class="flip-card__back-tags">
+              <span class="tag">Photoshop</span>
+              <span class="tag">Community Management</span>
+              <span class="tag">Création visuelle</span>
+            </div>
+            <h2 class="flip-card__back-title">V For Vape</h2>
+            <p class="flip-card__back-sub">Community Manager · Graphiste</p>
+            <p class="flip-card__back-desc">32 bannières produits créées sur Photoshop et gestion des réseaux sociaux pour une boutique de vape pendant un an.</p>
+            <a href="projet-vforvape.html" class="btn btn--primary">Voir le projet</a>
+          </div>
         </div>
-        <div class="projet-card__image projet-card__image--vforvape">
-          <img src="assets/images/vforvape/Couverture Vforvape.svg" alt="V for Vape — Couverture" loading="lazy">
-        </div>
-      </article>
+      </div>
 
     </div>
   </section>
@@ -156,7 +397,7 @@
     </svg>
     <div class="footer__content">
       <h3 class="footer__name">Amandine Ascensio</h3>
-      <p class="footer__role">Webdesigner & UX/UI Designer • Région Parisienne</p>
+      <p class="footer__role">Webdesigner & UX/UI Designer · Région Parisienne</p>
       <nav class="footer__links">
         <a href="index.html#a-propos">À propos</a>
         <a href="projets.html">Projets</a>
@@ -170,14 +411,25 @@
         <p class="footer__copy">&copy; 2026 Amandine Ascensio. Conçu avec passion et pixels.</p>
         <div class="footer__legal">
           <a href="mentions-legales.html">Mentions légales</a>
-          <span>•</span>
+          <span>·</span>
           <a href="politique-confidentialite.html">Politique de confidentialité</a>
         </div>
       </div>
     </div>
   </footer>
 
+  <script>
+    // Flip cards — clic sur mobile
+    document.querySelectorAll('.flip-card').forEach(function(card) {
+      card.addEventListener('click', function() {
+        if (window.matchMedia('(hover: none)').matches) {
+          card.classList.toggle('flipped');
+        }
+      });
+    });
+  </script>
   <script src="burger.js"></script>
-  <script src="cursor.js"></script>  <script src="accessibility.js"></script>
+  <script src="cursor.js"></script>
+  <script src="accessibility.js"></script>
 </body>
 </html>
