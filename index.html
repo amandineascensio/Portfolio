@@ -416,13 +416,15 @@
         <img src="assets/svg/etoile-1.svg" alt="" class="hero__star hero__star--4" aria-hidden="true">
       </div>
 
-      <div class="hero__content">
-        <span class="hero__subtitle">UI/UX Designer</span>
-        <h1 class="hero__title">Amandine<br>Ascensio</h1>
-        <p class="hero__description" data-i18n="hero-desc">Je crée des interfaces qui donnent envie de rester — belles, intuitives, et vraiment pensées pour les gens qui les utilisent.</p>
-        <div class="hero__actions">
-          <a href="projets.html" class="btn btn--primary btn--lg" data-i18n="hero-cta-projects">Voir mes projets</a>
-          <a href="contact.html" class="btn btn--outline btn--lg" data-i18n="hero-cta-contact">Me contacter</a>
+      <!-- Bulle de dialogue : l'avatar accueille le visiteur -->
+      <div class="hero__bubble-wrap">
+        <div class="hero__bubble" role="region" aria-label="Présentation">
+          <p class="hero__bubble-greeting" data-i18n="bubble-greeting">Bienvenue sur mon portfolio</p>
+          <p class="hero__bubble-body" data-i18n="bubble-body">Je suis <strong>Amandine</strong>, je crée des interfaces qui donnent envie de rester — belles, intuitives, et vraiment pensées pour les gens qui les utilisent.</p>
+          <div class="hero__bubble-actions">
+            <a href="#projets" class="btn btn--primary btn--lg" data-i18n="hero-cta-projects">Voir mes projets</a>
+            <a href="contact.html" class="btn btn--outline btn--lg" data-i18n="hero-cta-contact">Me contacter</a>
+          </div>
         </div>
       </div>
     </div>
@@ -916,7 +918,7 @@
     (function() {
       var hero = document.querySelector('.hero');
       var apropos = document.querySelector('.apropos');
-      if (!hero || !apropos || window.innerWidth < 900) return;
+      if (!hero || !apropos || window.innerWidth <= 900) return;
       var locked = false;
       function snap(target) {
         locked = true;
@@ -1024,6 +1026,8 @@
         'nav-projects': 'Projets',
         'nav-contact': 'Contact',
         'hero-desc': 'Je crée des interfaces qui donnent envie de rester — belles, intuitives, et vraiment pensées pour les gens qui les utilisent.',
+        'bubble-greeting': 'Bienvenue sur mon portfolio',
+        'bubble-body': 'Je suis <strong>Amandine</strong>, je crée des interfaces qui donnent envie de rester — belles, intuitives, et vraiment pensées pour les gens qui les utilisent.',
         'hero-cta-projects': 'Voir mes projets',
         'hero-cta-contact': 'Me contacter',
         'about-title': 'À propos',
@@ -1089,6 +1093,8 @@
         'nav-projects': 'Projects',
         'nav-contact': 'Contact',
         'hero-desc': 'I design interfaces that make you want to stay — beautiful, intuitive, and genuinely built around the people who use them.',
+        'bubble-greeting': 'Welcome to my portfolio',
+        'bubble-body': 'I\'m <strong>Amandine</strong>, I design interfaces that make you want to stay — beautiful, intuitive, and genuinely built around the people who use them.',
         'hero-cta-projects': 'View my projects',
         'hero-cta-contact': 'Get in touch',
         'about-title': 'About',

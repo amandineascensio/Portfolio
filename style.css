@@ -685,6 +685,35 @@ body.a11y-darkmode .projet-stats__col p {
   color: rgba(255, 255, 255, 0.75) !important;
 }
 
+/* Hero bubble – dark mode */
+body.a11y-darkmode .hero__bubble {
+  background: #2d1b4a;
+  border-color: rgba(191, 51, 105, 0.35);
+  box-shadow: 0 28px 72px rgba(0, 0, 0, 0.3), 0 4px 18px rgba(0, 0, 0, 0.15);
+}
+body.a11y-darkmode .hero__bubble::before {
+  background: #2d1b4a;
+  border-left-color: rgba(191, 51, 105, 0.35);
+  border-bottom-color: rgba(191, 51, 105, 0.35);
+}
+body.a11y-darkmode .hero__bubble-body {
+  color: rgba(255, 255, 255, 0.88);
+}
+body.a11y-darkmode .hero__bubble-body strong {
+  color: #ffffff;
+}
+body.a11y-darkmode .hero__bubble-actions {
+  border-top-color: rgba(191, 51, 105, 0.2);
+}
+body.a11y-darkmode .hero__bubble .btn--outline {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.5);
+}
+body.a11y-darkmode .hero__bubble .btn--outline:hover {
+  color: var(--color-pink);
+  border-color: var(--color-pink);
+}
+
 /* Desaturate */
 body.a11y-desaturate {
   filter: grayscale(100%);
@@ -1335,30 +1364,46 @@ body.a11y-darkmode .back-btn:hover {
   position: absolute;
   z-index: 1;
   pointer-events: none;
+  will-change: transform;
 }
 
 .hero__star--1 {
   width: 110px;
   top: 12%;
   left: 0;
+  animation: star-float 9s ease-in-out infinite;
 }
 
 .hero__star--2 {
   width: 70px;
   top: 10%;
   right: 5%;
+  animation: star-float 9s ease-in-out infinite 1.5s;
 }
 
 .hero__star--3 {
   width: 55px;
   top: 38%;
   right: 0;
+  animation: star-float 9s ease-in-out infinite 0.8s;
 }
 
 .hero__star--4 {
   width: 40px;
   top: 10%;
   right: 25%;
+  animation: star-float 9s ease-in-out infinite 3s;
+}
+
+@keyframes star-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  40%       { transform: translateY(-22px) rotate(20deg); }
+  70%       { transform: translateY(10px) rotate(-12deg); }
+}
+
+/* Respect du mode mouvement réduit */
+@media (prefers-reduced-motion: reduce) {
+  .hero__star { animation: none; }
 }
 
 /* ---- Contenu texte (droite) ---- */
@@ -1401,6 +1446,115 @@ body.a11y-darkmode .back-btn:hover {
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
+}
+
+/* ===== HERO — BULLE DE DIALOGUE ===== */
+
+/* Wrapper flex (remplace hero__content, même alignement) */
+.hero__bubble-wrap {
+  flex: 1;
+  max-width: 500px;
+  min-width: 0;
+  align-self: center;
+  /* Légère remontée visuelle pour équilibrer avec l'avatar */
+  padding-bottom: 20vh;
+}
+
+/* La bulle */
+.hero__bubble {
+  position: relative;
+  isolation: isolate; /* garantit la gestion du z-index de la queue */
+  background: #FFFBFD;
+  border: 1px solid rgba(191, 51, 105, 0.14);
+  border-radius: 28px;
+  padding: 40px 44px;
+  box-shadow:
+    0 28px 72px rgba(191, 51, 105, 0.07),
+    0 4px 18px rgba(0, 0, 0, 0.04);
+  animation: hero-bubble-in 0.7s cubic-bezier(0.34, 1.1, 0.64, 1) 0.3s both;
+}
+
+/* Queue gauche — pointe vers l'avatar
+   Technique : carré pivoté 45°, border-left + border-bottom visibles,
+   z-index:-1 le place derrière le fond de la bulle qui masque la partie intérieure */
+.hero__bubble::before {
+  content: '';
+  position: absolute;
+  left: -10px;
+  top: 46px;
+  width: 20px;
+  height: 20px;
+  background: #FFFBFD;
+  border-left: 1px solid rgba(191, 51, 105, 0.14);
+  border-bottom: 1px solid rgba(191, 51, 105, 0.14);
+  transform: rotate(45deg);
+  border-radius: 0 0 0 3px;
+  z-index: -1;
+}
+
+/* Ligne rose fine au-dessus du texte de bienvenue */
+.hero__bubble::after {
+  content: '';
+  position: absolute;
+  top: 40px;
+  left: 44px;
+  right: 44px;
+  height: 0; /* invisible par défaut, sert de séparateur discret si besoin */
+}
+
+/* Petit label de bienvenue */
+.hero__bubble-greeting {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--color-pink);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+
+/* Texte principal de la bulle */
+.hero__bubble-body {
+  font-family: var(--font-body);
+  font-size: 1.35rem;
+  color: var(--color-dark);
+  line-height: 1.65;
+  margin-bottom: 0;
+  font-weight: 400;
+}
+
+.hero__bubble-body strong {
+  font-weight: 700;
+  color: var(--color-dark);
+}
+
+/* Mots-clés mis en valeur en rose */
+.hero__bubble-body em {
+  font-style: normal;
+  color: var(--color-pink);
+  font-weight: 500;
+}
+
+/* Séparateur fin entre le texte et les boutons */
+.hero__bubble-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 32px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(191, 51, 105, 0.1);
+}
+
+/* Animation d'apparition douce depuis la droite */
+@keyframes hero-bubble-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateX(14px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateX(0);
+  }
 }
 
 /* ===== À PROPOS ===== */
@@ -2670,6 +2824,20 @@ body.a11y-darkmode .back-btn:hover {
     font-size: 0.95rem;
   }
 
+  /* Bulle — tablette : retire le padding-bottom de positionnement,
+     remplacé par align-self qui suffit en side-by-side */
+  .hero__bubble-wrap {
+    padding-top: 40px;
+    padding-bottom: 0;
+    align-self: center;
+  }
+  .hero__bubble {
+    padding: 32px 36px;
+  }
+  .hero__bubble-body {
+    font-size: 1.18rem;
+  }
+
   .projets {
     padding: 80px 40px 60px;
   }
@@ -2775,6 +2943,7 @@ body.a11y-darkmode .back-btn:hover {
   .hero {
     height: auto;
     min-height: 100vh;
+    overflow: hidden;
   }
 
   .header__container {
@@ -2795,23 +2964,27 @@ body.a11y-darkmode .back-btn:hover {
 
   .hero__container {
     flex-direction: column;
+    align-items: center;
     text-align: center;
-    padding: 20px 40px 0;
-    height: auto;
+    padding: 8px 32px 20px;
+    gap: 12px;
   }
 
+  /* Avatar en second, peut déborder en bas — c'est décoratif */
   .hero__visual {
-    height: 55vh;
+    order: 2;
+    height: 52dvh;
     width: 100%;
+    flex-shrink: 0;
   }
 
   .hero__avatar {
-    height: 55vh;
+    height: 52dvh;
   }
 
   .hero__circle {
-    width: min(400px, 53vh);
-    height: min(400px, 53vh);
+    width: min(400px, 54dvh);
+    height: min(400px, 54dvh);
   }
 
   .hero__content {
@@ -2829,6 +3002,27 @@ body.a11y-darkmode .back-btn:hover {
   }
 
   .hero__actions {
+    justify-content: center;
+  }
+
+  /* Bulle en premier, avatar en dessous */
+  .hero__bubble-wrap {
+    order: 1;
+    padding-bottom: 0;
+    width: 100%;
+    max-width: 100%;
+    flex-shrink: 0;
+  }
+  .hero__bubble {
+    text-align: center;
+    padding: 28px 28px 32px;
+  }
+  .hero__bubble::before { display: none; }
+  .hero__bubble-body {
+    font-size: 1.05rem;
+    line-height: 1.6;
+  }
+  .hero__bubble-actions {
     justify-content: center;
   }
 
@@ -3089,21 +3283,21 @@ body.a11y-darkmode .back-btn:hover {
   }
 
   .hero__container {
-    padding: 16px 20px 0;
-    gap: 20px;
+    padding: 12px 20px 0;
+    gap: 16px;
   }
 
   .hero__visual {
-    height: 50vh;
+    height: 48dvh;
   }
 
   .hero__avatar {
-    height: 50vh;
+    height: 48dvh;
   }
 
   .hero__circle {
-    width: min(300px, 48vh);
-    height: min(300px, 48vh);
+    width: min(300px, 50dvh);
+    height: min(300px, 50dvh);
   }
 
   .hero__title {
