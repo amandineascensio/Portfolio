@@ -61,7 +61,8 @@
       "Bash(curl -sI https://www.amandineascensio.fr/sitemap.xml --max-time 10)",
       "Bash(curl -sI https://amandineascensio.fr/sitemap.xml --max-time 10)",
       "Bash(curl -s https://www.amandineascensio.fr/sitemap.xml --max-time 10)",
-      "Bash(curl -s https://www.amandineascensio.fr/robots.txt --max-time 10)"
+      "Bash(curl -s https://www.amandineascensio.fr/robots.txt --max-time 10)",
+      "Bash(git checkout *)"
     ],
     "additionalDirectories": [
       "/Users/amandineascensio/Desktop/Portfolio/assets/svg",
