@@ -918,7 +918,7 @@
     (function() {
       var hero = document.querySelector('.hero');
       var apropos = document.querySelector('.apropos');
-      if (!hero || !apropos || window.innerWidth <= 900) return;
+      if (!hero || !apropos) return;
       var locked = false;
       function snap(target) {
         locked = true;
@@ -929,8 +929,8 @@
         if (locked) return;
         if (e.target.closest('.a11y-panel, .a11y-toggle, .cursor-switcher')) return;
         var scrollY = window.scrollY;
-        var heroH = hero.offsetHeight;
-        if (e.deltaY > 0 && scrollY < heroH * 0.5) snap(apropos);
+        var threshold = window.innerHeight * 0.6;
+        if (e.deltaY > 0 && scrollY < threshold) snap(apropos);
         else if (e.deltaY < 0 && scrollY > 0 && scrollY <= apropos.offsetTop + 10) snap(hero);
       }, { passive: true });
       var touchStartY = 0;
@@ -941,8 +941,8 @@
         if (locked) return;
         var delta = touchStartY - e.changedTouches[0].clientY;
         var scrollY = window.scrollY;
-        var heroH = hero.offsetHeight;
-        if (delta > 50 && scrollY < heroH * 0.5) snap(apropos);
+        var threshold = window.innerHeight * 0.6;
+        if (delta > 50 && scrollY < threshold) snap(apropos);
         else if (delta < -50 && scrollY > 0 && scrollY <= apropos.offsetTop + 10) snap(hero);
       }, { passive: true });
     })();
