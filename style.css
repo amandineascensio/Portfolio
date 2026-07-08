@@ -3020,7 +3020,16 @@ body.a11y-darkmode .back-btn:hover {
     text-align: center;
     padding: 28px 28px 32px;
   }
-  .hero__bubble::before { display: none; }
+  .hero__bubble::before {
+    top: auto;
+    bottom: -10px;
+    left: 50%;
+    margin-left: -10px;
+    border-left: none;
+    border-right: 1px solid rgba(191, 51, 105, 0.14);
+    border-bottom: 1px solid rgba(191, 51, 105, 0.14);
+    border-radius: 0 0 3px 0;
+  }
   .hero__bubble-body {
     font-size: 1.05rem;
     line-height: 1.6;
@@ -3060,16 +3069,28 @@ body.a11y-darkmode .back-btn:hover {
     margin-bottom: 60px;
   }
 
-  .experience__swirl--left,
   .experience__swirl--right {
-    display: none;
+    width: 460px;
+    right: -30px;
+    top: -15%;
+  }
+
+  .experience__swirl--left {
+    width: 480px;
+    left: 80px;
+    top: 60%;
+  }
+
+  .experience__tourbillon {
+    width: 100px;
+    bottom: -60px;
   }
 
   .experience__fraise {
-    width: 80px;
+    width: 120px;
     top: -20px;
-    left: auto;
-    right: 5%;
+    left: 5%;
+    right: auto;
   }
 
   .competences {
