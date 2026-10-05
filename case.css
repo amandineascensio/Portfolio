@@ -1,0 +1,176 @@
+/* ==========================================================
+   ÉTUDES DE CAS — fenêtre macOS posée sur le bureau
+   (chargée après desktop.css, style.css et projet-detail.css)
+   ========================================================== */
+
+:root {
+  --color-bg: #ffffff;
+  --color-dark: #1d1d1f;
+  --color-text: #3a3a3f;
+  --font-display: "Instrument Serif", "Times New Roman", Georgia, serif;
+  --font-body: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", "Segoe UI", sans-serif;
+}
+
+html { scroll-behavior: smooth; height: auto; }
+
+body.case-page {
+  height: auto;
+  min-height: 100%;
+  overflow: auto;
+  font-family: var(--font-ui);
+  font-size: 15px;
+  color: var(--color-text);
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 22px 22px;
+  background-attachment: fixed;
+}
+
+/* Le bureau derrière la fenêtre */
+.case-desk {
+  padding: calc(var(--menubar-h) + env(safe-area-inset-top, 0px) + 28px) 24px calc(110px + env(safe-area-inset-bottom, 0px));
+}
+
+/* ===== FENÊTRE ===== */
+.case-win {
+  max-width: 1180px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: var(--radius-win);
+  box-shadow: var(--shadow-win);
+  overflow: clip;
+  animation: case-open 0.35s cubic-bezier(0.2, 0.9, 0.3, 1.1) both;
+}
+@keyframes case-open { from { opacity: 0; transform: translateY(16px) scale(0.98); } }
+
+.case-win__bar {
+  position: sticky;
+  top: calc(var(--menubar-h) + env(safe-area-inset-top, 0px));
+  z-index: 50;
+  height: 44px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 12px;
+  padding: 0 14px;
+  background: rgba(246, 246, 246, 0.86);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 0.5px solid var(--line);
+}
+.case-win__lights { display: flex; gap: 8px; }
+.case-win__lights .light { display: block; }
+.case-win__lights:hover .light::after {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.55);
+}
+.case-win__lights:hover .light--close::after { content: "×"; font-size: 11px; }
+.case-win__lights:hover .light--min::after { content: "–"; }
+.case-win__lights:hover .light--max::after { content: "+"; }
+.case-win__title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #4a4a4f;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.case-win__title span { color: #9a9aa0; font-weight: 500; }
+.case-win__tools { justify-self: end; display: flex; gap: 6px; }
+.case-win__tools .mac-btn { padding: 3px 11px; font-size: 12px; }
+
+/* ===== CONTENU ===== */
+.case-win__body > section {
+  padding-left: clamp(20px, 5vw, 64px) !important;
+  padding-right: clamp(20px, 5vw, 64px) !important;
+}
+.case-win__body > .projet-hero { padding-top: 56px !important; padding-bottom: 56px !important; }
+
+/* Décors de l'ancien thème */
+.case-win [class*="__deco"],
+.case-win [class*="__star"],
+.case-win [class*="__swirl"],
+.case-win .projet-hero__deco,
+.case-win .back-btn { display: none !important; }
+
+/* Titres en serif, poids normal */
+.case-win__body h1,
+.case-win__body h2,
+.case-win__body [class$="__title"],
+.case-win__body [class*="__heading"] {
+  font-family: var(--font-display) !important;
+  font-weight: 400 !important;
+  letter-spacing: -0.3px;
+}
+.case-win .projet-hero__title { font-size: clamp(48px, 6vw, 84px); line-height: 0.95; color: var(--ink); }
+.case-win h3 { font-family: var(--font-body); font-weight: 600; }
+
+/* Tags façon macOS */
+.case-win .tag {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 12px;
+  border: 0.5px solid rgba(0, 0, 0, 0.12);
+  background: #f5f5f7;
+  color: var(--ink);
+}
+
+/* Boutons */
+.case-win .btn {
+  font-family: var(--font-body);
+  border-radius: 8px;
+  padding: 8px 18px;
+  font-size: 13px;
+  font-weight: 500;
+}
+.case-win .btn--primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+/* Cartes : coins macOS */
+.case-win [class*="__card"],
+.case-win [class*="__item"],
+.case-win [class*="__step"],
+.case-win [class*="__grid"] > * { border-radius: 12px; }
+
+/* Images de l'aperçu : ombre douce de fenêtre */
+.case-win .projet-apercu img,
+.case-win .projet-galerie img { border-radius: 8px; }
+
+/* Fin de document */
+.case-end {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 40px;
+  padding: 28px clamp(20px, 5vw, 64px);
+  border-top: 0.5px solid var(--line);
+  background: #fafafa;
+}
+.case-end__text { font-size: 13px; color: var(--ink-soft); }
+.case-end__text strong { display: block; font-family: var(--font-display); font-weight: 400; font-size: 26px; color: var(--ink); }
+.case-end__nav { display: flex; flex-wrap: wrap; gap: 8px; }
+
+/* Le dock et les liens légaux restent fixes */
+.case-page .legal { display: flex; }
+
+@media (max-width: 1100px) {
+  .case-page .legal { display: none; }
+}
+
+@media (max-width: 760px) {
+  .case-desk { padding-left: 8px; padding-right: 8px; padding-top: calc(var(--menubar-h) + env(safe-area-inset-top, 0px) + 8px); }
+  .case-win__bar { grid-template-columns: auto 1fr; }
+  .case-win__tools { display: none; }
+  .case-win__body > .projet-hero { padding-top: 32px !important; padding-bottom: 32px !important; }
+}

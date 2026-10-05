@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Amandine Ascensio — UI/UX Designer</title>
   <meta name="description" content="Portfolio d'Amandine Ascensio, UI/UX Designer spécialisée en product design, design system et accessibilité. Découvrez mes projets et mon parcours.">
   <meta name="author" content="Amandine Ascensio">
@@ -55,1119 +55,510 @@
   <link rel="icon" type="image/svg+xml" href="assets/svg/logo.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <link rel="preload" as="image" href="assets/images/avatar.png" fetchpriority="high">
-
-  <style>
-    /* ===== FLIP CARDS — projets ===== */
-
-    /* Hint glisser */
-    .projets__drag-hint {
-      text-align: center;
-      font-family: var(--font-body);
-      font-size: 0.78rem;
-      font-weight: 500;
-      color: var(--color-pink);
-      opacity: 0.6;
-      margin-bottom: 28px;
-      letter-spacing: 0.5px;
-    }
-
-    /* Étoile déco derrière les cartes */
-    .projets__star { z-index: 0; }
-    .projets__track-outer { position: relative; z-index: 1; }
-
-    /* Wrapper qui gère le scroll horizontal sans clipper verticalement */
-    .projets__track-outer {
-      overflow-x: auto;
-      overflow-y: visible;
-      padding: 50px 0;
-      margin: -50px -100px;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-    }
-    .projets__track-outer::-webkit-scrollbar { display: none; }
-    .projets__track-outer.grabbing { cursor: grabbing; }
-
-    .projets__flip-grid {
-      display: flex;
-      gap: 24px;
-      padding: 0 100px;
-      scroll-snap-type: x mandatory;
-      cursor: grab;
-      width: max-content;
-    }
-
-    .flip-card {
-      flex: 0 0 360px;
-      height: 460px;
-      perspective: 1100px;
-      cursor: pointer;
-      scroll-snap-align: start;
-    }
-
-    .flip-card__inner {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      transform-style: preserve-3d;
-      transition: transform 0.85s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-
-    /* flip au hover sur desktop */
-    @media (hover: hover) {
-      .flip-card:hover .flip-card__inner {
-        transform: rotateY(180deg);
-      }
-    }
-    /* flip au clic (toggle classe) */
-    .flip-card.flipped .flip-card__inner {
-      transform: rotateY(180deg);
-    }
-
-    .flip-card__front,
-    .flip-card__back {
-      position: absolute;
-      inset: 0;
-      border-radius: 24px;
-      overflow: hidden;
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
-    }
-
-    /* ---- FACE ---- */
-    .flip-card__front {
-      background-color: var(--color-pink-bg);
-      display: flex;
-      flex-direction: column;
-    }
-
-    .flip-card__img {
-      flex: 1;
-      position: relative;
-      background-color: #F2AFCC;
-      overflow: hidden;
-    }
-
-    /* image pleine — recadrée */
-    .flip-card__img img.fc-cover {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: top;
-      transition: transform 0.5s ease;
-    }
-    .flip-card:hover .flip-card__img img.fc-cover {
-      transform: scale(1.05);
-    }
-
-    /* Spoonia — image entière sans recadrage */
-    .flip-card__img--spoonia {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-    .flip-card__img--spoonia img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      transition: transform 0.5s ease;
-    }
-    .flip-card:hover .flip-card__img--spoonia img {
-      transform: scale(1.04);
-    }
-
-    /* MASM — 2 screenshots superposés */
-    .flip-card__img--masm {
-      display: block;
-    }
-    .masm-f1, .masm-f2 {
-      position: absolute;
-      object-fit: cover;
-      object-position: top;
-      border-radius: 0;
-      filter: drop-shadow(4px 4px 12px rgba(0,0,0,.12));
-    }
-    .masm-f1 { left: 16px; top: 16px; width: 52%; height: 88%; z-index: 2; }
-    .masm-f2 { right: 16px; top: 32px; width: 52%; height: 80%; z-index: 1; }
-
-    /* BeatWay — image calée en bas */
-    .flip-card__img--beatway {
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      padding: 12px 16px 0;
-    }
-    .flip-card__img--beatway img {
-      height: 96%;
-      width: auto;
-      object-fit: contain;
-      object-position: bottom;
-    }
-
-    /* V For Vape */
-    .flip-card__img--vforvape {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-    .flip-card__img--vforvape img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
-
-    .flip-card__front-label {
-      padding: 20px 24px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .flip-card__name {
-      font-family: var(--font-display);
-      font-size: 1.3rem;
-      font-weight: 800;
-      color: var(--color-dark);
-    }
-
-    .flip-card__hint {
-      font-family: var(--font-body);
-      font-size: 0.75rem;
-      font-weight: 500;
-      color: var(--color-pink);
-      opacity: 0.7;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    /* ---- DOS ---- */
-    .flip-card__back {
-      background-color: var(--color-dark);
-      transform: rotateY(180deg);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 40px 36px;
-      gap: 16px;
-    }
-
-    .flip-card__back-tags {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .flip-card__back-tags .tag {
-      border-color: rgba(255,255,255,.25);
-      color: rgba(255,255,255,.8);
-    }
-    .flip-card__back-tags .tag:hover {
-      background-color: rgba(255,255,255,.1);
-      color: #fff;
-    }
-
-    .flip-card__back-title {
-      font-family: var(--font-display);
-      font-size: 1.6rem;
-      font-weight: 800;
-      color: var(--color-white);
-      line-height: 1.1;
-    }
-
-    .flip-card__back-sub {
-      font-size: 0.82rem;
-      font-weight: 500;
-      color: var(--color-pink);
-    }
-
-    .flip-card__back-desc {
-      font-size: 0.9rem;
-      line-height: 1.65;
-      color: rgba(255,255,255,.75);
-    }
-
-    .flip-card__back .btn--primary {
-      align-self: flex-start;
-      margin-top: 4px;
-    }
-
-    /* ===== LANGUE TOGGLE ===== */
-    .lang-toggle {
-      display: flex;
-      align-items: center;
-      background: var(--color-pink-bg);
-      border-radius: 20px;
-      padding: 3px;
-      border: 1px solid rgba(191,51,105,0.15);
-      gap: 2px;
-    }
-    .lang-toggle__btn {
-      padding: 4px 10px;
-      border-radius: 16px;
-      font-family: var(--font-body);
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      border: none;
-      background: transparent;
-      color: rgba(27,19,64,0.35);
-      cursor: pointer;
-      transition: all 0.2s ease;
-      line-height: 1;
-    }
-    .lang-toggle__btn[aria-pressed="true"] {
-      background: var(--color-pink);
-      color: #fff;
-    }
-
-    /* ===== RESPONSIVE flip track ===== */
-    @media (max-width: 1280px) {
-      .projets__track-outer { margin: -50px -60px; }
-      .projets__flip-grid { padding: 0 60px; }
-    }
-    @media (max-width: 1024px) {
-      .projets__track-outer { margin: -50px -40px; }
-      .projets__flip-grid { padding: 0 40px; gap: 20px; }
-      .flip-card { flex: 0 0 300px; height: 420px; }
-    }
-    @media (max-width: 768px) {
-      .projets__track-outer { margin: -50px -24px; }
-      .projets__flip-grid { padding: 0 24px; gap: 16px; }
-      .flip-card { flex: 0 0 76vw; height: 400px; }
-    }
-    @media (max-width: 480px) {
-      .projets__track-outer { margin: -50px -20px; }
-      .projets__flip-grid { padding: 0 20px; gap: 14px; }
-      .flip-card { flex: 0 0 82vw; height: 380px; }
-    }
-    @media (max-width: 375px) {
-      .projets__track-outer { margin: -50px -16px; }
-      .projets__flip-grid { padding: 0 16px; gap: 12px; }
-      .flip-card { flex: 0 0 86vw; height: 360px; }
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="desktop.css">
 </head>
-<body class="cursor--figma">
+<body>
 
-  <!-- LOADER -->
-  <div class="loader" id="loader">
-    <img src="assets/svg/logo.svg" alt="" class="loader__logo">
-  </div>
+  <!-- ICÔNES RÉUTILISABLES -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-folder" viewBox="0 0 64 50">
+      <path d="M3 7a4 4 0 0 1 4-4h15.5a4 4 0 0 1 2.8 1.2L29 8h28a4 4 0 0 1 4 4v6H3z" fill="#3b95e0"/>
+      <rect x="2" y="11" width="60" height="37" rx="4" fill="#5cb3f4"/>
+      <rect x="2" y="11" width="60" height="3" rx="1.5" fill="#8dd0ff"/>
+    </symbol>
+    <symbol id="i-pdf" viewBox="0 0 48 60">
+      <path d="M6 2h26l14 14v38a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V6a4 4 0 0 1 4-4z" fill="#fff" stroke="#d6d6d6"/>
+      <path d="M32 2v10a4 4 0 0 0 4 4h10" fill="#ececec" stroke="#d6d6d6"/>
+      <rect x="2" y="34" width="30" height="12" rx="2" fill="#e5453b"/>
+      <text x="17" y="43.2" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" font-weight="700" fill="#fff">PDF</text>
+      <path d="M10 14h14M10 20h22M10 26h18" stroke="#d9d9d9" stroke-width="2" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="i-trash" viewBox="0 0 48 56">
+      <path d="M6 10h36l-3.4 41a4 4 0 0 1-4 3.6H13.4a4 4 0 0 1-4-3.6z" fill="#e6e8eb" stroke="#b9bdc3"/>
+      <ellipse cx="24" cy="10" rx="19" ry="4" fill="#f3f4f6" stroke="#b9bdc3"/>
+      <path d="M16 18l1.5 30M24 18v30M32 18l-1.5 30" stroke="#c4c8ce" stroke-width="1.6" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="i-file" viewBox="0 0 48 60">
+      <path d="M6 2h26l14 14v38a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V6a4 4 0 0 1 4-4z" fill="#fff" stroke="#d6d6d6"/>
+      <path d="M32 2v10a4 4 0 0 0 4 4h10" fill="#ececec" stroke="#d6d6d6"/>
+      <path d="M10 22h28M10 28h28M10 34h20M10 40h24" stroke="#cfcfcf" stroke-width="2" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="i-txt" viewBox="0 0 48 60">
+      <path d="M6 2h26l14 14v38a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V6a4 4 0 0 1 4-4z" fill="#fff" stroke="#d6d6d6"/>
+      <path d="M32 2v10a4 4 0 0 0 4 4h10" fill="#ececec" stroke="#d6d6d6"/>
+      <text x="10" y="17" font-family="Georgia, serif" font-size="11" font-weight="700" fill="#333">H</text>
+      <path d="M10 24h28M10 29h28M10 34h22M10 39h28M10 44h16" stroke="#bdbdbd" stroke-width="1.6" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="i-image" viewBox="0 0 48 60">
+      <path d="M6 2h26l14 14v38a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V6a4 4 0 0 1 4-4z" fill="#fff" stroke="#d6d6d6"/>
+      <path d="M32 2v10a4 4 0 0 0 4 4h10" fill="#ececec" stroke="#d6d6d6"/>
+      <rect x="8" y="22" width="32" height="24" rx="2" fill="#fbdaeb"/>
+      <circle cx="16" cy="29" r="3" fill="#fff"/>
+      <path d="M8 44l10-10 7 7 5-4 10 9v2H8z" fill="#BF3369" opacity=".75"/>
+    </symbol>
+    <symbol id="i-web" viewBox="0 0 48 48">
+      <circle cx="24" cy="24" r="21" fill="#fff" stroke="#d6d6d6"/>
+      <circle cx="24" cy="24" r="18" fill="#2f9bf0"/>
+      <path d="M24 9v4M24 35v4M9 24h4M35 24h4M13.4 13.4l2.8 2.8M31.8 31.8l2.8 2.8M13.4 34.6l2.8-2.8M31.8 16.2l2.8-2.8" stroke="#fff" stroke-width="1.4" stroke-linecap="round"/>
+      <path d="M33 15l-11 7-7 11 11-7z" fill="#fff"/>
+      <path d="M33 15l-11 7 4 4z" fill="#e5453b"/>
+    </symbol>
+    <symbol id="i-figma" viewBox="0 0 48 60">
+      <path d="M6 2h26l14 14v38a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V6a4 4 0 0 1 4-4z" fill="#1e1e1e"/>
+      <g transform="translate(17 18)">
+        <rect x="0" y="0" width="7" height="7" rx="3.5" fill="#f24e1e"/><rect x="7" y="0" width="7" height="7" rx="3.5" fill="#ff7262"/>
+        <rect x="0" y="7" width="7" height="7" rx="3.5" fill="#a259ff"/><circle cx="10.5" cy="10.5" r="3.5" fill="#1abcfe"/>
+        <rect x="0" y="14" width="7" height="7" rx="3.5" fill="#0acf83"/>
+      </g>
+    </symbol>
+  </svg>
 
-  <!-- HEADER -->
-  <header class="header">
-    <div class="header__container">
-      <a href="#" class="header__logo" aria-label="Accueil">
-        <img src="assets/svg/logo.svg" alt="AA+" width="60" height="56">
-      </a>
-      <nav class="header__nav">
-        <ul class="header__links">
-          <li><a href="#a-propos" data-i18n="nav-about">À propos</a></li>
-          <li><a href="#services" data-i18n="nav-services">Mes services</a></li>
-          <li><a href="#experience" data-i18n="nav-experience">Expérience</a></li>
-          <li><a href="#formations" data-i18n="nav-formations">Formations</a></li>
-          <li><a href="#competences" data-i18n="nav-skills">Compétences</a></li>
-          <li><a href="#projets" data-i18n="nav-projects">Projets</a></li>
-        </ul>
-        <div class="lang-toggle" role="group" aria-label="Langue / Language">
-          <button class="lang-toggle__btn" data-lang="fr" aria-pressed="true" onclick="setLang('fr')">FR</button>
-          <button class="lang-toggle__btn" data-lang="en" aria-pressed="false" onclick="setLang('en')">EN</button>
-        </div>
-        <a href="contact.html" class="btn btn--primary header__cta" data-i18n="nav-contact">Contact</a>
-        <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false">
-          <span class="burger__line"></span>
-          <span class="burger__line"></span>
-          <span class="burger__line"></span>
-        </button>
-      </nav>
-      <div class="mobile-menu">
-        <ul class="mobile-menu__links">
-          <li><a href="#a-propos" data-i18n="nav-about">À propos</a></li>
-          <li><a href="#services" data-i18n="nav-services">Mes services</a></li>
-          <li><a href="#experience" data-i18n="nav-experience">Expérience</a></li>
-          <li><a href="#formations" data-i18n="nav-formations">Formations</a></li>
-          <li><a href="#competences" data-i18n="nav-skills">Compétences</a></li>
-          <li><a href="#projets" data-i18n="nav-projects">Projets</a></li>
-        </ul>
-        <a href="contact.html" class="btn btn--primary" data-i18n="nav-contact">Contact</a>
-      </div>
+  <!-- BARRE DE MENU -->
+  <header class="menubar">
+    <nav class="menubar__left" aria-label="Navigation principale">
+      <img src="assets/svg/logo.svg" alt="" class="menubar__logo" width="18" height="17">
+      <button type="button" class="menubar__item menubar__item--bold" data-open="win-about">Portfolio d'Amandine Ascensio</button>
+      <button type="button" class="menubar__item" data-open="win-finder">Projets</button>
+      <button type="button" class="menubar__item" data-open="win-cv">CV</button>
+      <button type="button" class="menubar__item" data-open="win-contact">Contact</button>
+    </nav>
+    <div class="menubar__right" aria-hidden="true">
+      <svg class="menubar__glyph" viewBox="0 0 24 24"><path d="M2 9a15 15 0 0 1 20 0M5.5 12.5a10 10 0 0 1 13 0M9 16a5 5 0 0 1 6 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="19.5" r="1.4" fill="currentColor"/></svg>
+      <svg class="menubar__glyph menubar__glyph--battery" viewBox="0 0 30 14"><rect x="1" y="1" width="24" height="12" rx="3.5" fill="none" stroke="currentColor" stroke-opacity=".45"/><rect x="3" y="3" width="17" height="8" rx="2" fill="currentColor"/><path d="M27 5v4" stroke="currentColor" stroke-opacity=".45" stroke-width="1.6" stroke-linecap="round"/></svg>
+      <svg class="menubar__glyph" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15 15l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <time class="menubar__clock" id="clock"></time>
     </div>
   </header>
 
-  <main>
+  <main class="desktop" id="desktop">
+    <h1 class="sr-only">Amandine Ascensio — UI/UX Designer</h1>
 
-  <!-- HERO -->
-  <section class="hero">
-    <img src="assets/svg/decoratif.svg" alt="" class="hero__curve" aria-hidden="true">
+    <!-- POST-IT -->
+    <aside class="sticky" aria-label="Post-it">
+      <p class="sticky__title">À faire :</p>
+      <ul class="sticky__list">
+        <li class="is-done">Boire de l'eau</li>
+        <li>Finir le Bachelor Webdesign</li>
+        <li><strong>Ranger mes calques Figma</strong></li>
+        <li>Renommer « final_FINAL_v3 »</li>
+        <li>Vérifier les contrastes (encore)</li>
+        <li><strong>Faire évoluer le design system</strong></li>
+        <li>Un café de plus</li>
+      </ul>
+    </aside>
 
-    <div class="hero__container">
-      <div class="hero__visual">
-        <div class="hero__circle"></div>
-        <img src="assets/images/avatar.png" alt="Illustration 3D d'Amandine Ascensio" class="hero__avatar" width="874" height="874" fetchpriority="high">
-        <img src="assets/svg/etoile-3.svg" alt="" class="hero__star hero__star--1" aria-hidden="true">
-        <img src="assets/svg/etoile-1.svg" alt="" class="hero__star hero__star--2" aria-hidden="true">
-        <img src="assets/svg/etoile-2.svg" alt="" class="hero__star hero__star--3" aria-hidden="true">
-        <img src="assets/svg/etoile-1.svg" alt="" class="hero__star hero__star--4" aria-hidden="true">
-      </div>
+    <!-- TITRE CENTRAL -->
+    <div class="welcome" aria-hidden="true">
+      <p class="welcome__small">bienvenue sur mon</p>
+      <p class="welcome__big">portfolio.</p>
+      <p class="welcome__hint">clique sur les dossiers pour explorer</p>
+    </div>
 
-      <!-- Bulle de dialogue : l'avatar accueille le visiteur -->
-      <div class="hero__bubble-wrap">
-        <div class="hero__bubble" role="region" aria-label="Présentation">
-          <p class="hero__bubble-greeting" data-i18n="bubble-greeting">Bienvenue sur mon portfolio</p>
-          <p class="hero__bubble-body" data-i18n="bubble-body">Je suis <strong>Amandine</strong>, je crée des interfaces qui donnent envie de rester — belles, intuitives, et vraiment pensées pour les gens qui les utilisent.</p>
-          <div class="hero__bubble-actions">
-            <a href="#projets" class="btn btn--primary btn--lg" data-i18n="hero-cta-projects">Voir mes projets</a>
-            <a href="contact.html" class="btn btn--outline btn--lg" data-i18n="hero-cta-contact">Me contacter</a>
-          </div>
+    <!-- ICÔNES DU BUREAU -->
+    <ul class="icons" aria-label="Bureau">
+      <li class="icon" style="--x: 78%; --y: 19%;">
+        <button type="button" class="icon__btn" data-project="masm">
+          <svg class="icon__img" aria-hidden="true"><use href="#i-folder"/></svg>
+          <span class="icon__label">Projet 01 (MASM)</span>
+        </button>
+      </li>
+      <li class="icon" style="--x: 86%; --y: 9%;">
+        <button type="button" class="icon__btn" data-project="spoonia">
+          <svg class="icon__img" aria-hidden="true"><use href="#i-folder"/></svg>
+          <span class="icon__label">Projet 02 (Spoonia)</span>
+        </button>
+      </li>
+      <li class="icon" style="--x: 89%; --y: 31%;">
+        <button type="button" class="icon__btn" data-project="beatway">
+          <svg class="icon__img" aria-hidden="true"><use href="#i-folder"/></svg>
+          <span class="icon__label">Projet 03 (BeatWay)</span>
+        </button>
+      </li>
+      <li class="icon" style="--x: 80%; --y: 45%;">
+        <button type="button" class="icon__btn" data-project="vforvape">
+          <svg class="icon__img" aria-hidden="true"><use href="#i-folder"/></svg>
+          <span class="icon__label">Projet 04 (V For Vape)</span>
+        </button>
+      </li>
+      <li class="icon" style="--x: 9%; --y: 40%;">
+        <button type="button" class="icon__btn" data-open="win-cv">
+          <svg class="icon__img icon__img--file" aria-hidden="true"><use href="#i-pdf"/></svg>
+          <span class="icon__label">CV.pdf</span>
+        </button>
+      </li>
+      <li class="icon" style="--x: 17%; --y: 54%;">
+        <button type="button" class="icon__btn" data-open-group="about">
+          <svg class="icon__img" aria-hidden="true"><use href="#i-folder"/></svg>
+          <span class="icon__label">À propos</span>
+        </button>
+      </li>
+      <li class="icon" style="--x: 91%; --y: 58%;">
+        <button type="button" class="icon__btn" data-open="win-trash">
+          <svg class="icon__img icon__img--trash" aria-hidden="true"><use href="#i-trash"/></svg>
+          <span class="icon__label">Ne pas regarder</span>
+        </button>
+      </li>
+    </ul>
+
+    <!-- ===== FENÊTRES ===== -->
+
+    <!-- À PROPOS (TextEdit) -->
+    <section class="win win--doc" id="win-about" role="dialog" aria-labelledby="win-about-title" tabindex="-1" hidden data-w="420" data-x="0.52" data-y="0.30">
+      <div class="win__bar">
+        <div class="win__lights">
+          <button type="button" class="light light--close" data-close aria-label="Fermer"></button>
+          <button type="button" class="light light--min" data-close aria-label="Réduire"></button>
+          <button type="button" class="light light--max" data-max aria-label="Agrandir"></button>
         </div>
+        <h2 class="win__title" id="win-about-title">a_propos.txt</h2>
       </div>
-    </div>
-  </section>
-
-  <!-- À PROPOS -->
-  <section class="apropos" id="a-propos">
-    <div class="apropos__deco">
-      <img src="assets/svg/etoile-3.svg" alt="" class="apropos__star apropos__star--1" aria-hidden="true">
-      <img src="assets/svg/etoile-3.svg" alt="" class="apropos__star apropos__star--2" aria-hidden="true">
-      <img src="assets/svg/etoile-1.svg" alt="" class="apropos__star apropos__star--3" aria-hidden="true">
-    </div>
-
-    <h2 class="apropos__title fade-in" data-i18n="about-title">À propos</h2>
-
-    <div class="apropos__container">
-      <div class="apropos__text fade-in-left">
-        <h3 class="apropos__subtitle" data-i18n="about-subtitle">Curieuse de nature, designer par conviction.</h3>
-        <p data-i18n="about-p1">Mon parcours ne ressemble pas vraiment à un chemin tout droit. Langues étrangères, commerce, management chez E.Leclerc... À chaque étape, j'ai appris à écouter les gens, à comprendre ce qu'ils veulent vraiment et à trouver des façons claires de le leur donner. Le design a été la pièce qui manquait.</p>
-        <p data-i18n="about-p2">Aujourd'hui je suis en alternance chez Bamptee, où je conçois des interfaces web et mobiles, crée des composants dans Figma et fais évoluer le design system. J'aime suivre un projet de bout en bout — du premier trait sur Figma jusqu'à l'intégration en HTML et CSS.</p>
-        <p data-i18n="about-p3">J'ai un œil pour les détails qui n'ont l'air de rien mais qui changent tout. L'accessibilité, la cohérence visuelle, l'expérience réelle de l'utilisateur — c'est ce qui m'intéresse vraiment dans ce métier.</p>
-        <p data-i18n="about-p4">Un bon design, pour moi, c'est celui qui ne se fait pas remarquer. Celui qui guide sans forcer, qui rassure sans expliquer, et qui laisse de la place à ce qui compte : le contenu et les gens.</p>
+      <div class="win__body doc">
+        <h3 class="doc__lead">Curieuse de nature, designer par conviction.</h3>
+        <p>Salut ! Moi c'est <strong>Amandine</strong>, je crée des interfaces qui donnent envie de rester — belles, intuitives, et vraiment pensées pour les gens qui les utilisent.</p>
+        <p>Mon parcours ne ressemble pas vraiment à un chemin tout droit. Langues étrangères, commerce, management chez E.Leclerc… À chaque étape, j'ai appris à écouter les gens, à comprendre ce qu'ils veulent vraiment et à trouver des façons claires de le leur donner. Le design a été la pièce qui manquait.</p>
+        <p>Aujourd'hui je suis en alternance chez <strong>Bamptee</strong>, où je conçois des interfaces web et mobiles, crée des composants dans Figma et fais évoluer le design system. J'aime suivre un projet de bout en bout — du premier trait sur Figma jusqu'à l'intégration en HTML et CSS.</p>
+        <p>J'ai un œil pour les détails qui n'ont l'air de rien mais qui changent tout. L'accessibilité, la cohérence visuelle, l'expérience réelle de l'utilisateur — c'est ce qui m'intéresse vraiment dans ce métier.</p>
+        <p>Un bon design, pour moi, c'est celui qui ne se fait pas remarquer : il guide sans forcer, rassure sans expliquer, et laisse de la place à ce qui compte — le contenu et les gens.</p>
+        <h3 class="doc__h">Ce que je fais</h3>
+        <ul class="doc__list">
+          <li><strong>Product Design</strong> — interfaces responsive web &amp; mobile centrées utilisateur.</li>
+          <li><strong>Intégration Web</strong> — sites sur mesure, performants et évolutifs.</li>
+          <li><strong>Design System</strong> — bibliothèques de composants cohérentes.</li>
+          <li><strong>Prototypage</strong> — prototypes interactifs pour tester et valider.</li>
+        </ul>
       </div>
-      <div class="apropos__image fade-in-right">
+    </section>
+
+    <!-- PHOTO 1 -->
+    <section class="win win--photo" id="win-photo1" role="dialog" aria-labelledby="win-photo1-title" tabindex="-1" hidden data-w="250" data-x="0.24" data-y="0.14">
+      <div class="win__bar">
+        <div class="win__lights">
+          <button type="button" class="light light--close" data-close aria-label="Fermer"></button>
+          <button type="button" class="light light--min" data-close aria-label="Réduire"></button>
+          <button type="button" class="light light--max" data-max aria-label="Agrandir"></button>
+        </div>
+        <h2 class="win__title" id="win-photo1-title">moi.png</h2>
+      </div>
+      <div class="win__body photo photo--avatar">
+        <img src="assets/images/avatar.png" alt="Portrait illustré d'Amandine Ascensio" width="874" height="874">
+      </div>
+    </section>
+
+    <!-- PHOTO 2 -->
+    <section class="win win--photo" id="win-photo2" role="dialog" aria-labelledby="win-photo2-title" tabindex="-1" hidden data-w="300" data-x="0.78" data-y="0.12">
+      <div class="win__bar">
+        <div class="win__lights">
+          <button type="button" class="light light--close" data-close aria-label="Fermer"></button>
+          <button type="button" class="light light--min" data-close aria-label="Réduire"></button>
+          <button type="button" class="light light--max" data-max aria-label="Agrandir"></button>
+        </div>
+        <h2 class="win__title" id="win-photo2-title">au_bureau.png</h2>
+      </div>
+      <div class="win__body photo">
         <img src="assets/images/about.png" alt="Amandine à son bureau avec ses outils de design" width="1024" height="1024" loading="lazy">
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- MES SERVICES -->
-  <section class="competences" id="services">
-    <img src="assets/svg/etoile-3.svg" alt="" class="competences__star" aria-hidden="true">
-    <div class="competences__card fade-in">
-      <div class="competences__header">
-        <h3 class="competences__title" data-i18n="svc-title">Ce que je fais</h3>
-        <img src="assets/svg/etoile-3.svg" alt="" class="competences__star-deco competences__star-deco--1" aria-hidden="true">
-        <img src="assets/svg/etoile-3.svg" alt="" class="competences__star-deco competences__star-deco--2" aria-hidden="true">
+    <!-- LECTEUR MUSIQUE -->
+    <section class="win win--music" id="win-music" role="dialog" aria-label="Lecteur de musique" tabindex="-1" hidden data-w="260" data-x="0.80" data-y="0.58">
+      <div class="music">
+        <button type="button" class="music__close" data-close aria-label="Fermer le lecteur">×</button>
+        <div class="music__cover" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <div class="music__info">
+          <p class="music__label">En boucle</p>
+          <p class="music__track">Playlist focus</p>
+          <p class="music__artist">Pour designer sans voir le temps passer</p>
+        </div>
+        <div class="music__progress"><span></span></div>
+        <button type="button" class="music__play" aria-label="Lecture" aria-pressed="false">
+          <svg class="music__icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+          <svg class="music__icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z" fill="currentColor"/></svg>
+        </button>
       </div>
+    </section>
 
-      <div class="competences__item">
-        <h3 data-i18n="svc1-title">Product Design</h3>
-        <p data-i18n="svc1-desc">Conception d'interfaces responsive web & mobile centrées utilisateur.</p>
+    <!-- MESSAGES (FAQ) -->
+    <section class="win win--messages" id="win-messages" role="dialog" aria-labelledby="win-messages-title" tabindex="-1" hidden data-w="400" data-x="0.5" data-y="0.18">
+      <div class="win__bar">
+        <div class="win__lights">
+          <button type="button" class="light light--close" data-close aria-label="Fermer"></button>
+          <button type="button" class="light light--min" data-close aria-label="Réduire"></button>
+          <button type="button" class="light light--max" data-max aria-label="Agrandir"></button>
+        </div>
+        <h2 class="win__title" id="win-messages-title">Messages — Amandine</h2>
       </div>
-
-      <div class="competences__separator"></div>
-
-      <div class="competences__item">
-        <h3 data-i18n="svc2-title">Intégration Web</h3>
-        <p data-i18n="svc2-desc">Intégration de sites WordPress sur mesure, performants et évolutifs.</p>
+      <div class="win__body chat">
+        <div class="chat__thread" id="chatThread" aria-live="polite">
+          <p class="chat__meta">iMessage · Aujourd'hui</p>
+          <p class="bubble bubble--in">Salut ! Pose-moi une question, je te réponds tout de suite.</p>
+        </div>
+        <div class="chat__suggest" id="chatSuggest" aria-label="Questions suggérées"></div>
       </div>
+    </section>
 
-      <div class="competences__separator"></div>
-
-      <div class="competences__item">
-        <h3 data-i18n="svc3-title">Design System</h3>
-        <p data-i18n="svc3-desc">Création et maintenance de bibliothèques de composants cohérentes.</p>
-      </div>
-
-      <div class="competences__separator"></div>
-
-      <div class="competences__item">
-        <h3 data-i18n="svc4-title">Prototypage</h3>
-        <p data-i18n="svc4-desc">Prototypes interactifs pour tester et valider les expériences.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- EXPÉRIENCE -->
-  <section class="experience" id="experience">
-    <div class="experience__deco">
-      <img src="assets/svg/Fraise.svg" alt="" class="experience__fraise" aria-hidden="true">
-      <img src="assets/svg/Group 3.svg" alt="" class="experience__swirl experience__swirl--left" aria-hidden="true">
-      <img src="assets/svg/Group 4.svg" alt="" class="experience__swirl experience__swirl--right" aria-hidden="true">
-      <img src="assets/svg/Tourbillon.svg" alt="" class="experience__tourbillon" aria-hidden="true">
-    </div>
-
-    <h2 class="experience__title fade-in" data-i18n="exp-title">Expérience</h2>
-
-    <div class="timeline">
-
-      <div class="timeline__item timeline__item--right fade-in">
-        <div class="timeline__date" data-i18n="exp1-date">Sept. 2024 — Présent</div>
-        <div class="timeline__dot"></div>
-        <div class="timeline__card">
-          <h3 data-i18n="exp1-title">Product Designer, Alternance</h3>
-          <span class="timeline__company">Bamptee, Saint-Soupplets</span>
-          <p data-i18n="exp1-desc">Conception d'interfaces responsive (web/mobile), déclinaison de maquettes selon le design system existant, création et maintenance de composants UI dans Figma, contribution à l'évolution du design system, respect des règles d'accessibilité et de cohérence visuelle.</p>
-          <div class="timeline__tags">
-            <span class="tag">Figma</span>
-            <span class="tag">Design System</span>
-            <span class="tag">Responsive</span>
-            <span class="tag">Composants UI</span>
-            <span class="tag">Accessibilité</span>
-          </div>
+    <!-- FINDER — PROJETS -->
+    <section class="win win--finder" id="win-finder" role="dialog" aria-labelledby="win-finder-title" tabindex="-1" hidden data-w="680" data-x="0.33" data-y="0.16">
+      <div class="win__bar win__bar--finder">
+        <div class="win__lights">
+          <button type="button" class="light light--close" data-close aria-label="Fermer"></button>
+          <button type="button" class="light light--min" data-close aria-label="Réduire"></button>
+          <button type="button" class="light light--max" data-max aria-label="Agrandir"></button>
+        </div>
+        <div class="finder__heading">
+          <h2 class="win__title win__title--left" id="win-finder-title">Projets</h2>
+          <p class="finder__sub" id="finderSub">4 projets récents</p>
         </div>
       </div>
-
-      <div class="timeline__item timeline__item--left fade-in">
-        <div class="timeline__date" data-i18n="exp2-date">Sept. 2023 — Sept. 2024</div>
-        <div class="timeline__dot"></div>
-        <div class="timeline__card">
-          <h3 data-i18n="exp2-title">Assistance Marketing & RH, Alternance</h3>
-          <span class="timeline__company">Dentaurum France, Lognes</span>
-          <p data-i18n="exp2-desc">Organisation d'évènements, création et diffusion de newsletters, traitement du courrier, mise en place de tableaux Excel, contrôle de factures.</p>
-          <div class="timeline__tags">
-            <span class="tag">Marketing</span>
-            <span class="tag">Communication</span>
-            <span class="tag">Excel</span>
-            <span class="tag">RH</span>
-          </div>
+      <div class="win__body finder">
+        <nav class="finder__side" aria-label="Barre latérale">
+          <p class="finder__side-h">Favoris</p>
+          <button type="button" class="finder__side-item is-active" data-project="all">Projets</button>
+          <button type="button" class="finder__side-item" data-open-group="about">À propos</button>
+          <button type="button" class="finder__side-item" data-open="win-cv">CV.pdf</button>
+          <button type="button" class="finder__side-item" data-open="win-messages">FAQ</button>
+          <button type="button" class="finder__side-item" data-open="win-trash">Corbeille</button>
+          <p class="finder__side-h">Projets</p>
+          <button type="button" class="finder__side-item" data-project="masm">Projet 01</button>
+          <button type="button" class="finder__side-item" data-project="spoonia">Projet 02</button>
+          <button type="button" class="finder__side-item" data-project="beatway">Projet 03</button>
+          <button type="button" class="finder__side-item" data-project="vforvape">Projet 04</button>
+        </nav>
+        <div class="finder__main">
+          <ul class="finder__grid" id="finderGrid"></ul>
         </div>
       </div>
+    </section>
 
-      <div class="timeline__item timeline__item--right fade-in">
-        <div class="timeline__date" data-i18n="exp3-date">Sept. 2020 — Sept. 2023</div>
-        <div class="timeline__dot"></div>
-        <div class="timeline__card">
-          <h3 data-i18n="exp3-title">Hôtesse de caisse, Superviseur, Service financier</h3>
-          <span class="timeline__company">E.Leclerc, Mareuil-lès-Meaux</span>
-          <p data-i18n="exp3-desc">Management d'une équipe d'hôtesses de caisse, gestion d'un planning, vérification des modes de règlement, fixation d'objectifs, accueil et renseignement clientèle.</p>
-          <div class="timeline__tags">
-            <span class="tag">Management</span>
-            <span class="tag">Gestion d'équipe</span>
-            <span class="tag">Service client</span>
-          </div>
+    <!-- TL;DR (TextEdit) -->
+    <section class="win win--doc" id="win-tldr" role="dialog" aria-labelledby="win-tldr-title" tabindex="-1" hidden data-w="380" data-x="0.79" data-y="0.12">
+      <div class="win__bar">
+        <div class="win__lights">
+          <button type="button" class="light light--close" data-close aria-label="Fermer"></button>
+          <button type="button" class="light light--min" data-close aria-label="Réduire"></button>
+          <button type="button" class="light light--max" data-max aria-label="Agrandir"></button>
         </div>
+        <h2 class="win__title" id="win-tldr-title">projet.txt</h2>
       </div>
+      <div class="win__body doc" id="tldrBody"></div>
+    </section>
 
-    </div>
-  </section>
-
-  <!-- FORMATIONS -->
-  <section class="formations" id="formations">
-    <h2 class="formations__title fade-in" data-i18n="form-title">Formations</h2>
-
-    <div class="formations__list fade-in">
-
-      <div class="formations__card">
-        <div class="formations__info">
-          <span class="formations__label" data-i18n="form1-label">Webdesign</span>
-          <h3 class="formations__name" data-i18n="form1-name">Bachelor 3 – Webdesign</h3>
-          <p class="formations__school">My Digital School, Paris</p>
+    <!-- APERÇU IMAGE -->
+    <section class="win win--photo" id="win-shot" role="dialog" aria-labelledby="win-shot-title" tabindex="-1" hidden data-w="460" data-x="0.76" data-y="0.18">
+      <div class="win__bar">
+        <div class="win__lights">
+          <button type="button" class="light light--close" data-close aria-label="Fermer"></button>
+          <button type="button" class="light light--min" data-close aria-label="Réduire"></button>
+          <button type="button" class="light light--max" data-max aria-label="Agrandir"></button>
         </div>
-        <span class="formations__year-display" aria-hidden="true">2025<br>2026</span>
+        <h2 class="win__title" id="win-shot-title">aperçu.png</h2>
       </div>
-
-      <div class="formations__card">
-        <div class="formations__info">
-          <span class="formations__label" data-i18n="form2-label">Commerce</span>
-          <h3 class="formations__name" data-i18n="form2-name">Bachelor 1 & 2 – Gestion & Administration des Ventes</h3>
-          <p class="formations__school">Ascencia Business School, Lognes</p>
-        </div>
-        <span class="formations__year-display" aria-hidden="true">2023<br>2025</span>
+      <div class="win__body shot">
+        <img id="shotImg" src="" alt="">
       </div>
+    </section>
 
-      <div class="formations__card">
-        <div class="formations__info">
-          <span class="formations__label" data-i18n="form3-label">Langues</span>
-          <h3 class="formations__name" data-i18n="form3-name">Licence en Langues Étrangères Appliquées</h3>
-          <p class="formations__school">Université Gustave Eiffel, Champs-sur-Marne</p>
+    <!-- CV (Aperçu) -->
+    <section class="win win--cv" id="win-cv" role="dialog" aria-labelledby="win-cv-title" tabindex="-1" hidden data-w="560" data-x="0.36" data-y="0.08">
+      <div class="win__bar">
+        <div class="win__lights">
+          <button type="button" class="light light--close" data-close aria-label="Fermer"></button>
+          <button type="button" class="light light--min" data-close aria-label="Réduire"></button>
+          <button type="button" class="light light--max" data-max aria-label="Agrandir"></button>
         </div>
-        <span class="formations__year-display" aria-hidden="true">2019<br>2022</span>
+        <h2 class="win__title" id="win-cv-title">CV.pdf</h2>
       </div>
-
-      <div class="formations__card">
-        <div class="formations__info">
-          <span class="formations__label" data-i18n="form4-label">Baccalauréat</span>
-          <h3 class="formations__name" data-i18n="form4-name">Baccalauréat Littéraire</h3>
-          <p class="formations__school">Lycée Jean Vilar, Meaux</p>
-        </div>
-        <span class="formations__year-display" aria-hidden="true">2019</span>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- COMPÉTENCES -->
-  <section class="skills" id="competences">
-    <div class="skills__deco">
-      <img src="assets/svg/Group 3.svg" alt="" class="skills__swirl skills__swirl--left" aria-hidden="true">
-      <img src="assets/svg/etoile-1.svg" alt="" class="skills__deco-star skills__deco-star--1" aria-hidden="true">
-    </div>
-    <h2 class="skills__title fade-in" data-i18n="skills-title">Compétences</h2>
-
-    <div class="skills__wrapper fade-in">
-
-      <div class="skills__section">
-        <div class="skills__section-header">
-          <h3 class="skills__label">Hard Skills</h3>
-          <img src="assets/svg/etoile-3.svg" alt="" class="skills__star skills__star--1" aria-hidden="true">
-          <img src="assets/svg/etoile-3.svg" alt="" class="skills__star skills__star--2" aria-hidden="true">
-        </div>
-        <div class="skills__hexgrid">
-          <div class="skills__hex">
-            <svg class="skills__hex-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-            <span>UI Design</span>
-          </div>
-          <div class="skills__hex">
-            <svg class="skills__hex-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            <span>UX Research</span>
-          </div>
-          <div class="skills__hex">
-            <svg class="skills__hex-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
-            <span>Figma</span>
-          </div>
-          <div class="skills__hex">
-            <svg class="skills__hex-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-            <span>WordPress</span>
-          </div>
-          <div class="skills__hex">
-            <svg class="skills__hex-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-            <span>Design System</span>
-          </div>
-          <div class="skills__hex">
-            <svg class="skills__hex-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
-            <span data-i18n="skill-proto">Prototypage</span>
-          </div>
-          <div class="skills__hex">
-            <svg class="skills__hex-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-            <span data-i18n="skill-a11y">Accessibilité</span>
-          </div>
-          <div class="skills__hex">
-            <svg class="skills__hex-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-            <span>HTML / CSS</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="skills__divider"></div>
-
-      <div class="skills__section">
-        <div class="skills__section-header">
-          <h3 class="skills__label">Soft Skills</h3>
-        </div>
-        <div class="skills__bubbles">
-          <span class="skills__bubble" data-i18n="soft-creativity">Créativité</span>
-          <span class="skills__bubble" data-i18n="soft-detail">Sens du détail</span>
-          <span class="skills__bubble" data-i18n="soft-communication">Communication</span>
-          <span class="skills__bubble" data-i18n="soft-curiosity">Curiosité</span>
-          <span class="skills__bubble" data-i18n="soft-teamwork">Esprit d'équipe</span>
-          <span class="skills__bubble" data-i18n="soft-autonomy">Autonomie</span>
-          <span class="skills__bubble" data-i18n="soft-organisation">Organisation</span>
-          <span class="skills__bubble" data-i18n="soft-adaptability">Adaptabilité</span>
-          <span class="skills__bubble" data-i18n="soft-listening">Écoute active</span>
-          <span class="skills__bubble" data-i18n="soft-time">Gestion du temps</span>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- PROJETS -->
-  <section class="projets" id="projets">
-    <img src="assets/svg/etoile-3.svg" alt="" class="projets__star" aria-hidden="true">
-    <h2 class="projets__title fade-in" data-i18n="proj-title">Mes derniers projets</h2>
-
-    <div class="projets__track-outer fade-in" id="flipTrack">
-    <div class="projets__flip-grid">
-
-      <!-- MASM -->
-      <div class="flip-card" role="article" aria-label="Projet MASM menuiserie">
-        <div class="flip-card__inner">
-          <div class="flip-card__front">
-            <div class="flip-card__img flip-card__img--spoonia">
-              <img src="assets/images/MacbookMockupMASM.svg" alt="MASM menuiserie" loading="lazy">
+      <div class="win__body cv-wrap">
+        <article class="cv">
+          <header class="cv__head">
+            <img src="assets/images/avatar.png" alt="" class="cv__avatar" width="64" height="64" loading="lazy">
+            <div>
+              <p class="cv__name">Amandine Ascensio</p>
+              <p class="cv__role">Webdesigner &amp; UX/UI Designer · Région parisienne</p>
             </div>
-            <div class="flip-card__front-label">
-              <h3 class="flip-card__name">MASM menuiserie</h3>
-              
+          </header>
+
+          <h3 class="cv__h">Expérience</h3>
+          <div class="cv__item">
+            <p class="cv__date">Sept. 2024 — Présent</p>
+            <div>
+              <p class="cv__title">Product Designer, alternance</p>
+              <p class="cv__place">Bamptee, Saint-Soupplets</p>
+              <p class="cv__desc">Conception d'interfaces responsive (web/mobile), déclinaison de maquettes selon le design system existant, création et maintenance de composants UI dans Figma, contribution à l'évolution du design system, respect des règles d'accessibilité et de cohérence visuelle.</p>
             </div>
           </div>
-          <div class="flip-card__back">
-            <div class="flip-card__back-tags">
-              <span class="tag">Figma</span>
-              <span class="tag">Wordpress</span>
-              <span class="tag">Elementor</span>
-            </div>
-            <h3 class="flip-card__back-title">MASM menuiserie</h3>
-            <p class="flip-card__back-sub" data-i18n="masm-sub">Création de charte graphique · Refonte du site vitrine</p>
-            <p class="flip-card__back-desc" data-i18n="masm-desc">Refonte complète du site d'une entreprise artisanale. Nouveau design, optimisation SEO et amélioration de l'expérience utilisateur sur mobile.</p>
-            <div style="display:flex;gap:12px;flex-wrap:wrap;">
-              <a href="projet-masm.html" class="btn btn--primary" data-i18n="card-cta">Voir le projet</a>
-              <a href="https://masm-menuiserie.vercel.app" target="_blank" rel="noopener" class="btn" style="background:transparent;border:2px solid rgba(255,255,255,0.4);color:#fff;padding:12px 20px;border-radius:50px;font-size:0.85rem;transition:all 0.3s ease;" onmouseover="this.style.borderColor='#BF3369';this.style.color='#BF3369'" onmouseout="this.style.borderColor='rgba(255,255,255,0.4)';this.style.color='#fff'" data-i18n="card-visit">Visiter le site</a>
+          <div class="cv__item">
+            <p class="cv__date">Sept. 2023 — Sept. 2024</p>
+            <div>
+              <p class="cv__title">Assistance Marketing &amp; RH, alternance</p>
+              <p class="cv__place">Dentaurum France, Lognes</p>
+              <p class="cv__desc">Organisation d'évènements, création et diffusion de newsletters, traitement du courrier, mise en place de tableaux Excel, contrôle de factures.</p>
             </div>
           </div>
+          <div class="cv__item">
+            <p class="cv__date">Sept. 2020 — Sept. 2023</p>
+            <div>
+              <p class="cv__title">Hôtesse de caisse, Superviseur, Service financier</p>
+              <p class="cv__place">E.Leclerc, Mareuil-lès-Meaux</p>
+              <p class="cv__desc">Management d'une équipe d'hôtesses de caisse, gestion d'un planning, vérification des modes de règlement, fixation d'objectifs, accueil et renseignement clientèle.</p>
+            </div>
+          </div>
+
+          <h3 class="cv__h">Formations</h3>
+          <div class="cv__item">
+            <p class="cv__date">2025 — 2026</p>
+            <div>
+              <p class="cv__title">Bachelor 3 – Webdesign</p>
+              <p class="cv__place">My Digital School, Paris</p>
+            </div>
+          </div>
+          <div class="cv__item">
+            <p class="cv__date">2023 — 2025</p>
+            <div>
+              <p class="cv__title">Bachelor 1 &amp; 2 – Gestion &amp; Administration des Ventes</p>
+              <p class="cv__place">Ascencia Business School, Lognes</p>
+            </div>
+          </div>
+          <div class="cv__item">
+            <p class="cv__date">2019 — 2022</p>
+            <div>
+              <p class="cv__title">Licence en Langues Étrangères Appliquées</p>
+              <p class="cv__place">Université Gustave Eiffel, Champs-sur-Marne</p>
+            </div>
+          </div>
+          <div class="cv__item">
+            <p class="cv__date">2019</p>
+            <div>
+              <p class="cv__title">Baccalauréat Littéraire</p>
+              <p class="cv__place">Lycée Jean Vilar, Meaux</p>
+            </div>
+          </div>
+
+          <h3 class="cv__h">Compétences</h3>
+          <p class="cv__sub">Hard skills</p>
+          <ul class="chips">
+            <li>UI Design</li><li>UX Research</li><li>Figma</li><li>WordPress</li><li>Design System</li><li>Prototypage</li><li>Accessibilité</li><li>HTML / CSS</li>
+          </ul>
+          <p class="cv__sub">Soft skills</p>
+          <ul class="chips chips--soft">
+            <li>Créativité</li><li>Sens du détail</li><li>Communication</li><li>Curiosité</li><li>Esprit d'équipe</li><li>Autonomie</li><li>Organisation</li><li>Adaptabilité</li><li>Écoute active</li><li>Gestion du temps</li>
+          </ul>
+          <p class="cv__sub">Outils</p>
+          <ul class="chips chips--tools">
+            <li>Figma</li><li>Photoshop</li><li>WordPress</li><li>Elementor</li><li>Slack</li><li>Notion</li><li>Trello</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTACT (Mail) -->
+    <section class="win win--mail" id="win-contact" role="dialog" aria-labelledby="win-contact-title" tabindex="-1" hidden data-w="440" data-x="0.5" data-y="0.26">
+      <div class="win__bar">
+        <div class="win__lights">
+          <button type="button" class="light light--close" data-close aria-label="Fermer"></button>
+          <button type="button" class="light light--min" data-close aria-label="Réduire"></button>
+          <button type="button" class="light light--max" data-max aria-label="Agrandir"></button>
+        </div>
+        <h2 class="win__title" id="win-contact-title">Nouveau message</h2>
+      </div>
+      <div class="win__body mail">
+        <p class="mail__row"><span>À :</span> amandine.ascensio@hotmail.fr</p>
+        <p class="mail__row"><span>Objet :</span> Un projet en tête ?</p>
+        <div class="mail__body">
+          <p>Discutons de votre projet autour d'un café virtuel.<br>Je serais ravie de donner vie à vos idées !</p>
+          <ul class="mail__links">
+            <li><a href="mailto:amandine.ascensio@hotmail.fr">amandine.ascensio@hotmail.fr</a></li>
+            <li><a href="https://www.linkedin.com/in/amandine-ascensio-46ab17260/" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="https://www.instagram.com/andastudio27/" target="_blank" rel="noopener">Instagram — @andastudio27</a></li>
+          </ul>
+        </div>
+        <div class="mail__actions">
+          <a href="contact.html" class="mac-btn">Formulaire de contact</a>
+          <a href="mailto:amandine.ascensio@hotmail.fr" class="mac-btn mac-btn--primary">Écrire un e-mail</a>
         </div>
       </div>
+    </section>
 
-      <!-- Spoonia -->
-      <div class="flip-card" role="article" aria-label="Projet Spoonia">
-        <div class="flip-card__inner">
-          <div class="flip-card__front">
-            <div class="flip-card__img flip-card__img--spoonia">
-              <img src="assets/images/Design sans titre (2) 1.png" alt="Mockups Spoonia sur iPhone" loading="lazy">
-            </div>
-            <div class="flip-card__front-label">
-              <h3 class="flip-card__name">Spoonia</h3>
-              
-            </div>
-          </div>
-          <div class="flip-card__back">
-            <div class="flip-card__back-tags">
-              <span class="tag">Figma</span>
-              <span class="tag">UI/UX</span>
-              <span class="tag">CM</span>
-            </div>
-            <h3 class="flip-card__back-title">Spoonia</h3>
-            <p class="flip-card__back-sub" data-i18n="spoonia-sub">Parcours UX · Maquettes UI</p>
-            <p class="flip-card__back-desc" data-i18n="spoonia-desc">De la recherche utilisateur au prototype interactif : audit UX, personas, parcours utilisateur et prototypage haute-fidélité sur Figma.</p>
-            <a href="projet-spoonia.html" class="btn btn--primary" data-i18n="card-cta">Voir le projet</a>
-          </div>
+    <!-- CORBEILLE -->
+    <section class="win win--trash" id="win-trash" role="dialog" aria-labelledby="win-trash-title" tabindex="-1" hidden data-w="460" data-x="0.66" data-y="0.34">
+      <div class="win__bar">
+        <div class="win__lights">
+          <button type="button" class="light light--close" data-close aria-label="Fermer"></button>
+          <button type="button" class="light light--min" data-close aria-label="Réduire"></button>
+          <button type="button" class="light light--max" data-max aria-label="Agrandir"></button>
         </div>
+        <h2 class="win__title" id="win-trash-title">Corbeille</h2>
       </div>
-
-      <!-- BeatWay -->
-      <div class="flip-card" role="article" aria-label="Projet BeatWay">
-        <div class="flip-card__inner">
-          <div class="flip-card__front">
-            <div class="flip-card__img flip-card__img--beatway">
-              <img src="assets/images/BeatWayMobile.png" alt="BeatWay sur mobile" loading="lazy">
-            </div>
-            <div class="flip-card__front-label">
-              <h3 class="flip-card__name">BeatWay</h3>
-              
-            </div>
-          </div>
-          <div class="flip-card__back">
-            <div class="flip-card__back-tags">
-              <span class="tag">Figma</span>
-              <span class="tag">Mobile</span>
-              <span class="tag">UI Design</span>
-            </div>
-            <h3 class="flip-card__back-title">BeatWay</h3>
-            <p class="flip-card__back-sub" data-i18n="beatway-sub">App mobile · Design UI</p>
-            <p class="flip-card__back-desc" data-i18n="beatway-desc">Conception d'une application musicale mobile, de l'idéation au prototype interactif haute-fidélité sur Figma.</p>
-            <a href="projet-beatway.html" class="btn btn--primary" data-i18n="card-cta">Voir le projet</a>
-          </div>
-        </div>
+      <div class="win__body trash">
+        <ul class="trash__grid">
+          <li><svg aria-hidden="true"><use href="#i-file"/></svg><span>logo_final_FINAL_v3.fig</span></li>
+          <li><svg aria-hidden="true"><use href="#i-file"/></svg><span>idée_de_3h_du_matin.png</span></li>
+          <li><svg aria-hidden="true"><use href="#i-file"/></svg><span>test_comic_sans.pdf</span></li>
+          <li><svg aria-hidden="true"><use href="#i-file"/></svg><span>ombre_portée_100%.psd</span></li>
+          <li><svg aria-hidden="true"><use href="#i-file"/></svg><span>texte_gris_sur_gris.fig</span></li>
+          <li><svg aria-hidden="true"><use href="#i-file"/></svg><span>carrousel_auto_2s.mov</span></li>
+        </ul>
+        <p class="trash__foot">6 éléments — aucun ne mérite d'être restauré.</p>
       </div>
-
-      <!-- V For Vape -->
-      <div class="flip-card" role="article" aria-label="Projet V For Vape">
-        <div class="flip-card__inner">
-          <div class="flip-card__front">
-            <div class="flip-card__img flip-card__img--vforvape">
-              <img src="assets/images/vforvape/Couverture Vforvape.svg" alt="V For Vape" loading="lazy">
-            </div>
-            <div class="flip-card__front-label">
-              <h3 class="flip-card__name">V For Vape</h3>
-              
-            </div>
-          </div>
-          <div class="flip-card__back">
-            <div class="flip-card__back-tags">
-              <span class="tag">Photoshop</span>
-              <span class="tag">Community Management</span>
-              <span class="tag">Création visuelle</span>
-            </div>
-            <h3 class="flip-card__back-title">V For Vape</h3>
-            <p class="flip-card__back-sub" data-i18n="vfv-sub">Community Manager · Graphiste</p>
-            <p class="flip-card__back-desc" data-i18n="vfv-desc">32 bannières produits créées sur Photoshop et gestion des réseaux sociaux pour une boutique de vape pendant un an.</p>
-            <a href="projet-vforvape.html" class="btn btn--primary" data-i18n="card-cta">Voir le projet</a>
-          </div>
-        </div>
-      </div>
-
-    </div><!-- /projets__flip-grid -->
-    </div><!-- /projets__track-outer -->
-
-  </section>
-
-  <!-- MES OUTILS -->
-  <section class="outils" id="outils">
-    <div class="outils__deco">
-      <img src="assets/svg/Group 3.svg" alt="" class="outils__swirl outils__swirl--left" aria-hidden="true">
-      <img src="assets/svg/Fraise.svg" alt="" class="outils__fraise" aria-hidden="true">
-    </div>
-    <h2 class="outils__title fade-in" data-i18n="tools-title">Mes Outils</h2>
-
-    <div class="outils__grid fade-in">
-      <div class="outils__item">
-        <img src="assets/svg/Figma-logo.svg [Vectorized].svg" alt="Figma">
-        <span>Figma</span>
-      </div>
-      <div class="outils__item">
-        <img src="assets/svg/Group 5.svg" alt="Photoshop" class="outils__img-light">
-        <img src="assets/svg/Group 5-dark.svg" alt="Photoshop" class="outils__img-dark">
-        <span>Photoshop</span>
-      </div>
-      <div class="outils__item">
-        <img src="assets/svg/Group 6.svg" alt="Wordpress">
-        <span>Wordpress</span>
-      </div>
-      <div class="outils__item">
-        <img src="assets/svg/Vector.svg" alt="Élémentor">
-        <span>Élémentor</span>
-      </div>
-      <div class="outils__item">
-        <img src="assets/svg/Group 7.svg" alt="Slack">
-        <span>Slack</span>
-      </div>
-      <div class="outils__item">
-        <img src="assets/svg/Notion-logo.svg [Vectorized].svg" alt="Notion" class="outils__img-light">
-        <img src="assets/svg/Notion-logo-dark.svg" alt="Notion" class="outils__img-dark">
-        <span>Notion</span>
-      </div>
-      <div class="outils__item">
-        <img src="assets/svg/2111656 [Vectorized].svg" alt="Trello">
-        <span>Trello</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section class="contact" id="contact">
-    <div class="contact__deco">
-      <img src="assets/svg/etoile-3.svg" alt="" class="contact__star contact__star--1" aria-hidden="true">
-      <img src="assets/svg/etoile-3.svg" alt="" class="contact__star contact__star--2" aria-hidden="true">
-    </div>
-    <h2 class="contact__title fade-in" data-i18n="contact-title">Un projet en tête ?</h2>
-    <p class="contact__text" data-i18n="contact-text">Discutons de votre projet autour d'un café virtuel.<br>Je serais ravie de donner vie à vos idées !</p>
-    <div class="contact__socials">
-      <a href="mailto:amandine.ascensio@hotmail.fr" class="contact__social-link" aria-label="Email">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7L13.03 12.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-      </a>
-      <a href="https://www.linkedin.com/in/amandine-ascensio-46ab17260/" target="_blank" rel="noopener" class="contact__social-link" aria-label="LinkedIn">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-      </a>
-      <a href="https://www.instagram.com/andastudio27/" target="_blank" rel="noopener" class="contact__social-link" aria-label="Instagram">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-      </a>
-    </div>
-  </section>
+    </section>
 
   </main>
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <svg class="footer__wave" viewBox="0 0 1512 106" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-      <path d="M0 96.0516C0 96.0516 257.881 14.5078 504 64.0344C750.119 113.561 923.952 126.068 1172.75 64.0344C1420.12 22.5 1512 64.0344 1512 64.0344V0H0V96.0516Z" fill="#FBDAEB"/>
-    </svg>
-    <div class="footer__content">
-      <h3 class="footer__name">Amandine Ascensio</h3>
-      <p class="footer__role" data-i18n="footer-role">Webdesigner & UX/UI Designer · Région Parisienne</p>
-      <nav class="footer__links">
-        <a href="index.html#a-propos" data-i18n="nav-about">À propos</a>
-        <a href="projets.html" data-i18n="nav-projects">Projets</a>
-        <a href="index.html#competences" data-i18n="nav-skills">Compétences</a>
-        <a href="index.html#experience" data-i18n="nav-experience">Expérience</a>
-        <a href="index.html#formations" data-i18n="nav-formations">Formations</a>
-        <a href="contact.html" data-i18n="nav-contact">Contact</a>
-      </nav>
-      <div class="footer__separator"></div>
-      <div class="footer__bottom">
-        <p class="footer__copy" data-i18n="footer-copy">&copy; 2026 Amandine Ascensio. Conçu avec passion et pixels.</p>
-        <div class="footer__legal">
-          <a href="mentions-legales.html">Mentions légales</a>
-          <span>·</span>
-          <a href="politique-confidentialite.html">Politique de confidentialité</a>
-        </div>
-      </div>
-    </div>
+  <!-- DOCK -->
+  <nav class="dock" aria-label="Dock">
+    <ul class="dock__list">
+      <li><button type="button" class="dock__item" data-open="win-finder" data-label="Projets">
+        <span class="dock__icon dock__icon--finder" aria-hidden="true">
+          <svg viewBox="0 0 40 40"><path d="M20 0v40" stroke="#1a2a4a" stroke-width="1.2" opacity=".4"/><circle cx="12" cy="15" r="2" fill="#1a2a4a"/><circle cx="28" cy="15" r="2" fill="#1a2a4a"/><path d="M10 26q10 7 20 0" fill="none" stroke="#1a2a4a" stroke-width="2.2" stroke-linecap="round"/></svg>
+        </span><span class="sr-only">Projets</span></button></li>
+      <li><button type="button" class="dock__item" data-open="win-messages" data-label="Messages (FAQ)">
+        <span class="dock__icon dock__icon--messages" aria-hidden="true">
+          <svg viewBox="0 0 40 40"><path d="M20 9c-8 0-13 4.6-13 10 0 3.2 1.8 6 4.8 7.8-.3 2-1.4 3.6-2.8 4.7 3.2 0 5.6-1.2 7-2.6 1.3.3 2.6.4 4 .4 8 0 13-4.6 13-10.3S28 9 20 9z" fill="#fff"/></svg>
+        </span><span class="sr-only">Messages (FAQ)</span></button></li>
+      <li><button type="button" class="dock__item" data-open="win-about" data-label="À propos">
+        <span class="dock__icon dock__icon--notes" aria-hidden="true">
+          <svg viewBox="0 0 40 40"><rect x="0" y="0" width="40" height="11" fill="#f5c84b"/><path d="M8 18h24M8 24h24M8 30h16" stroke="#c9c9c9" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </span><span class="sr-only">À propos</span></button></li>
+      <li><button type="button" class="dock__item" data-open-group="photos" data-label="Photos">
+        <span class="dock__icon dock__icon--photos" aria-hidden="true">
+          <svg viewBox="0 0 40 40"><g transform="translate(20 20)"><ellipse rx="4.5" ry="9" cy="-7" fill="#f7b731" opacity=".9"/><ellipse rx="4.5" ry="9" cy="-7" fill="#fd7e14" opacity=".85" transform="rotate(45)"/><ellipse rx="4.5" ry="9" cy="-7" fill="#e5453b" opacity=".85" transform="rotate(90)"/><ellipse rx="4.5" ry="9" cy="-7" fill="#c2368c" opacity=".85" transform="rotate(135)"/><ellipse rx="4.5" ry="9" cy="-7" fill="#7b4fd6" opacity=".85" transform="rotate(180)"/><ellipse rx="4.5" ry="9" cy="-7" fill="#3a86f0" opacity=".85" transform="rotate(225)"/><ellipse rx="4.5" ry="9" cy="-7" fill="#27b5a2" opacity=".85" transform="rotate(270)"/><ellipse rx="4.5" ry="9" cy="-7" fill="#7ac943" opacity=".85" transform="rotate(315)"/></g></svg>
+        </span><span class="sr-only">Photos</span></button></li>
+      <li><button type="button" class="dock__item" data-open="win-music" data-label="Musique">
+        <span class="dock__icon dock__icon--music" aria-hidden="true">
+          <svg viewBox="0 0 40 40"><path d="M16 27V12l13-3v15" fill="none" stroke="#fff" stroke-width="2.6" stroke-linejoin="round"/><circle cx="13" cy="27" r="3.4" fill="#fff"/><circle cx="26" cy="24" r="3.4" fill="#fff"/></svg>
+        </span><span class="sr-only">Musique</span></button></li>
+      <li><button type="button" class="dock__item" data-open="win-cv" data-label="CV">
+        <span class="dock__icon dock__icon--preview" aria-hidden="true">
+          <svg viewBox="0 0 40 40"><rect x="10" y="7" width="20" height="26" rx="2" fill="#fff"/><path d="M14 14h12M14 19h12M14 24h8" stroke="#9aa6b8" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </span><span class="sr-only">CV</span></button></li>
+      <li><button type="button" class="dock__item" data-open="win-contact" data-label="Contact">
+        <span class="dock__icon dock__icon--mail" aria-hidden="true">
+          <svg viewBox="0 0 40 40"><rect x="7" y="11" width="26" height="18" rx="2.5" fill="#fff"/><path d="M8 12.5l12 9 12-9" fill="none" stroke="#2f80ed" stroke-width="1.8" stroke-linejoin="round"/></svg>
+        </span><span class="sr-only">Contact</span></button></li>
+      <li class="dock__sep" aria-hidden="true"></li>
+      <li><a class="dock__item" href="https://www.linkedin.com/in/amandine-ascensio-46ab17260/" target="_blank" rel="noopener" data-label="LinkedIn">
+        <span class="dock__icon dock__icon--linkedin" aria-hidden="true">
+          <svg viewBox="0 0 40 40"><rect x="10" y="16" width="4.5" height="14" fill="#fff"/><circle cx="12.25" cy="11.5" r="2.6" fill="#fff"/><path d="M18 16h4.3v2c.8-1.4 2.5-2.4 4.7-2.4 3.6 0 5 2.2 5 6V30h-4.5v-7.3c0-2-.6-3.2-2.3-3.2-1.8 0-2.7 1.3-2.7 3.2V30H18z" fill="#fff"/></svg>
+        </span><span class="sr-only">LinkedIn</span></a></li>
+      <li><a class="dock__item" href="https://www.instagram.com/andastudio27/" target="_blank" rel="noopener" data-label="Instagram">
+        <span class="dock__icon dock__icon--instagram" aria-hidden="true">
+          <svg viewBox="0 0 40 40"><rect x="9" y="9" width="22" height="22" rx="6.5" fill="none" stroke="#fff" stroke-width="2.4"/><circle cx="20" cy="20" r="5" fill="none" stroke="#fff" stroke-width="2.4"/><circle cx="26.3" cy="13.7" r="1.5" fill="#fff"/></svg>
+        </span><span class="sr-only">Instagram</span></a></li>
+      <li><button type="button" class="dock__item" data-open="win-trash" data-label="Corbeille">
+        <span class="dock__icon dock__icon--trash" aria-hidden="true">
+          <svg viewBox="0 0 48 56"><use href="#i-trash"/></svg>
+        </span><span class="sr-only">Corbeille</span></button></li>
+    </ul>
+  </nav>
+
+  <footer class="legal">
+    <a href="mentions-legales.html">Mentions légales</a>
+    <span aria-hidden="true">·</span>
+    <a href="politique-confidentialite.html">Confidentialité</a>
   </footer>
 
-  <a href="#" class="back-to-top" aria-label="Retour en haut">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
-  </a>
-
-  <script>
-    // Loader
-    window.addEventListener('load', function() {
-      setTimeout(function() {
-        document.getElementById('loader').classList.add('loader--hidden');
-      }, 1800);
-
-      // Fade-in observer
-      var observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
-        });
-      }, { threshold: 0.15 });
-
-      document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right').forEach(function(el) {
-        observer.observe(el);
-      });
-    });
-
-    // Snap hero ↔ à propos
-    (function() {
-      var hero = document.querySelector('.hero');
-      var apropos = document.querySelector('.apropos');
-      if (!hero || !apropos) return;
-      var locked = false;
-      function snap(target) {
-        locked = true;
-        target.scrollIntoView({ behavior: 'smooth' });
-        setTimeout(function() { locked = false; }, 1000);
-      }
-      window.addEventListener('wheel', function(e) {
-        if (locked) return;
-        if (e.target.closest('.a11y-panel, .a11y-toggle, .cursor-switcher')) return;
-        var scrollY = window.scrollY;
-        var threshold = window.innerHeight * 0.6;
-        if (e.deltaY > 0 && scrollY < threshold) snap(apropos);
-        else if (e.deltaY < 0 && scrollY > 0 && scrollY <= apropos.offsetTop + 10) snap(hero);
-      }, { passive: true });
-      var touchStartY = 0;
-      window.addEventListener('touchstart', function(e) {
-        touchStartY = e.touches[0].clientY;
-      }, { passive: true });
-      window.addEventListener('touchend', function(e) {
-        if (locked) return;
-        var delta = touchStartY - e.changedTouches[0].clientY;
-        var scrollY = window.scrollY;
-        var threshold = window.innerHeight * 0.6;
-        if (delta > 50 && scrollY < threshold) snap(apropos);
-        else if (delta < -50 && scrollY > 0 && scrollY <= apropos.offsetTop + 10) snap(hero);
-      }, { passive: true });
-    })();
-
-    // Burger menu
-    var burger = document.querySelector('.burger');
-    var mobileMenu = document.querySelector('.mobile-menu');
-    if (burger && mobileMenu) {
-      burger.addEventListener('click', function() {
-        burger.classList.toggle('active');
-        mobileMenu.classList.toggle('active');
-        burger.setAttribute('aria-expanded', burger.classList.contains('active'));
-      });
-      mobileMenu.querySelectorAll('a').forEach(function(link) {
-        link.addEventListener('click', function() {
-          burger.classList.remove('active');
-          mobileMenu.classList.remove('active');
-          burger.setAttribute('aria-expanded', 'false');
-        });
-      });
-    }
-
-    // Back to top
-    var backToTop = document.querySelector('.back-to-top');
-    if (backToTop) {
-      window.addEventListener('scroll', function() {
-        backToTop.classList.toggle('visible', window.scrollY > 600);
-      });
-    }
-
-    // Flip cards — clic pour mobile (touch devices sans hover)
-    document.querySelectorAll('.flip-card').forEach(function(card) {
-      card.addEventListener('click', function() {
-        if (window.matchMedia('(hover: none)').matches) {
-          card.classList.toggle('flipped');
-        }
-      });
-    });
-
-    // Drag-to-scroll sur le carousel
-    var flipTrack = document.getElementById('flipTrack');
-    if (flipTrack) {
-      var isDragging = false, dragStartX, dragScrollLeft;
-      flipTrack.addEventListener('mousedown', function(e) {
-        isDragging = true;
-        flipTrack.classList.add('grabbing');
-        dragStartX = e.pageX - flipTrack.offsetLeft;
-        dragScrollLeft = flipTrack.scrollLeft;
-      });
-      document.addEventListener('mouseup', function() {
-        isDragging = false;
-        flipTrack.classList.remove('grabbing');
-      });
-      flipTrack.addEventListener('mousemove', function(e) {
-        if (!isDragging) return;
-        e.preventDefault();
-        flipTrack.scrollLeft = dragScrollLeft - (e.pageX - flipTrack.offsetLeft - dragStartX) * 1.5;
-      });
-      // Touch
-      var touchDragStartX, touchDragScrollLeft;
-      flipTrack.addEventListener('touchstart', function(e) {
-        touchDragStartX = e.touches[0].pageX - flipTrack.offsetLeft;
-        touchDragScrollLeft = flipTrack.scrollLeft;
-      }, { passive: true });
-      flipTrack.addEventListener('touchmove', function(e) {
-        flipTrack.scrollLeft = touchDragScrollLeft - (e.touches[0].pageX - flipTrack.offsetLeft - touchDragStartX) * 1.5;
-      }, { passive: true });
-    }
-</script>
-  <script src="cursor.js"></script>
-  <script src="accessibility.js"></script>
-
-  <script>
-    var translations = {
-      fr: {
-        'nav-about': 'À propos',
-        'nav-services': 'Mes services',
-        'nav-experience': 'Expérience',
-        'nav-formations': 'Formations',
-        'nav-skills': 'Compétences',
-        'nav-projects': 'Projets',
-        'nav-contact': 'Contact',
-        'hero-desc': 'Je crée des interfaces qui donnent envie de rester — belles, intuitives, et vraiment pensées pour les gens qui les utilisent.',
-        'bubble-greeting': 'Bienvenue sur mon portfolio',
-        'bubble-body': 'Je suis <strong>Amandine</strong>, je crée des interfaces qui donnent envie de rester — belles, intuitives, et vraiment pensées pour les gens qui les utilisent.',
-        'hero-cta-projects': 'Voir mes projets',
-        'hero-cta-contact': 'Me contacter',
-        'about-title': 'À propos',
-        'about-subtitle': 'Curieuse de nature, designer par conviction.',
-        'about-p1': 'Mon parcours ne ressemble pas vraiment à un chemin tout droit. Langues étrangères, commerce, management chez E.Leclerc... À chaque étape, j\'ai appris à écouter les gens, à comprendre ce qu\'ils veulent vraiment et à trouver des façons claires de le leur donner. Le design a été la pièce qui manquait.',
-        'about-p2': 'Aujourd\'hui je suis en alternance chez Bamptee, où je conçois des interfaces web et mobiles, crée des composants dans Figma et fais évoluer le design system. J\'aime suivre un projet de bout en bout — du premier trait sur Figma jusqu\'à l\'intégration en HTML et CSS.',
-        'about-p3': 'J\'ai un œil pour les détails qui n\'ont l\'air de rien mais qui changent tout. L\'accessibilité, la cohérence visuelle, l\'expérience réelle de l\'utilisateur — c\'est ce qui m\'intéresse vraiment dans ce métier.',
-        'about-p4': 'Un bon design, pour moi, c\'est celui qui ne se fait pas remarquer. Celui qui guide sans forcer, qui rassure sans expliquer, et qui laisse de la place à ce qui compte : le contenu et les gens.',
-        'svc-title': 'Ce que je fais',
-        'svc1-title': 'Product Design',
-        'svc1-desc': 'Conception d\'interfaces responsive web & mobile centrées utilisateur.',
-        'svc2-title': 'Intégration Web',
-        'svc2-desc': 'Intégration de sites sur mesure, performants et évolutifs.',
-        'svc3-title': 'Design System',
-        'svc3-desc': 'Création et maintenance de bibliothèques de composants cohérentes.',
-        'svc4-title': 'Prototypage',
-        'svc4-desc': 'Prototypes interactifs pour tester et valider les expériences.',
-        'exp-title': 'Expérience',
-        'exp1-date': 'Sept. 2024 — Présent',
-        'exp1-title': 'Product Designer, Alternance',
-        'exp1-desc': 'Conception d\'interfaces responsive (web/mobile), déclinaison de maquettes selon le design system existant, création et maintenance de composants UI dans Figma, contribution à l\'évolution du design system, respect des règles d\'accessibilité et de cohérence visuelle.',
-        'exp2-date': 'Sept. 2023 — Sept. 2024',
-        'exp2-title': 'Assistance Marketing & RH, Alternance',
-        'exp2-desc': 'Organisation d\'évènements, création et diffusion de newsletters, traitement du courrier, mise en place de tableaux Excel, contrôle de factures.',
-        'exp3-date': 'Sept. 2020 — Sept. 2023',
-        'exp3-title': 'Hôtesse de caisse, Superviseur, Service financier',
-        'exp3-desc': 'Management d\'une équipe d\'hôtesses de caisse, gestion d\'un planning, vérification des modes de règlement, fixation d\'objectifs, accueil et renseignement clientèle.',
-        'form-title': 'Formations',
-        'form1-label': 'Webdesign', 'form1-name': 'Bachelor 3 – Webdesign',
-        'form2-label': 'Commerce', 'form2-name': 'Bachelor 1 & 2 – Gestion & Administration des Ventes',
-        'form3-label': 'Langues', 'form3-name': 'Licence en Langues Étrangères Appliquées',
-        'form4-label': 'Baccalauréat', 'form4-name': 'Baccalauréat Littéraire',
-        'skills-title': 'Compétences',
-        'skill-proto': 'Prototypage', 'skill-a11y': 'Accessibilité',
-        'soft-creativity': 'Créativité', 'soft-detail': 'Sens du détail',
-        'soft-communication': 'Communication', 'soft-curiosity': 'Curiosité',
-        'soft-teamwork': 'Esprit d\'équipe', 'soft-autonomy': 'Autonomie',
-        'soft-organisation': 'Organisation', 'soft-adaptability': 'Adaptabilité',
-        'soft-listening': 'Écoute active', 'soft-time': 'Gestion du temps',
-        'proj-title': 'Mes derniers projets',
-        'masm-sub': 'Création de charte graphique · Refonte du site vitrine',
-        'masm-desc': 'Refonte complète du site d\'une entreprise artisanale. Nouveau design, optimisation SEO et amélioration de l\'expérience utilisateur sur mobile.',
-        'spoonia-sub': 'Parcours UX · Maquettes UI',
-        'spoonia-desc': 'De la recherche utilisateur au prototype interactif : audit UX, personas, parcours utilisateur et prototypage haute-fidélité sur Figma.',
-        'beatway-sub': 'App mobile · Design UI',
-        'beatway-desc': 'Conception d\'une application musicale mobile, de l\'idéation au prototype interactif haute-fidélité sur Figma.',
-        'vfv-sub': 'Community Manager · Graphiste',
-        'vfv-desc': '32 bannières produits créées sur Photoshop et gestion des réseaux sociaux pour une boutique de vape pendant un an.',
-        'card-cta': 'Voir le projet',
-        'card-visit': 'Visiter le site',
-        'tools-title': 'Mes Outils',
-        'contact-title': 'Un projet en tête ?',
-        'contact-text': 'Discutons de votre projet autour d\'un café virtuel.<br>Je serais ravie de donner vie à vos idées !',
-        'footer-role': 'Webdesigner & UX/UI Designer · Région Parisienne',
-        'footer-copy': '© 2026 Amandine Ascensio. Conçu avec passion et pixels.'
-      },
-      en: {
-        'nav-about': 'About',
-        'nav-services': 'Services',
-        'nav-experience': 'Experience',
-        'nav-formations': 'Education',
-        'nav-skills': 'Skills',
-        'nav-projects': 'Projects',
-        'nav-contact': 'Contact',
-        'hero-desc': 'I design interfaces that make you want to stay — beautiful, intuitive, and genuinely built around the people who use them.',
-        'bubble-greeting': 'Welcome to my portfolio',
-        'bubble-body': 'I\'m <strong>Amandine</strong>, I design interfaces that make you want to stay — beautiful, intuitive, and genuinely built around the people who use them.',
-        'hero-cta-projects': 'View my projects',
-        'hero-cta-contact': 'Get in touch',
-        'about-title': 'About',
-        'about-subtitle': 'Naturally curious, designer by conviction.',
-        'about-p1': 'My path doesn\'t follow a straight line. Applied languages, business management, team supervision at E.Leclerc... At every step, I learned to listen to people, understand what they really need, and find clear ways to deliver it. Design was the missing piece.',
-        'about-p2': 'Today I\'m a work-study designer at Bamptee, where I design web and mobile interfaces, build components in Figma, and help evolve the design system. I love seeing a project through from start to finish — from the first sketch in Figma to the final HTML and CSS.',
-        'about-p3': 'I have an eye for details that seem small but change everything. Accessibility, visual consistency, the real experience of the user — that\'s what genuinely interests me in this field.',
-        'about-p4': 'Good design, to me, is design that goes unnoticed. It guides without pushing, reassures without explaining, and leaves room for what truly matters: the content and the people.',
-        'svc-title': 'What I do',
-        'svc1-title': 'Product Design',
-        'svc1-desc': 'Designing user-centred responsive interfaces for web & mobile.',
-        'svc2-title': 'Web Integration',
-        'svc2-desc': 'Building custom, performant and scalable websites.',
-        'svc3-title': 'Design System',
-        'svc3-desc': 'Creating and maintaining consistent component libraries.',
-        'svc4-title': 'Prototyping',
-        'svc4-desc': 'Interactive prototypes to test and validate experiences.',
-        'exp-title': 'Experience',
-        'exp1-date': 'Sept. 2024 — Present',
-        'exp1-title': 'Product Designer, Apprenticeship',
-        'exp1-desc': 'Designing responsive interfaces (web/mobile), adapting mockups to the existing design system, creating and maintaining UI components in Figma, contributing to design system evolution, ensuring accessibility and visual consistency standards.',
-        'exp2-date': 'Sept. 2023 — Sept. 2024',
-        'exp2-title': 'Marketing & HR Assistant, Apprenticeship',
-        'exp2-desc': 'Event organisation, creating and distributing newsletters, mail processing, setting up Excel spreadsheets, invoice checking.',
-        'exp3-date': 'Sept. 2020 — Sept. 2023',
-        'exp3-title': 'Cashier, Supervisor, Financial Services',
-        'exp3-desc': 'Managing a team of cashiers, scheduling, verifying payment methods, setting targets, welcoming and informing customers.',
-        'form-title': 'Education',
-        'form1-label': 'Web Design', 'form1-name': 'Bachelor 3 – Web Design',
-        'form2-label': 'Business', 'form2-name': 'Bachelor 1 & 2 – Sales Management & Administration',
-        'form3-label': 'Languages', 'form3-name': 'BA in Applied Foreign Languages',
-        'form4-label': 'High School', 'form4-name': 'French Baccalauréat, Literature',
-        'skills-title': 'Skills',
-        'skill-proto': 'Prototyping', 'skill-a11y': 'Accessibility',
-        'soft-creativity': 'Creativity', 'soft-detail': 'Attention to detail',
-        'soft-communication': 'Communication', 'soft-curiosity': 'Curiosity',
-        'soft-teamwork': 'Team spirit', 'soft-autonomy': 'Autonomy',
-        'soft-organisation': 'Organisation', 'soft-adaptability': 'Adaptability',
-        'soft-listening': 'Active listening', 'soft-time': 'Time management',
-        'proj-title': 'My latest projects',
-        'masm-sub': 'Brand identity · Website redesign',
-        'masm-desc': 'Full redesign for a craft business. New visual identity, SEO optimisation, and improved mobile user experience.',
-        'spoonia-sub': 'UX Research · UI Design',
-        'spoonia-desc': 'From user research to interactive prototype: UX audit, personas, user journeys and high-fidelity prototyping in Figma.',
-        'beatway-sub': 'Mobile app · UI Design',
-        'beatway-desc': 'Designing a music mobile app from ideation to high-fidelity interactive prototype in Figma.',
-        'vfv-sub': 'Community Manager · Graphic Designer',
-        'vfv-desc': '32 product banners created in Photoshop and social media management for a vape shop over one year.',
-        'card-cta': 'View project',
-        'card-visit': 'Visit the site',
-        'tools-title': 'My Tools',
-        'contact-title': 'Got a project in mind?',
-        'contact-text': 'Let\'s talk about it over a virtual coffee.<br>I\'d love to bring your ideas to life!',
-        'footer-role': 'Webdesigner & UX/UI Designer · Paris Region',
-        'footer-copy': '© 2026 Amandine Ascensio. Designed with passion and pixels.'
-      }
-    };
-
-    function setLang(lang) {
-      document.querySelectorAll('[data-i18n]').forEach(function(el) {
-        var key = el.getAttribute('data-i18n');
-        var text = translations[lang][key];
-        if (text !== undefined) el.innerHTML = text;
-      });
-      document.querySelectorAll('.lang-toggle__btn').forEach(function(btn) {
-        btn.setAttribute('aria-pressed', btn.getAttribute('data-lang') === lang ? 'true' : 'false');
-      });
-      document.documentElement.lang = lang === 'en' ? 'en' : 'fr';
-      localStorage.setItem('portfolio-lang', lang);
-    }
-
-    var savedLang = localStorage.getItem('portfolio-lang') || 'fr';
-    setLang(savedLang);
-  </script>
+  <script src="desktop.js"></script>
 </body>
 </html>
