@@ -81,6 +81,8 @@
   }
 
   function openGroup(name, opener) {
+    // Sur mobile, les apps s'ouvrent en plein écran : une seule fenêtre pour « À propos »
+    if (mobileQuery.matches && name === 'about') { openWindow('win-about', opener); return; }
     (groups[name] || []).forEach(function(id) { openWindow(id, opener); });
   }
 

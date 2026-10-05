@@ -1,0 +1,251 @@
+/* ==========================================================
+   VERSION MOBILE — écran d'accueil façon iPhone
+   Sur ordinateur, rien de ce fichier n'est visible.
+   ========================================================== */
+
+.phone, .ph-homebar { display: none; }
+
+@media (max-width: 760px) {
+  /* ---------- Le bureau macOS laisse la place ---------- */
+  body { overflow: hidden; }
+  .menubar, .dock, .legal,
+  .desktop > :not(.win) { display: none !important; }
+
+  .desktop {
+    position: fixed;
+    inset: 0;
+    z-index: 20;
+    min-height: 0;
+    padding: 0;
+    display: block;
+    pointer-events: none;
+  }
+
+  /* ---------- Écran d'accueil ---------- */
+  .phone {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    padding-top: env(safe-area-inset-top, 0px);
+    background: var(--bg) url("assets/images/wallpaper.png?v=2") center bottom / cover no-repeat;
+    color: #fff;
+    transition: transform 0.3s ease, filter 0.3s ease;
+  }
+  body.ph-app-open .phone { transform: scale(0.94); filter: blur(6px) brightness(0.9); }
+
+  .ph-status {
+    flex: none;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 46px; padding: 0 30px 0 34px;
+    color: #1d1d1f;
+    font-size: 15.5px; font-weight: 600; letter-spacing: -0.01em;
+  }
+  .ph-status__icons { display: flex; align-items: center; gap: 6px; }
+  .ph-status__icons svg { height: 11.5px; width: auto; fill: currentColor; }
+
+  .ph-home { flex: 1; min-height: 0; overflow-y: auto; padding: 10px 22px calc(130px + env(safe-area-inset-bottom, 0px)); }
+
+  /* Widgets */
+  .ph-widget {
+    display: flex;
+    width: 100%;
+    border-radius: 24px;
+    text-align: left;
+    color: var(--ink);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+    transition: transform 0.15s ease;
+  }
+  .ph-widget:active, .ph-app:active .ph-app__icon { transform: scale(0.94); }
+  .ph-widget--hello {
+    align-items: center; gap: 14px;
+    padding: 14px 16px;
+    background: rgba(255, 255, 255, 0.55);
+    -webkit-backdrop-filter: blur(24px) saturate(160%);
+    backdrop-filter: blur(24px) saturate(160%);
+  }
+  .ph-widget__avatar { flex: none; width: 72px; height: 72px; border-radius: 50%; object-fit: cover; background: var(--star); }
+  .ph-widget__text { display: flex; flex-direction: column; min-width: 0; }
+  .ph-widget__small { font-size: 14px; color: #3c3c43; }
+  .ph-widget__big { font-family: var(--font-serif); font-style: italic; font-size: 40px; line-height: 0.95; letter-spacing: -0.5px; }
+  .ph-widget__role { margin-top: 8px; font-size: 11.5px; font-weight: 600; color: #6e6e73; }
+
+  .ph-widget--todo {
+    flex-direction: column; gap: 3px;
+    height: 100%; padding: 14px 16px;
+    background: #fffdf6;
+    overflow: hidden;
+  }
+  .ph-widget__kicker { font-size: 12px; font-weight: 700; color: #e0a800; }
+  .ph-widget__title { font-size: 15px; font-weight: 700; }
+  .ph-todo { display: flex; flex-direction: column; gap: 4px; margin-top: 4px; font-size: 12px; line-height: 1.3; color: #3c3c43; }
+  .ph-todo > * { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .ph-todo s { color: #a1a1a6; }
+
+  /* Grille d'apps */
+  .ph-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-flow: row dense;
+    grid-auto-rows: 90px;
+    gap: 18px 8px;
+    margin: 24px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .ph-widget-wrap--todo { grid-column: span 2; grid-row: span 2; }
+  .ph-app {
+    display: flex; flex-direction: column; align-items: center; gap: 5px;
+    width: 100%;
+    color: #1d1d1f; text-decoration: none;
+  }
+  .ph-app:focus-visible { outline: 2px solid #1d1d1f; outline-offset: 2px; border-radius: 14px; }
+  .ph-app__icon {
+    display: block;
+    width: 66px; height: 66px;
+    transition: transform 0.15s ease;
+  }
+  img.ph-app__icon { object-fit: contain; }
+  /* Icônes dessinées en CSS : même taille visible que les icônes PNG */
+  .ph-app__icon--doc, .ph-app__icon--trash, .ph-app__icon--folder, .ph-app__icon--shot {
+    width: 56px; height: 56px; margin: 5px;
+    border-radius: 13px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  }
+  .ph-app__icon--doc { display: grid; place-items: center; background: #fff; }
+  .ph-app__icon--doc svg { width: 30px; height: 38px; }
+  .ph-app__icon--trash { display: grid; place-items: center; background: linear-gradient(180deg, #f2f2f7, #d8d8de); }
+  .ph-app__icon--trash img { width: 40px; height: 40px; }
+  .ph-app__icon--folder {
+    display: grid; grid-template: repeat(2, minmax(0, 1fr)) / repeat(2, minmax(0, 1fr)); gap: 4px;
+    padding: 7px;
+    background: rgba(255, 255, 255, 0.4);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+  }
+  .ph-app__icon--folder img { width: 100%; height: 100%; border-radius: 4px; object-fit: cover; object-position: top; background: #fff; }
+  .ph-app__icon--shot { object-fit: cover !important; object-position: top; background: #fff; }
+  .ph-app__label {
+    max-width: 100%;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    font-size: 12px; font-weight: 500;
+    text-shadow: 0 0 6px rgba(255, 255, 255, 0.7);
+  }
+
+  /* Dock */
+  .ph-dock {
+    position: absolute;
+    left: 12px; right: 12px;
+    bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+    padding: 12px 14px;
+    border-radius: 32px;
+    background: rgba(255, 255, 255, 0.3);
+    -webkit-backdrop-filter: blur(26px) saturate(170%);
+    backdrop-filter: blur(26px) saturate(170%);
+    box-shadow: inset 0 0.5px 0 rgba(255, 255, 255, 0.6);
+  }
+  .ph-dock ul { display: grid; grid-template-columns: repeat(4, 1fr); margin: 0; padding: 0; list-style: none; }
+
+  /* Dossier ouvert */
+  .ph-folder {
+    position: fixed; inset: 0; z-index: 30;
+    display: grid; place-items: center;
+    padding: 24px;
+    background: rgba(255, 255, 255, 0.12);
+    -webkit-backdrop-filter: blur(28px);
+    backdrop-filter: blur(28px);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+  .ph-folder.is-open { opacity: 1; }
+  .ph-folder[hidden] { display: none; }
+  .ph-folder__panel { width: min(320px, 100%); transform: scale(0.9); transition: transform 0.25s cubic-bezier(0.2, 0.9, 0.3, 1.2); }
+  .ph-folder.is-open .ph-folder__panel { transform: none; }
+  .ph-folder__title { margin: 0 0 16px 6px; font-size: 30px; font-weight: 700; color: #1d1d1f; }
+  .ph-folder__grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px 6px;
+    margin: 0; padding: 22px 14px;
+    border-radius: 34px;
+    background: rgba(255, 255, 255, 0.35);
+    list-style: none;
+  }
+
+  /* ---------- Les fenêtres deviennent des apps plein écran ---------- */
+  .win {
+    position: fixed;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100dvh !important;
+    max-height: none !important;
+    margin: 0 !important;
+    border-radius: 0;
+    padding-bottom: calc(22px + env(safe-area-inset-bottom, 0px));
+    padding-top: env(safe-area-inset-top, 0px);
+    pointer-events: auto;
+    transform: scale(0.88) translateY(6%);
+    transform-origin: 50% 70%;
+    transition: opacity 0.2s ease, transform 0.3s cubic-bezier(0.2, 0.9, 0.3, 1);
+  }
+  .win.is-visible { transform: none; }
+  .win__lights { display: none !important; }
+  .win__bar { padding-left: 16px !important; padding-right: 16px; }
+  .win__bar--finder { justify-content: flex-start; }
+
+  /* Apps « posées » sur l'accueil : photos, musique, carte de contact */
+  .win--photo, .win--music, .win--card {
+    inset: auto !important;
+    left: 0 !important; right: 0 !important;
+    margin: 0 auto !important;
+    height: auto !important;
+    padding: 0;
+    border-radius: var(--radius-win);
+  }
+  .win--photo { width: min(300px, 76vw) !important; }
+  #win-photo1 { top: calc(9% + env(safe-area-inset-top, 0px)) !important; rotate: -3deg; }
+  #win-photo2 { top: 47% !important; rotate: 2.5deg; }
+  #win-shot { top: 18% !important; width: calc(100% - 32px) !important; rotate: none; }
+  .win--music { width: min(300px, calc(100% - 32px)) !important; bottom: calc(60px + env(safe-area-inset-bottom, 0px)) !important; }
+  .win--card { width: calc(100% - 24px) !important; top: 22% !important; }
+
+  /* Barre « retour à l'accueil » */
+  .ph-homebar {
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    z-index: 10000;
+    display: grid; place-items: center;
+    height: calc(24px + env(safe-area-inset-bottom, 0px));
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    touch-action: none;
+  }
+  .ph-homebar[hidden] { display: none; }
+  .ph-homebar span {
+    width: 136px; height: 5px;
+    border-radius: 99px;
+    background: rgba(20, 20, 20, 0.85);
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.55);
+  }
+  .ph-homebar:focus-visible span { outline: 2px solid var(--sf-blue, #0a84ff); outline-offset: 3px; }
+
+  /* Panneau d'accessibilité : feuille en bas de l'écran */
+  .a11y-panel.a11y-panel--menubar {
+    top: auto;
+    left: 8px; right: 8px;
+    bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+    z-index: 10001;
+    width: auto;
+    max-height: 75dvh;
+    transform-origin: bottom center;
+  }
+
+  /* ---------- Pages d'étude de cas : une app plein écran ---------- */
+  .case-page .case-desk { padding: env(safe-area-inset-top, 0px) 0 calc(24px + env(safe-area-inset-bottom, 0px)); }
+  .case-page .case-win { border-radius: 0; box-shadow: none; }
+  .case-page .case-win__lights { display: none; }
+  .case-page .case-win__bar { top: 0; }
+  .case-page .case-win__bar { grid-template-columns: 1fr; }
+  .ph-homebar--link { background: linear-gradient(transparent, rgba(255, 255, 255, 0.9) 60%); }
+}
+
+@media (max-width: 760px) and (prefers-reduced-motion: reduce) {
+  .phone, .win, .ph-folder, .ph-folder__panel, .ph-app__icon, .ph-widget { transition: none !important; }
+}

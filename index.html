@@ -61,6 +61,7 @@
   <link rel="stylesheet" href="figma.css">
   <link rel="stylesheet" href="safari.css">
   <link rel="stylesheet" href="slack.css">
+  <link rel="stylesheet" href="phone.css">
 </head>
 <body>
 
@@ -107,6 +108,58 @@
       </g>
     </symbol>
   </svg>
+
+  <!-- ÉCRAN D'ACCUEIL (MOBILE) -->
+  <div class="phone" id="phone">
+    <div class="ph-status" aria-hidden="true">
+      <time class="ph-status__time" id="phClock"></time>
+      <span class="ph-status__icons">
+        <svg viewBox="0 0 18 12"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg>
+        <svg viewBox="0 0 16 12"><path d="M8 11.5l2.4-2.9a3.6 3.6 0 0 0-4.8 0zM3.6 6.4a6.6 6.6 0 0 1 8.8 0l1.6-1.9a9.1 9.1 0 0 0-12 0zM.4 2.6a11.6 11.6 0 0 1 15.2 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <svg viewBox="0 0 27 12"><rect x=".5" y=".5" width="23" height="11" rx="3.2" fill="none" stroke="currentColor" opacity=".45"/><rect x="2.2" y="2.2" width="17" height="7.6" rx="1.8"/><path d="M25.3 4v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity=".45"/></svg>
+      </span>
+    </div>
+    <nav class="ph-home" aria-label="Écran d'accueil">
+      <h2 class="sr-only">Applications</h2>
+      <button type="button" class="ph-widget ph-widget--hello" data-open="win-about">
+        <img class="ph-widget__avatar" src="assets/images/avatar.png" alt="" width="88" height="88">
+        <span class="ph-widget__text"><span class="ph-widget__small">bienvenue sur mon</span><span class="ph-widget__big">portfolio.</span><span class="ph-widget__role">Amandine Ascensio · UI/UX designer</span></span>
+      </button>
+      <ul class="ph-grid">
+          <li class="ph-folder-wrap"><button type="button" class="ph-app" id="phFolderBtn" aria-haspopup="dialog" aria-controls="phFolder"><span class="ph-app__icon ph-app__icon--folder" aria-hidden="true"><img src="assets/images/figma/masm-accueil-1.webp" alt=""><img src="assets/images/figma/sp-landing.webp" alt=""><img src="assets/images/figma/bw-accueil.webp" alt=""><img src="assets/images/vforvape/Couverture Vforvape.svg" alt=""></span><span class="ph-app__label">Projets</span></button></li>
+          <li><button type="button" class="ph-app" data-open="win-figma"><img class="ph-app__icon" src="assets/images/figma.png" alt="" width="60" height="60"><span class="ph-app__label">Figma</span></button></li>
+          <li><button type="button" class="ph-app" data-open="win-slack"><img class="ph-app__icon" src="assets/images/slack.png" alt="" width="60" height="60"><span class="ph-app__label">Slack</span></button></li>
+          <li><button type="button" class="ph-app" data-open-group="photos"><img class="ph-app__icon" src="assets/images/photos.png" alt="" width="60" height="60"><span class="ph-app__label">Photos</span></button></li>
+          <li class="ph-widget-wrap ph-widget-wrap--todo"><button type="button" class="ph-widget ph-widget--todo" data-open="win-about"><span class="ph-widget__kicker">Notes</span><span class="ph-widget__title">À faire :</span><span class="ph-todo"><s>Boire de l'eau</s><span>Finir le Bachelor</span><span><b>Ranger mes calques Figma</b></span><span>Renommer « final_FINAL_v3 »</span></span><span class="sr-only"> : ouvrir À propos</span></button></li>
+          <li><button type="button" class="ph-app" data-open="win-about"><img class="ph-app__icon" src="assets/images/notes.png" alt="" width="60" height="60"><span class="ph-app__label">Notes</span></button></li>
+          <li><button type="button" class="ph-app" data-open="win-cv"><span class="ph-app__icon ph-app__icon--doc" aria-hidden="true"><svg><use href="#i-pdf"/></svg></span><span class="ph-app__label">CV</span></button></li>
+          <li><a class="ph-app" href="https://www.linkedin.com/in/amandine-ascensio-46ab17260/" target="_blank" rel="noopener"><img class="ph-app__icon" src="assets/images/linkedin.png" alt="" width="60" height="60"><span class="ph-app__label">LinkedIn</span></a></li>
+          <li><a class="ph-app" href="https://www.instagram.com/andastudio27/" target="_blank" rel="noopener"><img class="ph-app__icon" src="assets/images/instagram.png" alt="" width="60" height="60"><span class="ph-app__label">Instagram</span></a></li>
+          <li><button type="button" class="ph-app" id="phA11yBtn" aria-label="Réglages : accessibilité"><img class="ph-app__icon" src="assets/images/settings.png" alt="" width="60" height="60"><span class="ph-app__label">Réglages</span></button></li>
+          <li><button type="button" class="ph-app" data-open="win-trash"><span class="ph-app__icon ph-app__icon--trash" aria-hidden="true"><img src="assets/images/trash.png" alt=""></span><span class="ph-app__label">Corbeille</span></button></li>
+      </ul>
+    </nav>
+    <nav class="ph-dock" aria-label="Dock">
+      <ul>
+          <li><button type="button" class="ph-app" data-open="win-safari"><img class="ph-app__icon" src="assets/images/safari.png" alt="" width="60" height="60"><span class="ph-app__label sr-only">Safari</span></button></li>
+          <li><button type="button" class="ph-app" data-open="win-messages"><img class="ph-app__icon" src="assets/images/messages.png" alt="" width="60" height="60"><span class="ph-app__label sr-only">Messages</span></button></li>
+          <li><button type="button" class="ph-app" data-open="win-contact"><img class="ph-app__icon" src="assets/images/mail.png" alt="" width="60" height="60"><span class="ph-app__label sr-only">Mail</span></button></li>
+          <li><button type="button" class="ph-app" data-open="win-music"><img class="ph-app__icon" src="assets/images/music.png" alt="" width="60" height="60"><span class="ph-app__label sr-only">Musique</span></button></li>
+      </ul>
+    </nav>
+    <div class="ph-folder" id="phFolder" role="dialog" aria-modal="true" aria-labelledby="phFolderTitle" hidden>
+      <div class="ph-folder__panel">
+        <h2 class="ph-folder__title" id="phFolderTitle">Projets</h2>
+        <ul class="ph-folder__grid">
+          <li><button type="button" class="ph-app" data-project="masm"><img class="ph-app__icon ph-app__icon--shot" src="assets/images/figma/masm-accueil-1.webp" alt="" width="60" height="60"><span class="ph-app__label">MASM</span></button></li>
+          <li><button type="button" class="ph-app" data-project="spoonia"><img class="ph-app__icon ph-app__icon--shot" src="assets/images/figma/sp-landing.webp" alt="" width="60" height="60"><span class="ph-app__label">Spoonia</span></button></li>
+          <li><button type="button" class="ph-app" data-project="beatway"><img class="ph-app__icon ph-app__icon--shot" src="assets/images/figma/bw-accueil.webp" alt="" width="60" height="60"><span class="ph-app__label">BeatWay</span></button></li>
+          <li><button type="button" class="ph-app" data-project="vforvape"><img class="ph-app__icon ph-app__icon--shot" src="assets/images/vforvape/Couverture Vforvape.svg" alt="" width="60" height="60"><span class="ph-app__label">V For Vape</span></button></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <button type="button" class="ph-homebar" id="phHomebar" aria-label="Revenir à l'écran d'accueil"><span></span></button>
 
   <!-- BARRE DE MENU -->
   <header class="menubar">
@@ -722,6 +775,7 @@
   <script src="safari-sites.js"></script>
   <script src="safari.js"></script>
   <script src="slack.js"></script>
+  <script src="phone.js"></script>
   <script src="dock.js"></script>
   <script src="accessibility.js"></script>
 </body>
