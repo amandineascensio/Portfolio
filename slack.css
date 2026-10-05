@@ -1,0 +1,227 @@
+/* ==========================================================
+   SLACK — fenêtre façon Slack (thème aubergine)
+   ========================================================== */
+
+.win--slack {
+  --sl-aub: #3f0e40;
+  --sl-aub-dark: #2c0a2d;
+  --sl-side: #4a154b;
+  --sl-side-text: rgba(255, 255, 255, 0.72);
+  --sl-blue: #1264a3;
+  --sl-green: #007a5a;
+  --sl-line: #e8e8e8;
+  --sl-soft: #616061;
+  --sl-text: #1d1c1d;
+  height: min(720px, calc(100% - 110px));
+  background: var(--sl-aub);
+  color: var(--sl-text);
+}
+.win--slack [hidden] { display: none !important; }
+
+/* Barre de titre + recherche */
+.win__bar--slack {
+  justify-content: center;
+  height: 44px;
+  background: var(--sl-aub-dark);
+  border-bottom: 0;
+}
+.sl-search {
+  display: flex; align-items: center; gap: 8px;
+  width: min(560px, 60%); height: 28px; padding: 0 10px;
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.16);
+  color: rgba(255, 255, 255, 0.8);
+  transition: background 0.15s ease, box-shadow 0.15s ease;
+}
+.sl-search:focus-within { background: #fff; color: var(--sl-text); box-shadow: 0 0 0 3px rgba(29, 155, 209, 0.5); }
+.sl-search svg { flex: none; width: 14px; height: 14px; }
+.sl-search input { flex: 1; min-width: 0; border: 0; background: none; font: inherit; font-size: 13px; color: inherit; outline: none; }
+.sl-search input::placeholder { color: inherit; opacity: 0.85; }
+.sl-search input::-webkit-search-cancel-button { filter: grayscale(1); }
+
+/* Disposition */
+.sl {
+  flex: 1; min-height: 0;
+  display: grid;
+  grid-template-columns: 70px 240px minmax(0, 1fr);
+  background: var(--sl-aub);
+}
+.sl.has-thread { grid-template-columns: 70px 240px minmax(0, 1fr) minmax(260px, 340px); }
+
+/* Rail des espaces */
+.sl-rail { display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 12px 0 14px; color: rgba(255, 255, 255, 0.85); font-size: 10.5px; font-weight: 600; }
+.sl-rail__ws { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 10px; background: #fff; box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.35); }
+.sl-rail__ws img { width: 30px; height: 30px; }
+.sl-rail__item { display: flex; flex-direction: column; align-items: center; gap: 3px; }
+.sl-rail__item svg { width: 36px; height: 36px; padding: 8px; border-radius: 9px; }
+.sl-rail__item.is-active svg { background: rgba(255, 255, 255, 0.2); }
+.sl-rail__me { position: relative; margin-top: auto; }
+.sl-rail__me img { display: block; width: 32px; height: 32px; border-radius: 8px; object-fit: cover; background: #fff; }
+.sl-rail__me i, .sl-presence { position: absolute; right: -3px; bottom: -3px; width: 11px; height: 11px; border-radius: 50%; background: #2bac76; box-shadow: 0 0 0 2.5px var(--sl-aub); }
+
+/* Barre latérale */
+.sl-side { overflow-y: auto; padding: 0 8px 16px; background: var(--sl-side); border-radius: 8px 0 0 0; color: var(--sl-side-text); font-size: 14.5px; }
+.sl-side__ws { position: sticky; top: 0; z-index: 1; margin: 0 -8px 6px; padding: 12px 16px; background: var(--sl-side); border-bottom: 1px solid rgba(255, 255, 255, 0.12); }
+.sl-side__wsname { display: inline-flex; align-items: center; gap: 4px; color: #fff; font-size: 17px; font-weight: 800; cursor: default; }
+.sl-side__wsname svg { width: 12px; height: 12px; }
+.sl-side__sec { margin: 14px 10px 4px; font-size: 13px; font-weight: 600; color: rgba(255, 255, 255, 0.6); }
+.sl-side__item {
+  display: flex; align-items: center; gap: 8px;
+  width: 100%; height: 28px; padding: 0 10px;
+  border-radius: 6px;
+  color: inherit; font-size: inherit; text-align: left;
+}
+.sl-side__item:hover { background: rgba(255, 255, 255, 0.08); }
+.sl-side__item.is-active { background: rgba(255, 255, 255, 0.9); color: var(--sl-side); }
+.sl-side__item.is-unread { color: #fff; font-weight: 800; }
+.sl-side__item:focus-visible { outline: 2px solid #1d9bd1; outline-offset: -2px; }
+.sl-side__hash svg { display: block; width: 15px; height: 15px; }
+.sl-side__av { position: relative; display: block; }
+.sl-side__av .sl-presence { width: 8px; height: 8px; right: -2px; bottom: -2px; box-shadow: 0 0 0 2px var(--sl-side); }
+.sl-side__name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sl-badge { padding: 0 7px; border-radius: 99px; background: #cd2553; color: #fff; font-size: 11.5px; font-weight: 700; line-height: 18px; }
+
+/* Zone principale */
+.sl-main { display: flex; flex-direction: column; min-width: 0; min-height: 0; background: #fff; }
+.sl-head { display: flex; align-items: center; gap: 10px; flex: none; min-height: 50px; padding: 8px 18px; border-bottom: 1px solid var(--sl-line); }
+.sl-head__title { display: flex; align-items: center; gap: 6px; margin: 0; font-size: 17px; font-weight: 800; white-space: nowrap; }
+.sl-head__title svg { width: 16px; height: 16px; }
+.sl-head__topic { flex: 1; min-width: 0; margin: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 13px; color: var(--sl-soft); }
+.sl-head__members { display: flex; align-items: center; padding: 3px 8px 3px 4px; border: 1px solid var(--sl-line); border-radius: 8px; font-size: 13px; }
+.sl-head__members .sl-av { margin-right: -5px; box-shadow: 0 0 0 2px #fff; }
+.sl-head__members b { margin-left: 10px; font-weight: 600; }
+.sl-back { display: none; }
+
+.sl-scroll { flex: 1; min-height: 0; overflow-y: auto; }
+.sl-list { margin: 0; padding: 8px 0 12px; list-style: none; }
+
+.sl-intro { padding: 18px 20px 10px; font-size: 14.5px; color: var(--sl-soft); }
+.sl-intro p { margin: 0; }
+.sl-intro__title { display: flex; align-items: center; gap: 10px; margin-bottom: 6px !important; font-size: 22px; font-weight: 800; color: var(--sl-text); }
+.sl-day { position: relative; display: flex; justify-content: center; margin: 14px 0 6px; }
+.sl-day::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; border-top: 1px solid var(--sl-line); }
+.sl-day span { position: relative; padding: 3px 14px; border: 1px solid var(--sl-line); border-radius: 99px; background: #fff; font-size: 12.5px; font-weight: 700; }
+
+/* Messages */
+.sl-av { display: inline-grid; place-items: center; flex: none; width: 36px; height: 36px; border-radius: 8px; object-fit: cover; background: #fff; color: #fff; font-size: 15px; font-weight: 800; }
+.sl-av--xs { width: 20px; height: 20px; border-radius: 5px; font-size: 10px; }
+.sl-msg { position: relative; padding: 6px 20px; }
+.sl-msg.is-grouped { padding-top: 1px; }
+.sl-msg:hover, .sl-msg:focus-within { background: #f8f8f8; }
+.sl-msg.is-pinned { background: #fef9ec; }
+.sl-pin { margin: 0 0 4px 46px; font-size: 12.5px; color: var(--sl-soft); }
+.sl-msg__row { display: flex; gap: 10px; }
+.sl-msg__main { flex: 1; min-width: 0; }
+.sl-msg__head { display: flex; align-items: baseline; gap: 7px; margin: 0 0 1px; font-size: 15px; }
+.sl-msg__time { font-size: 12px; color: var(--sl-soft); }
+.sl-msg__time--side { flex: none; width: 36px; padding-top: 3px; font-size: 10.5px; text-align: right; opacity: 0; }
+.sl-msg:hover .sl-msg__time--side { opacity: 1; }
+.sl-app { padding: 0 4px; border-radius: 3px; background: #e8e8e8; font-size: 10px; font-weight: 700; color: var(--sl-soft); }
+.sl-text { font-size: 15px; line-height: 1.47; overflow-wrap: anywhere; }
+.sl-text code { padding: 1px 4px; border: 1px solid #ddd; border-radius: 3px; background: #f6f6f6; color: #e01e5a; font-size: 12.5px; }
+.sl-chan-link { padding: 0 2px; border-radius: 3px; background: rgba(29, 155, 209, 0.1); color: var(--sl-blue); font-size: inherit; }
+.sl-chan-link:hover { text-decoration: underline; }
+
+.sl-img { display: block; max-width: min(360px, 100%); max-height: 300px; margin-top: 8px; border-radius: 8px; border: 1px solid var(--sl-line); object-fit: cover; object-position: top; }
+.sl-unfurl { margin-top: 8px; padding: 2px 0 2px 12px; border-left: 4px solid #ddd; font-size: 14px; }
+.sl-unfurl p { margin: 0; }
+.sl-unfurl__site { font-size: 12.5px; color: var(--sl-soft); }
+.sl-unfurl__title { font-weight: 700; color: var(--sl-blue); }
+.sl-unfurl__desc { margin-bottom: 6px !important; }
+.sl-unfurl--figma { border-left-color: #a259ff; }
+.sl-btn { height: 28px; padding: 0 12px; border: 1px solid #ccc; border-radius: 6px; background: #fff; font-size: 13px; font-weight: 700; color: var(--sl-text); }
+.sl-btn:hover { background: #f8f8f8; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08); }
+.sl-code { margin: 8px 0 0; padding: 10px 12px; border: 1px solid #ddd; border-radius: 6px; background: #f8f8f8; overflow-x: auto; font-size: 12.5px; line-height: 1.5; }
+.sl-swatches { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 0; padding: 0; list-style: none; }
+.sl-swatches li { width: 92px; padding: 6px; border: 1px solid var(--sl-line); border-radius: 8px; font-size: 12px; }
+.sl-swatches span { display: block; height: 40px; margin-bottom: 5px; border-radius: 5px; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08); }
+.sl-swatches b, .sl-swatches small { display: block; }
+.sl-swatches small { color: var(--sl-soft); font-family: ui-monospace, Menlo, monospace; }
+
+.sl-reacts { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+.sl-react { display: inline-flex; align-items: center; gap: 4px; height: 24px; padding: 0 8px; border-radius: 99px; background: #f0f0f0; box-shadow: inset 0 0 0 1px transparent; font-size: 13px; }
+.sl-react span { font-size: 11.5px; font-weight: 600; color: var(--sl-soft); }
+.sl-react:hover { background: #fff; box-shadow: inset 0 0 0 1px #aaa; }
+.sl-react.is-mine { background: #e8f5fa; box-shadow: inset 0 0 0 1px var(--sl-blue); }
+.sl-react.is-mine span { color: var(--sl-blue); }
+
+.sl-replies { display: flex; align-items: center; gap: 4px; margin-top: 6px; padding: 3px 8px 3px 4px; border: 1px solid transparent; border-radius: 7px; font-size: 13px; }
+.sl-replies b { margin-left: 4px; color: var(--sl-blue); }
+.sl-replies span { margin-left: 4px; color: var(--sl-soft); }
+.sl-replies:hover { border-color: var(--sl-line); background: #fff; }
+
+.sl-hover {
+  position: absolute; top: -14px; right: 20px;
+  display: flex; padding: 2px;
+  border: 1px solid #ddd; border-radius: 8px; background: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  opacity: 0; pointer-events: none;
+}
+.sl-msg:hover .sl-hover, .sl-msg:focus-within .sl-hover { opacity: 1; pointer-events: auto; }
+.sl-hover button { width: 30px; height: 28px; border-radius: 6px; font-size: 14px; }
+.sl-hover button:hover { background: #f0f0f0; }
+.win--slack button:focus-visible { outline: 2px solid #1d9bd1; outline-offset: 1px; }
+
+/* Rédaction */
+.sl-composer { flex: none; padding: 0 18px 4px; }
+.sl-composer__box { border: 1px solid #c4c4c4; border-radius: 10px; transition: border-color 0.15s ease, box-shadow 0.15s ease; }
+.sl-composer__box:focus-within { border-color: #868686; box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08); }
+.sl-composer__tools { display: flex; gap: 14px; padding: 7px 12px; border-radius: 10px 10px 0 0; background: #f8f8f8; font-size: 13px; color: #9a9a9a; }
+.sl-composer textarea { display: block; width: 100%; min-height: 40px; max-height: 140px; padding: 10px 12px 4px; border: 0; background: none; font: inherit; font-size: 15px; line-height: 1.4; color: var(--sl-text); resize: none; outline: none; }
+.sl-composer__foot { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 4px 6px 6px 12px; }
+.sl-composer__hint { font-size: 11.5px; color: #9a9a9a; }
+.sl-send { display: grid; place-items: center; width: 32px; height: 28px; border-radius: 6px; background: var(--sl-green); color: #fff; }
+.sl-send svg { width: 16px; height: 16px; }
+.sl-send:hover { background: #148567; }
+.sl-typing { min-height: 18px; margin: 2px 2px 0; font-size: 12px; color: var(--sl-soft); }
+
+/* Fil de discussion */
+.sl-thread { display: flex; flex-direction: column; min-height: 0; background: #fff; border-left: 1px solid var(--sl-line); }
+.sl-thread__head { display: flex; align-items: center; justify-content: space-between; min-height: 50px; padding: 0 12px 0 18px; border-bottom: 1px solid var(--sl-line); }
+.sl-thread__head h3 { margin: 0; font-size: 17px; font-weight: 800; }
+.sl-icon-btn { width: 30px; height: 30px; border-radius: 6px; color: var(--sl-soft); }
+.sl-icon-btn:hover { background: #f0f0f0; }
+.sl-thread__scroll { flex: 1; min-height: 0; overflow-y: auto; }
+.sl-thread__count { display: flex; align-items: center; gap: 10px; padding: 6px 20px; font-size: 12.5px; color: var(--sl-soft); }
+.sl-thread__count::after { content: ""; flex: 1; border-top: 1px solid var(--sl-line); }
+.sl-composer--thread { display: flex; align-items: flex-end; gap: 6px; margin: 0 14px 14px; padding: 4px 6px 6px 0; border: 1px solid #c4c4c4; border-radius: 10px; }
+.sl-composer--thread textarea { min-height: 34px; padding-bottom: 6px; }
+
+/* Recherche */
+.sl-hit { border-bottom: 1px solid var(--sl-line); padding-top: 8px; }
+.sl-hit__chan { margin-left: 20px; font-size: 12.5px; font-weight: 700; color: var(--sl-blue); }
+.sl-hit__chan:hover { text-decoration: underline; }
+.sl-hit .sl-msg { list-style: none; }
+.sl-empty { padding: 40px 20px; text-align: center; color: var(--sl-soft); }
+
+/* Écrans moyens : le fil passe par-dessus */
+@media (max-width: 1100px) {
+  .sl.has-thread { grid-template-columns: 70px 220px minmax(0, 1fr); }
+  .sl-thread { position: absolute; z-index: 3; top: 44px; right: 0; bottom: 0; width: min(340px, 90%); box-shadow: -8px 0 24px rgba(0, 0, 0, 0.12); }
+  .sl { position: relative; grid-template-columns: 70px 220px minmax(0, 1fr); }
+  .sl-head__members { display: none; }
+}
+/* Mobile : liste des canaux, puis conversation */
+@media (max-width: 760px) {
+  .win--slack { height: calc(100dvh - var(--menubar-h) - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px) - 104px); }
+  .win__bar--slack { justify-content: flex-end; padding-left: 74px; }
+  .sl-search { width: 100%; }
+  .sl, .sl.has-thread { grid-template-columns: minmax(0, 1fr); }
+  .sl-rail { display: none; }
+  .sl-side { border-radius: 0; }
+  .sl.is-chat .sl-side, .sl:not(.is-chat) .sl-main { display: none; }
+  .sl-back { display: grid; place-items: center; width: 30px; height: 30px; margin-left: -8px; border-radius: 6px; }
+  .sl-back svg { width: 18px; height: 18px; }
+  .sl-head { padding: 8px 12px; }
+  .sl-head__topic { display: none; }
+  .sl-msg, .sl-intro { padding-left: 12px; padding-right: 12px; }
+  .sl-hover { right: 12px; }
+  .sl-composer { padding: 0 10px 2px; }
+  .sl-composer__hint { display: none; }
+  .sl-replies { white-space: nowrap; }
+  .sl-replies span { display: none; }
+  .sl-thread { top: 44px; width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .win--slack * { transition: none !important; }
+}

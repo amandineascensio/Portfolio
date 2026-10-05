@@ -553,7 +553,7 @@ body.a11y-big-cursor * {
 }
 
 /* Hide images */
-body.a11y-hide-images img:not(.header__logo img):not(.loader__logo) {
+body.a11y-hide-images img:not(.menubar__logo) {
   opacity: 0.1 !important;
 }
 

@@ -123,7 +123,7 @@
 
     handle.addEventListener('pointerdown', function(e) {
       if (mobileQuery.matches || win.classList.contains('is-max')) return;
-      if (e.button !== 0 || e.target.closest('button, a')) return;
+      if (e.button !== 0 || e.target.closest('button, a, input, textarea')) return;
       pointerId = e.pointerId;
       handle.setPointerCapture(pointerId);
       startX = e.clientX;
