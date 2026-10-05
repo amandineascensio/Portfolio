@@ -20,12 +20,7 @@ body.case-page {
   font-family: var(--font-ui);
   font-size: 15px;
   color: var(--color-text);
-  background-color: var(--bg);
-  background-image:
-    linear-gradient(var(--grid) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-  background-size: 22px 22px;
-  background-attachment: fixed;
+  background: var(--bg) url("assets/images/wallpaper.png?v=2") center bottom / cover no-repeat fixed;
 }
 
 /* Le bureau derrière la fenêtre */
@@ -161,10 +156,25 @@ body.case-page {
 .case-end__text strong { display: block; font-family: var(--font-display); font-weight: 400; font-size: 26px; color: var(--ink); }
 .case-end__nav { display: flex; flex-wrap: wrap; gap: 8px; }
 
+/* Pages légales : document dans la fenêtre */
+.legal-doc {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 48px clamp(20px, 5vw, 64px) 64px;
+  line-height: 1.65;
+}
+.case-win__body .legal-doc__title { font-size: clamp(40px, 5vw, 64px); line-height: 1; color: var(--ink); margin: 0 0 28px; }
+.case-win__body.legal-doc h2 { font-size: 26px; color: var(--ink); margin: 36px 0 10px; }
+.legal-doc p { margin: 0 0 12px; }
+.legal-doc ul { list-style: disc; padding-left: 22px; margin: 0 0 12px; }
+.legal-doc li { margin-bottom: 6px; }
+.legal-doc strong { color: var(--ink); }
+.legal-doc a { color: var(--accent); }
+
 /* Le dock et les liens légaux restent fixes */
 .case-page .legal { display: flex; }
 
-@media (max-width: 1100px) {
+@media (max-width: 1240px) {
   .case-page .legal { display: none; }
 }
 

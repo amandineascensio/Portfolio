@@ -53,7 +53,7 @@
     if (win.hidden) {
       win.hidden = false;
       requestAnimationFrame(function() { win.classList.add('is-visible'); });
-      bounceDock(id);
+      bounceDock(id, opener);
     }
     win.focus({ preventScroll: true });
     updateDock();
@@ -117,7 +117,7 @@
 
   /* ===== DÉPLACEMENT ===== */
   document.querySelectorAll('.win').forEach(function(win) {
-    var handle = win.querySelector('.win__bar') || win.querySelector('.music');
+    var handle = win.querySelector('.win__bar') || win.querySelector('.music') || win.querySelector('.contact-card');
     if (!handle) return;
     var startX, startY, originX, originY, pointerId = null;
 
@@ -170,8 +170,9 @@
     });
   }
 
-  function bounceDock(id) {
-    var item = document.querySelector('.dock__item[data-open="' + id + '"]');
+  function bounceDock(id, opener) {
+    var item = opener && opener.classList.contains('dock__item') ? opener
+      : document.querySelector('.dock__item[data-open="' + id + '"]');
     if (!item) return;
     item.classList.remove('is-bouncing');
     void item.offsetWidth;
@@ -317,7 +318,7 @@
     }
   ];
 
-  var icons = { folder: 'i-folder', web: 'i-web', figma: 'i-figma', txt: 'i-txt', image: 'i-image' };
+  var icons = { web: 'i-web', figma: 'i-figma', txt: 'i-txt', image: 'i-image' };
   var grid = document.getElementById('finderGrid');
   var finderTitle = document.getElementById('win-finder-title');
   var finderSub = document.getElementById('finderSub');
@@ -337,8 +338,10 @@
   }
 
   function fileHtml(f, attrs) {
-    var cls = f.type === 'folder' ? 'icon__img' : 'icon__img icon__img--file';
-    var inner = '<svg class="' + cls + '" aria-hidden="true"><use href="#' + icons[f.type] + '"/></svg>' +
+    var img = f.type === 'folder'
+      ? '<img class="icon__img icon__img--folder" src="assets/images/folder.png" alt="" width="56" height="56">'
+      : '<svg class="icon__img icon__img--file" aria-hidden="true"><use href="#' + icons[f.type] + '"/></svg>';
+    var inner = img +
       '<span class="icon__label">' + escapeHtml(f.name) + '</span>';
     if (f.href) {
       var ext = /^https?:/.test(f.href) ? ' target="_blank" rel="noopener"' : '';
@@ -405,6 +408,119 @@
   }
   openFromHash();
   window.addEventListener('hashchange', openFromHash);
+
+  /* ===== TEXTE D'ACCUEIL : lettres au survol ===== */
+  document.querySelectorAll('.welcome__small, .welcome__big').forEach(function(line) {
+    var text = line.textContent;
+    line.textContent = '';
+    Array.prototype.forEach.call(text, function(ch) {
+      if (ch === ' ') { line.appendChild(document.createTextNode(' ')); return; }
+      var span = document.createElement('span');
+      span.className = 'welcome__char';
+      span.textContent = ch;
+      line.appendChild(span);
+    });
+  });
+
+  /* ===== DÉPLACEMENT DES ICÔNES DU BUREAU ===== */
+  var ICONS_KEY = 'desktop-icons';
+  var iconItems = Array.prototype.slice.call(document.querySelectorAll('.icons > .icon'));
+  var justDragged = false;
+
+  function iconKey(li, i) {
+    var b = li.querySelector('.icon__btn');
+    return (b && (b.dataset.project || b.dataset.open || b.dataset.openGroup)) || 'icon-' + i;
+  }
+
+  // Positions mémorisées (confort par visiteur, facultatif)
+  try {
+    var saved = JSON.parse(localStorage.getItem(ICONS_KEY) || '{}');
+    iconItems.forEach(function(li, i) {
+      var p = saved[iconKey(li, i)];
+      if (p) { li.style.setProperty('--x', p.x + '%'); li.style.setProperty('--y', p.y + '%'); }
+    });
+  } catch (e) {}
+
+  function saveIcons() {
+    try {
+      var out = {};
+      iconItems.forEach(function(li, i) {
+        out[iconKey(li, i)] = {
+          x: parseFloat(li.style.getPropertyValue('--x')),
+          y: parseFloat(li.style.getPropertyValue('--y'))
+        };
+      });
+      localStorage.setItem(ICONS_KEY, JSON.stringify(out));
+    } catch (e) {}
+  }
+
+  function selectIcon(btn) {
+    document.querySelectorAll('.icons .icon__btn.is-selected').forEach(function(b) {
+      if (b !== btn) b.classList.remove('is-selected');
+    });
+    if (btn) btn.classList.add('is-selected');
+  }
+
+  iconItems.forEach(function(li) {
+    var btn = li.querySelector('.icon__btn');
+    if (!btn) return;
+    var pointerId = null, startX, startY, grabX, grabY, dragging = false;
+
+    btn.addEventListener('dragstart', function(e) { e.preventDefault(); });
+
+    btn.addEventListener('pointerdown', function(e) {
+      if (mobileQuery.matches || e.button !== 0) return;
+      pointerId = e.pointerId;
+      startX = e.clientX;
+      startY = e.clientY;
+      var r = li.getBoundingClientRect();
+      grabX = e.clientX - (r.left + r.width / 2);
+      grabY = e.clientY - r.top;
+      dragging = false;
+      btn.setPointerCapture(pointerId);
+      selectIcon(btn);
+    });
+
+    btn.addEventListener('pointermove', function(e) {
+      if (e.pointerId !== pointerId) return;
+      if (!dragging) {
+        if (Math.abs(e.clientX - startX) + Math.abs(e.clientY - startY) < 5) return;
+        dragging = true;
+        li.classList.add('is-dragging');
+      }
+      var area = desktop.getBoundingClientRect();
+      var x = clamp(e.clientX - grabX - area.left, 48, area.width - 48);
+      var y = clamp(e.clientY - grabY - area.top, 4, area.height - li.offsetHeight - 96);
+      li.style.setProperty('--x', (x / area.width * 100).toFixed(2) + '%');
+      li.style.setProperty('--y', (y / area.height * 100).toFixed(2) + '%');
+    });
+
+    function end(e) {
+      if (e.pointerId !== pointerId) return;
+      pointerId = null;
+      if (!dragging) return;
+      dragging = false;
+      li.classList.remove('is-dragging');
+      justDragged = true;
+      setTimeout(function() { justDragged = false; }, 0);
+      saveIcons();
+    }
+    btn.addEventListener('pointerup', end);
+    btn.addEventListener('pointercancel', end);
+  });
+
+  // Un dépôt ne doit pas ouvrir le dossier
+  document.addEventListener('click', function(e) {
+    if (justDragged && e.target.closest('.icons')) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+    }
+  }, true);
+
+  // Clic sur le fond du bureau : désélection
+  desktop.addEventListener('pointerdown', function(e) {
+    if (!e.target.closest('.icon__btn')) selectIcon(null);
+  });
 
   /* ===== UTILS ===== */
   function clamp(v, min, max) { return Math.max(min, Math.min(max, v)); }

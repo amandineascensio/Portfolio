@@ -1,14 +1,7 @@
 (function() {
   var panelHTML = '' +
     '<div class="a11y-reading-guide" id="a11yReadingGuide"></div>' +
-    '<button class="a11y-toggle" id="a11yToggle" aria-label="Accessibilité">' +
-      '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">' +
-        '<circle cx="12" cy="4.5" r="2.5" fill="white"/>' +
-        '<path d="M12 10V14M12 14L8.5 21M12 14L15.5 21" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' +
-        '<path d="M4.5 9.5L12 11L19.5 9.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' +
-      '</svg>' +
-    '</button>' +
-    '<div class="a11y-panel" id="a11yPanel">' +
+    '<div class="a11y-panel" id="a11yPanel" role="dialog" aria-label="Accessibilité">' +
       '<div class="a11y-panel__header">' +
         '<span class="a11y-panel__title">Accessibilité</span>' +
         '<button class="a11y-panel__reset" id="a11yReset">Réinitialiser</button>' +
@@ -162,10 +155,46 @@
       '</div>' +
     '</div>';
 
+  // Le panneau s'ouvre depuis le bouton de la barre de menu
+  var toggle = document.getElementById('a11yMenubarBtn');
+  if (!toggle) return;
+
   document.body.insertAdjacentHTML('beforeend', panelHTML);
 
-  var toggle = document.getElementById('a11yToggle');
   var panel = document.getElementById('a11yPanel');
+  panel.classList.add('a11y-panel--menubar');
+
+  // Icônes au trait façon macOS
+  {
+    var ic = function(d) {
+      return '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">' + d + '</svg>';
+    };
+    var icons = {
+      fontsize: ic('<path d="M3 18l4.5-12L12 18M4.6 14h5.8"/><path d="M14 18l3-8 3 8M15 15.5h4"/>'),
+      lineheight: ic('<path d="M10 6h10M10 12h10M10 18h10"/><path d="M5 4v16M3 6l2-2 2 2M3 18l2 2 2-2"/>'),
+      letterspacing: ic('<path d="M4 15l2.5-7L9 15M4.8 12.8h3.4"/><path d="M15 8v7M15 8h2.4a1.7 1.7 0 010 3.4H15h2.8a1.8 1.8 0 010 3.6H15"/><path d="M3 19h18M3 19l2-1.5M3 19l2 1.5M21 19l-2-1.5M21 19l-2 1.5"/>'),
+      wordspacing: ic('<path d="M3 7h5M3 11h5M16 7h5M16 11h5"/><path d="M9.5 17h5M9.5 17l1.6-1.4M9.5 17l1.6 1.4M14.5 17l-1.6-1.4M14.5 17l-1.6 1.4"/>'),
+      dyslexia: ic('<path d="M5 18V6h3.5a6 6 0 010 12H5z"/><path d="M15 10l2.5 5 2.5-5M17.5 15l-1.8 4"/>'),
+      contrast: ic('<circle cx="12" cy="12" r="8.5"/><path d="M12 3.5v17a8.5 8.5 0 000-17z" fill="currentColor"/>'),
+      darkmode: ic('<path d="M19.5 14.5A8 8 0 019.5 4.5a8 8 0 1010 10z"/>'),
+      desaturate: ic('<circle cx="9" cy="9.5" r="5"/><circle cx="15" cy="9.5" r="5"/><circle cx="12" cy="14.5" r="5"/>'),
+      'hide-images': ic('<rect x="3.5" y="5" width="17" height="14" rx="2.5"/><path d="M3.5 16l5-5 4 4 2.5-2.5 5 5"/><path d="M3 3l18 18"/>'),
+      'underline-links': ic('<path d="M7 5v6a5 5 0 0010 0V5M5 20h14"/>'),
+      'highlight-links': ic('<path d="M10 14a4 4 0 005.7 0l3-3a4 4 0 00-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 00-5.7 0l-3 3a4 4 0 005.7 5.7l1-1"/>'),
+      'focus-indicators': ic('<path d="M4 9V5.5A1.5 1.5 0 015.5 4H9M15 4h3.5A1.5 1.5 0 0120 5.5V9M20 15v3.5a1.5 1.5 0 01-1.5 1.5H15M9 20H5.5A1.5 1.5 0 014 18.5V15"/><rect x="8.5" y="8.5" width="7" height="7" rx="1.2"/>'),
+      'no-animations': ic('<circle cx="12" cy="12" r="8.5"/><path d="M10 9v6M14 9v6"/>'),
+      'big-cursor': ic('<path d="M6 3.5l12 9.2-5.4.9 3.1 6.2-2.6 1.3-3.1-6.3L6 18.6z"/>')
+    };
+    panel.querySelectorAll('.a11y-option[data-a11y]').forEach(function(btn) {
+      var i = btn.querySelector('.a11y-option__icon');
+      if (icons[btn.dataset.a11y]) i.innerHTML = icons[btn.dataset.a11y];
+    });
+    ['fontsize', 'lineheight', 'letterspacing', 'wordspacing'].forEach(function(k) {
+      var i = panel.querySelector('#' + k + 'Slider').closest('.a11y-slider').querySelector('.a11y-slider__icon');
+      i.innerHTML = icons[k];
+    });
+    panel.querySelector('.a11y-panel__title').textContent = 'Accessibilité';
+  }
   var resetBtn = document.getElementById('a11yReset');
   var guide = document.getElementById('a11yReadingGuide');
   var options = panel.querySelectorAll('.a11y-option[data-a11y]');
@@ -178,9 +207,14 @@
       format: function(v) { return v + '%'; },
       apply: function(v) {
         document.documentElement.style.fontSize = v + '%';
+        // Bureau macOS (tailles en px) : agrandissement du contenu
+        document.body.style.setProperty('--a11y-zoom', v / 100);
+        document.body.classList.toggle('a11y-zoom', v !== 100);
       },
       reset: function() {
         document.documentElement.style.fontSize = '';
+        document.body.style.removeProperty('--a11y-zoom');
+        document.body.classList.remove('a11y-zoom');
       }
     },
     lineheight: {
@@ -268,16 +302,28 @@
   migrateOldValues();
   applyAll();
 
+  function setOpen(open) {
+    panel.classList.toggle('active', open);
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+
   toggle.addEventListener('click', function(e) {
     e.stopPropagation();
-    panel.classList.toggle('active');
+    setOpen(!panel.classList.contains('active'));
   });
 
   document.addEventListener('click', function(e) {
-    if (!panel.contains(e.target) && e.target !== toggle) {
-      panel.classList.remove('active');
-    }
+    if (!panel.contains(e.target) && !toggle.contains(e.target)) setOpen(false);
   });
+
+  // Échap ferme le panneau sans fermer la fenêtre du bureau derrière
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && panel.classList.contains('active')) {
+      e.stopImmediatePropagation();
+      setOpen(false);
+      toggle.focus();
+    }
+  }, true);
 
   options.forEach(function(btn) {
     btn.addEventListener('click', function() {
@@ -285,6 +331,7 @@
       state[key] = !state[key];
       applyToggle(key);
       btn.classList.toggle('active', state[key]);
+      btn.setAttribute('aria-pressed', state[key] ? 'true' : 'false');
       saveState();
     });
   });
@@ -335,6 +382,7 @@
       var key = btn.getAttribute('data-a11y');
       applyToggle(key);
       btn.classList.toggle('active', !!state[key]);
+      btn.setAttribute('aria-pressed', state[key] ? 'true' : 'false');
     });
   }
 
