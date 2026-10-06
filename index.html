@@ -65,6 +65,49 @@
 </head>
 <body>
 
+  <!-- DÉMARRAGE (façon Mac) -->
+  <div class="boot" id="boot" aria-hidden="true">
+    <svg class="boot__logo" viewBox="0 0 197 201">
+      <path d="M35.1684 0.47287C73.5909 -0.886462 113.063 1.2088 151.591 0.319087C162.646 0.0640243 173.378 0.391103 182.581 7.09324C198.706 18.8374 196.606 36.796 196.613 54.12L196.636 94.6921V140.751C196.621 166.993 199.051 195.529 164.543 199.655C135.856 200.142 106.666 199.912 77.8284 199.762C59.1009 199.665 26.9709 203.452 12.2109 191.865C-2.82657 180.055 0.248406 155.968 0.278406 138.557L0.29342 92.3043C0.30842 75.642 0.405927 58.7373 0.300927 42.0983C0.143427 17.7616 9.40592 2.28006 35.1684 0.47287Z" fill="#fff"/>
+      <path d="M108.271 52.8025C117.226 52.0748 125.971 52.6892 134.116 56.8385C163.734 71.9284 144.519 102.216 151.314 116.203C156.369 126.603 170.641 128.891 174.294 141.026C175.929 146.434 174.436 152.185 171.796 157.022C169.381 161.454 164.829 164.778 159.999 166.106C154.261 167.68 147.594 167.088 142.426 164.094C134.506 159.503 130.951 153.082 128.596 144.486C126.151 124.744 134.086 108.585 128.656 90.0918C127.441 85.9733 122.934 80.1122 118.629 78.6801C100.576 72.9892 93.0163 96.9088 78.3088 101.933C64.6363 106.603 60.0313 91.9358 67.4563 81.7828C78.1663 67.131 90.1587 56.7439 108.271 52.8025Z"/>
+      <path d="M106.283 99.3402C138.451 99.1122 119.708 144.456 105.166 155.587C92.9035 164.977 87.001 167.579 71.6485 166.662C50.971 161.545 47.6936 140.741 58.7186 124.969C67.9061 111.829 90.7885 101.828 106.283 99.3402Z"/>
+      <path d="M99.7735 114.331C121.163 115.369 102.804 140.777 84.4135 144.581C61.6285 142.54 81.1285 117.9 99.7735 114.331Z" fill="#fff"/>
+      <path d="M51.7883 44.0308C60.9083 45.3106 65.1158 57.9069 65.9633 66.1109C66.1658 68.0314 64.1032 69.666 62.7832 70.8633C56.2057 68.561 49.4108 56.7426 48.4733 49.9587C48.1208 47.4178 50.1608 45.6647 51.7883 44.0308Z"/>
+      <path d="M33.0459 71.2842C39.7884 71.3224 50.1609 75.0899 53.6709 81.2406C54.0084 84.6322 54.1284 83.2766 52.3884 86.8467L51.9909 86.8092C45.8634 86.2856 32.9334 83.1228 30.8184 76.6637C30.8184 73.9541 31.3734 73.4845 33.0459 71.2842Z"/>
+      <path d="M36.2709 92.5256C40.4559 92.185 52.8835 91.1138 53.2135 97.1775C51.751 99.1152 51.2485 99.1812 48.9835 100.299C44.3935 101.132 34.0209 102.865 32.6484 96.5954C33.6984 94.2165 34.0809 94.1303 36.2709 92.5256Z"/>
+    </svg>
+    <div class="boot__bar"><span class="boot__fill" id="bootFill"></span></div>
+  </div>
+  <script>
+    // Une seule fois par visite, et jamais si le visiteur préfère moins d'animations
+    (function() {
+      var boot = document.getElementById('boot'), skip = false;
+      try {
+        skip = sessionStorage.getItem('booted') === '1' ||
+          (JSON.parse(localStorage.getItem('portfolio-a11y') || '{}')['no-animations'] === true);
+        sessionStorage.setItem('booted', '1');
+      } catch (e) { /* stockage indisponible : on joue l'animation */ }
+      if (skip || window.matchMedia('(prefers-reduced-motion: reduce)').matches) { boot.remove(); return; }
+      document.documentElement.classList.add('is-booting');
+      var start = Date.now(), finished = false;
+      function done() {
+        if (finished) return;
+        finished = true;
+        setTimeout(function() {
+          document.getElementById('bootFill').style.width = '100%';
+          setTimeout(function() {
+            boot.classList.add('is-done');
+            document.documentElement.classList.remove('is-booting');
+            setTimeout(function() { boot.remove(); }, 600);
+          }, 350);
+        }, Math.max(0, 1900 - (Date.now() - start)));
+      }
+      if (document.readyState === 'complete') done();
+      else window.addEventListener('load', done);
+      setTimeout(done, 4000); // au cas où une ressource traîne
+    })();
+  </script>
+
   <!-- ICÔNES RÉUTILISABLES -->
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
     <symbol id="i-pdf" viewBox="0 0 48 60">
@@ -776,6 +819,7 @@
   <script src="safari.js"></script>
   <script src="slack.js"></script>
   <script src="phone.js"></script>
+  <script src="music.js"></script>
   <script src="dock.js"></script>
   <script src="accessibility.js"></script>
 </body>

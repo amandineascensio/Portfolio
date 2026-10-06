@@ -181,17 +181,6 @@
     item.classList.add('is-bouncing');
   }
 
-  /* ===== LECTEUR ===== */
-  var music = document.querySelector('.music');
-  var playBtn = document.querySelector('.music__play');
-  if (music && playBtn) {
-    playBtn.addEventListener('click', function() {
-      var playing = music.classList.toggle('is-playing');
-      playBtn.setAttribute('aria-pressed', playing);
-      playBtn.setAttribute('aria-label', playing ? 'Pause' : 'Lecture');
-    });
-  }
-
   /* ===== MESSAGES / FAQ ===== */
   var faq = [
     {
