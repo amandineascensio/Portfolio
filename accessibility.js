@@ -90,10 +90,10 @@
           '</div>' +
           '<div class="a11y-option__toggle"></div>' +
         '</button>' +
-        '<button class="a11y-option" data-a11y="darkmode">' +
+        '<button class="a11y-option" data-a11y="lightmode">' +
           '<div class="a11y-option__left">' +
             '<div class="a11y-option__icon">🌙</div>' +
-            '<span class="a11y-option__label">Mode sombre</span>' +
+            '<span class="a11y-option__label">Mode clair</span>' +
           '</div>' +
           '<div class="a11y-option__toggle"></div>' +
         '</button>' +
@@ -176,7 +176,7 @@
       wordspacing: ic('<path d="M3 7h5M3 11h5M16 7h5M16 11h5"/><path d="M9.5 17h5M9.5 17l1.6-1.4M9.5 17l1.6 1.4M14.5 17l-1.6-1.4M14.5 17l-1.6 1.4"/>'),
       dyslexia: ic('<path d="M5 18V6h3.5a6 6 0 010 12H5z"/><path d="M15 10l2.5 5 2.5-5M17.5 15l-1.8 4"/>'),
       contrast: ic('<circle cx="12" cy="12" r="8.5"/><path d="M12 3.5v17a8.5 8.5 0 000-17z" fill="currentColor"/>'),
-      darkmode: ic('<path d="M19.5 14.5A8 8 0 019.5 4.5a8 8 0 1010 10z"/>'),
+      lightmode: ic('<circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6l1.4 1.4M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4L6 18M18 6l1.4-1.4"/>'),
       desaturate: ic('<circle cx="9" cy="9.5" r="5"/><circle cx="15" cy="9.5" r="5"/><circle cx="12" cy="14.5" r="5"/>'),
       'hide-images': ic('<rect x="3.5" y="5" width="17" height="14" rx="2.5"/><path d="M3.5 16l5-5 4 4 2.5-2.5 5 5"/><path d="M3 3l18 18"/>'),
       'underline-links': ic('<path d="M7 5v6a5 5 0 0010 0V5M5 20h14"/>'),
@@ -207,7 +207,7 @@
       format: function(v) { return v + '%'; },
       apply: function(v) {
         document.documentElement.style.fontSize = v + '%';
-        // Bureau macOS (tailles en px) : agrandissement du contenu
+        // Le site est en px : on agrandit aussi le contenu (nav et panneau exclus)
         document.body.style.setProperty('--a11y-zoom', v / 100);
         document.body.classList.toggle('a11y-zoom', v !== 100);
       },
@@ -287,7 +287,7 @@
     dyslexia: false,
     'align-left': false,
     contrast: false,
-    darkmode: false,
+    lightmode: false,
     desaturate: false,
     'hide-images': false,
     'underline-links': false,

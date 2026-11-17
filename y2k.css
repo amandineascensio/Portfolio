@@ -812,3 +812,84 @@ body.a11y-no-animations .reveal { opacity: 1; transform: none; }
 .flip:hover .flip__media--zoom img { transform: scale(1.46); }
 .bento--tools { display: flex; flex-direction: column; }
 .bento--tools .tools__list { flex: 1; grid-auto-rows: 1fr; }
+
+/* ==========================================================
+   PANNEAU D'ACCESSIBILITÉ — adaptations au thème actuel
+   (a11y.css d'origine visait l'ancien design)
+   ========================================================== */
+
+/* Taille du texte : le site est en px, on agrandit le contenu (nav fixe et panneau exclus) */
+body.a11y-zoom main, body.a11y-zoom > .footer { zoom: var(--a11y-zoom, 1); }
+body.a11y-zoom .home main { zoom: var(--a11y-zoom, 1); }
+@media (min-width: 961px) { body.a11y-zoom.home { display: block; } }
+
+/* Indicateurs de focus bien visibles */
+body.a11y-focus-indicators *:focus,
+body.a11y-focus-indicators *:focus:not(:focus-visible) { outline: 3px solid var(--lime) !important; outline-offset: 3px !important; }
+
+/* Liens surlignés aux couleurs du site */
+body.a11y-highlight-links a:not(.btn) { background-color: rgba(255, 108, 203, .18) !important; outline: 1px solid var(--pink) !important; }
+
+/* ---- Contraste élevé : noir pur, blanc pur, aucun dégradé ni transparence ---- */
+body.a11y-contrast, body.y2k.case-page.a11y-contrast {
+  --bg: #000; --bg-2: #000; --card: #000; --surface: #000; --surface-2: #111;
+  --text: #fff; --text-2: #fff; --muted: #fff; --color-text: #fff; --color-dark: #fff;
+  --line: #fff; --line-strong: #fff; --lilac: #fff; --pink: #ffe14d; --lime: #ffe14d;
+  background: #000 !important;
+}
+body.a11y-contrast .hero__orb, body.a11y-contrast .grain, body.a11y-contrast .hero__circle,
+body.a11y-contrast .flip__media::before, body.a11y-contrast .bento__card--svc::before,
+body.a11y-contrast .contact::before { display: none !important; }
+body.a11y-contrast .chrome, body.a11y-contrast .holo-text, body.a11y-contrast .flip__media,
+body.a11y-contrast .case .projet-hero__title, body.a11y-contrast .case .projet-stats__number {
+  background: none !important; -webkit-text-fill-color: currentColor; color: #fff !important; filter: none !important;
+}
+body.a11y-contrast .holo-text, body.a11y-contrast .serif { color: #ffe14d !important; }
+body.a11y-contrast .btn--holo, body.a11y-contrast .case .btn--primary,
+body.a11y-contrast .projet-process__number, body.a11y-contrast .projet-personas__avatar {
+  background: #ffe14d !important; color: #000 !important; box-shadow: none !important;
+}
+body.a11y-contrast .btn--ghost, body.a11y-contrast .nav, body.a11y-contrast .flip__front, body.a11y-contrast .flip__back,
+body.a11y-contrast .bento__card, body.a11y-contrast .tool, body.a11y-contrast .chips li, body.a11y-contrast .contact-form,
+body.a11y-contrast .field input, body.a11y-contrast .field textarea, body.a11y-contrast .case-next,
+body.a11y-contrast .case [class*="__card"], body.a11y-contrast .case [class*="__item"], body.a11y-contrast .case .tag {
+  background: #000 !important; border: 1px solid #fff !important; color: #fff !important; backdrop-filter: none !important;
+}
+body.a11y-contrast p, body.a11y-contrast li, body.a11y-contrast span, body.a11y-contrast h1, body.a11y-contrast h2,
+body.a11y-contrast h3, body.a11y-contrast h4, body.a11y-contrast label, body.a11y-contrast a { text-shadow: none !important; }
+body.a11y-contrast a:not(.btn) { color: #ffe14d !important; }
+body.a11y-contrast .field input::placeholder, body.a11y-contrast .field textarea::placeholder { color: #ccc; }
+
+/* ---- Mode clair ---- */
+body.a11y-lightmode, body.y2k.case-page.a11y-lightmode {
+  --bg: #f6f4fa; --bg-2: #ffffff; --card: #ffffff; --surface: rgba(20, 16, 40, .04); --surface-2: rgba(20, 16, 40, .07);
+  --text: #15121e; --text-2: #34303f; --muted: #5c5769; --line: rgba(20, 16, 40, .14); --line-strong: rgba(20, 16, 40, .3);
+  --lilac: #5b3fc4; --pink: #c2187a; --lime: #4d6b00;
+  --color-text: #34303f; --color-dark: #15121e;
+  --chrome: linear-gradient(180deg, #15121e 0%, #4a4558 50%, #15121e 100%);
+  background: var(--bg) !important; color: var(--text);
+}
+body.a11y-lightmode .grain { opacity: .03; }
+body.a11y-lightmode .hero__orb { opacity: .14; }
+body.a11y-lightmode .nav { background: rgba(255, 255, 255, .8); box-shadow: 0 12px 30px -16px rgba(20, 16, 40, .25); }
+@media (max-width: 720px) { body.a11y-lightmode .nav__links { background: #fff; } }
+body.a11y-lightmode .holo-text { background-image: linear-gradient(110deg, #c2187a, #6a3fd6 35%, #0a7f9a 70%, #c2187a); }
+body.a11y-lightmode .flip__front, body.a11y-lightmode .flip__back, body.a11y-lightmode .bento__card,
+body.a11y-lightmode .contact-form, body.a11y-lightmode .case [class*="__card"], body.a11y-lightmode .case .projet-contexte__grid { background: #fff !important; }
+body.a11y-lightmode .flip__media { background: linear-gradient(180deg, #efeaf8, #e6e0f2) !important; }
+body.a11y-lightmode .bento__icon { background: #fff; }
+body.a11y-lightmode .field input, body.a11y-lightmode .field textarea { background: #fff; }
+body.a11y-lightmode .field input::placeholder, body.a11y-lightmode .field textarea::placeholder { color: #8a8597; }
+body.a11y-lightmode .timeline > li::before { background: var(--line-strong); }
+body.a11y-lightmode .marquee { background: linear-gradient(90deg, rgba(194, 24, 122, .06), rgba(10, 127, 154, .06)); }
+body.a11y-lightmode .tool__logo { box-shadow: 0 0 0 1px var(--line); }
+/* a11y.css utilise --color-pink : on le définit pour toutes les pages (focus visible) */
+body.y2k { --color-pink: var(--lime); }
+body.y2k.case-page.a11y-lightmode { --color-pink: var(--lime); --color-pink-light: var(--lilac); }
+body.a11y-lightmode .case .projet-hero__visual img { filter: drop-shadow(0 20px 40px rgba(20, 16, 40, .18)); }
+body.a11y-lightmode .case [class*="__item"], body.a11y-lightmode .case .projet-a11y__pillar { background: #faf9fc !important; }
+
+/* Logo de la V2 aux couleurs irisées du site */
+.nav__mark { width: 30px; height: 30px; flex: none; transition: transform .5s var(--ease); }
+.nav__logo:hover .nav__mark { transform: rotate(-8deg) scale(1.08); }
+body.a11y-contrast .nav__mark { filter: grayscale(1) contrast(1.4); }
