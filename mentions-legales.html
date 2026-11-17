@@ -22,45 +22,46 @@
   <link rel="icon" type="image/svg+xml" href="assets/svg/logo.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="desktop.css">
-  <link rel="stylesheet" href="case.css">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="projet-detail.css">
+  <link rel="stylesheet" href="y2k.css">
+  <link rel="stylesheet" href="y2k-case.css">
   <link rel="stylesheet" href="a11y.css">
-  <link rel="stylesheet" href="phone.css">
 </head>
-<body class="case-page">
+<body class="y2k case-page">
 
-  <!-- BARRE DE MENU -->
-  <header class="menubar">
-    <nav class="menubar__left" aria-label="Navigation principale">
-      <a href="index.html" class="menubar__logo-link" aria-label="Retour au bureau"><img src="assets/svg/logo.svg" alt="" class="menubar__logo" width="18" height="18"></a>
-      <a href="index.html" class="menubar__item menubar__item--bold">Portfolio d'Amandine Ascensio</a>
-      <a href="index.html#projets" class="menubar__item">Projets</a>
-      <a href="index.html#win-cv" class="menubar__item">CV</a>
-      <a href="index.html#win-contact" class="menubar__item">Contact</a>
+  <a class="skip" href="#main">Aller au contenu</a>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="cursor" aria-hidden="true">✦</div>
+
+  <!-- NAVIGATION -->
+  <header class="nav">
+    <a href="index.html" class="nav__logo" aria-label="Amandine Ascensio — accueil">
+      <span class="nav__star" aria-hidden="true">✦</span><span>anda<span class="nav__dot">.</span>studio</span>
+    </a>
+    <nav aria-label="Navigation principale">
+      <ul class="nav__links" id="navLinks">
+        <li><a href="index.html#collection">Collection</a></li>
+        <li><a href="index.html#atelier">Atelier</a></li>
+        <li><a href="index.html#cv">Parcours</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
     </nav>
-    <div class="menubar__right">
-      <button type="button" class="menubar__a11y" id="a11yMenubarBtn" aria-label="Accessibilité" aria-expanded="false" aria-controls="a11yPanel">
+    <div class="nav__right">
+      <button type="button" class="nav__a11y" id="a11yMenubarBtn" aria-label="Accessibilité" aria-expanded="false" aria-controls="a11yPanel">
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10.2" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="6.6" r="1.6" fill="currentColor"/><path d="M7 9.4l5 1.1 5-1.1M12 10.5v3.4l-2.6 4.4M12 13.9l2.6 4.4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
-      <svg class="menubar__glyph" aria-hidden="true" viewBox="0 0 24 24"><path d="M2 9a15 15 0 0 1 20 0M5.5 12.5a10 10 0 0 1 13 0M9 16a5 5 0 0 1 6 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="19.5" r="1.4" fill="currentColor"/></svg>
-      <svg class="menubar__glyph menubar__glyph--battery" viewBox="0 0 30 14"><rect x="1" y="1" width="24" height="12" rx="3.5" fill="none" stroke="currentColor" stroke-opacity=".45"/><rect x="3" y="3" width="17" height="8" rx="2" fill="currentColor"/><path d="M27 5v4" stroke="currentColor" stroke-opacity=".45" stroke-width="1.6" stroke-linecap="round"/></svg>
-      <svg class="menubar__glyph" aria-hidden="true" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15 15l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-      <time class="menubar__clock" id="clock"></time>
+      <button type="button" class="nav__burger" id="navBurger" aria-label="Menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span></button>
     </div>
   </header>
 
-  <main class="case-desk">
-  <article class="case-win case-win--doc" aria-labelledby="doc-title">
-    <div class="case-win__bar">
-      <div class="case-win__lights">
-        <a class="light light--close" href="index.html" aria-label="Fermer et revenir au bureau"></a>
-        <a class="light light--min" href="index.html" aria-label="Réduire (retour au bureau)"></a>
-        <span class="light light--max" aria-hidden="true"></span>
-      </div>
-      <p class="case-win__title">Mentions légales</p>
+  <main id="main" class="case-wrap">
+  <article class="case">
+    <div class="case-top">
+      <a class="case-back" href="index.html">← Retour à l’accueil</a>
     </div>
-    <div class="case-win__body legal-doc">
+    <div class="case__body legal-doc">
       <h1 class="legal-doc__title" id="doc-title">Mentions légales</h1>
 
       <h2>1. Éditrice du site</h2>
@@ -92,7 +93,7 @@
       <h2>6. Crédits</h2>
       <ul>
         <li><strong>Design & développement :</strong> Amandine Ascensio</li>
-        <li><strong>Typographies :</strong> Archivo Black, Raleway (Google Fonts)</li>
+        <li><strong>Typographies :</strong> Syne, Space Grotesk, Instrument Serif (Google Fonts)</li>
         <li><strong>Illustrations 3D :</strong> Amandine Ascensio</li>
       </ul>
 
@@ -102,75 +103,15 @@
   </article>
   </main>
 
-  <!-- DOCK -->
-  <nav class="dock" aria-label="Dock">
-    <ul class="dock__list">
-      <li><a class="dock__item" href="index.html#win-finder" data-label="Projets">
-        <span class="dock__icon dock__icon--finder" aria-hidden="true">
-          <img src="assets/images/finder.png" alt="" width="48" height="48">
-        </span><span class="sr-only">Projets</span></a></li>
-      <li><a class="dock__item" href="index.html#win-safari" data-label="Safari">
-        <span class="dock__icon dock__icon--app" aria-hidden="true">
-          <img src="assets/images/safari.png" alt="" width="48" height="48">
-        </span><span class="sr-only">Safari</span></a></li>
-      <li><a class="dock__item" href="index.html#win-messages" data-label="Messages (FAQ)">
-        <span class="dock__icon dock__icon--messages" aria-hidden="true">
-          <img src="assets/images/messages.png" alt="" width="48" height="48">
-        </span><span class="sr-only">Messages (FAQ)</span></a></li>
-      <li><a class="dock__item" href="index.html#win-contact" data-label="Contact">
-        <span class="dock__icon dock__icon--mail" aria-hidden="true">
-          <img src="assets/images/mail.png" alt="" width="48" height="48">
-        </span><span class="sr-only">Contact</span></a></li>
-      <li><a class="dock__item" href="index.html#photos" data-label="Photos">
-        <span class="dock__icon dock__icon--photos" aria-hidden="true">
-          <img src="assets/images/photos.png" alt="" width="48" height="48">
-        </span><span class="sr-only">Photos</span></a></li>
-      <li><a class="dock__item" href="index.html#win-contact" data-label="Contacts">
-        <span class="dock__icon dock__icon--app" aria-hidden="true">
-          <img src="assets/images/contacts.png" alt="" width="48" height="48">
-        </span><span class="sr-only">Contacts</span></a></li>
-      <li><a class="dock__item" href="index.html#win-about" data-label="À propos">
-        <span class="dock__icon dock__icon--notes" aria-hidden="true">
-          <img src="assets/images/notes.png" alt="" width="48" height="48">
-        </span><span class="sr-only">À propos</span></a></li>
-      <li><a class="dock__item" href="index.html#win-music" data-label="Musique">
-        <span class="dock__icon dock__icon--music" aria-hidden="true">
-          <img src="assets/images/music.png" alt="" width="48" height="48">
-        </span><span class="sr-only">Musique</span></a></li>
-      <li><a class="dock__item" href="index.html#win-figma" data-label="Figma">
-        <span class="dock__icon dock__icon--app" aria-hidden="true">
-          <img src="assets/images/figma.png" alt="" width="48" height="48">
-        </span><span class="sr-only">Figma</span></a></li>
-      <li><a class="dock__item" href="index.html#win-slack" data-label="Slack">
-        <span class="dock__icon dock__icon--app" aria-hidden="true">
-          <img src="assets/images/slack.png" alt="" width="48" height="48">
-        </span><span class="sr-only">Slack</span></a></li>
-      <li class="dock__sep" aria-hidden="true"></li>
-      <li><a class="dock__item" href="https://www.linkedin.com/in/amandine-ascensio-46ab17260/" target="_blank" rel="noopener" data-label="LinkedIn">
-        <span class="dock__icon dock__icon--linkedin" aria-hidden="true">
-          <img src="assets/images/linkedin.png" alt="" width="48" height="48">
-        </span><span class="sr-only">LinkedIn</span></a></li>
-      <li><a class="dock__item" href="https://www.instagram.com/andastudio27/" target="_blank" rel="noopener" data-label="Instagram">
-        <span class="dock__icon dock__icon--instagram" aria-hidden="true">
-          <img src="assets/images/instagram.png" alt="" width="48" height="48">
-        </span><span class="sr-only">Instagram</span></a></li>
-      <li><a class="dock__item" href="index.html#win-trash" data-label="Corbeille">
-        <span class="dock__icon dock__icon--trash" aria-hidden="true">
-          <img src="assets/images/trash.png" alt="" width="48" height="48">
-        </span><span class="sr-only">Corbeille</span></a></li>
-    </ul>
-  </nav>
-
-  <footer class="legal">
-    <a href="mentions-legales.html">Mentions légales</a>
-    <span aria-hidden="true">·</span>
-    <a href="politique-confidentialite.html">Confidentialité</a>
+  <footer class="footer">
+    <span class="mono">© 2026 Amandine Ascensio ✦ fait main, avec beaucoup de café</span>
+    <span class="footer__legal">
+      <a href="mentions-legales.html">Mentions légales</a>
+      <a href="politique-confidentialite.html">Confidentialité</a>
+    </span>
   </footer>
 
-
-  <script src="case.js"></script>
-  <script src="dock.js"></script>
+  <script src="y2k.js"></script>
   <script src="accessibility.js"></script>
-  <script src="phone.js"></script>
 </body>
 </html>
