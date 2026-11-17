@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Contact — Amandine Ascensio</title>
+  <meta name="description" content="Contacter Amandine Ascensio, UI/UX Designer : projet, alternance ou simple discussion design.">
+  <meta name="author" content="Amandine Ascensio">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#08070c">
+  <link rel="canonical" href="https://www.amandineascensio.fr/contact.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Amandine Ascensio — Portfolio">
+  <meta property="og:title" content="Contact — Amandine Ascensio">
+  <meta property="og:description" content="Contacter Amandine Ascensio, UI/UX Designer : projet, alternance ou simple discussion design.">
+  <meta property="og:url" content="https://www.amandineascensio.fr/contact.html">
+  <meta property="og:image" content="https://www.amandineascensio.fr/assets/images/avatar.png">
+  <meta property="og:locale" content="fr_FR">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Contact — Amandine Ascensio">
+  <meta name="twitter:description" content="Contacter Amandine Ascensio, UI/UX Designer : projet, alternance ou simple discussion design.">
+  <meta name="twitter:image" content="https://www.amandineascensio.fr/assets/images/avatar.png">
+
+
+  <link rel="icon" type="image/svg+xml" href="assets/svg/logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="y2k.css">
+  <link rel="stylesheet" href="a11y.css">
+</head>
+<body class="y2k">
+
+  <a class="skip" href="#main">Aller au contenu</a>
+  <div class="grain" aria-hidden="true"></div>
+
+
+  <!-- NAVIGATION -->
+  <header class="nav">
+    <a href="index.html" class="nav__logo" aria-label="Amandine Ascensio, accueil">
+      <span class="nav__star" aria-hidden="true">✦</span><span>anda<span class="nav__dot">.</span>studio</span>
+    </a>
+    <nav aria-label="Navigation principale">
+      <ul class="nav__links" id="navLinks">
+        <li><a href="projets.html">Projets</a></li>
+        <li><a href="parcours.html">Parcours</a></li>
+        <li><a href="competences.html">Compétences</a></li>
+        <li><a href="contact.html" aria-current="page">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="nav__right">
+      <button type="button" class="nav__a11y" id="a11yMenubarBtn" aria-label="Accessibilité" aria-expanded="false" aria-controls="a11yPanel">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10.2" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="6.6" r="1.6" fill="currentColor"/><path d="M7 9.4l5 1.1 5-1.1M12 10.5v3.4l-2.6 4.4M12 13.9l2.6 4.4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button type="button" class="nav__burger" id="navBurger" aria-label="Menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <section class="page contact contact--page" aria-labelledby="contact-title">
+      <div class="contact__intro">
+        <h1 class="contact__title" id="contact-title">
+          <span>Un projet</span>
+          <span class="serif holo-text">en tête&nbsp;?</span>
+        </h1>
+        <p class="contact__sub">Discutons de votre projet autour d'un café virtuel. Je serais ravie de donner vie à vos idées&nbsp;!</p>
+        <div class="contact__actions">
+          <a class="btn btn--holo contact__mail" href="mailto:amandine.ascensio@hotmail.fr">Envoyer un mail <span aria-hidden="true">↗</span></a>
+          <button type="button" class="btn btn--ghost" id="copyMail" data-mail="amandine.ascensio@hotmail.fr">Copier l'adresse</button>
+        </div>
+        <p class="copy-status" id="copyStatus" role="status" aria-live="polite"></p>
+        <ul class="contact__socials">
+          <li><a href="https://www.linkedin.com/in/amandine-ascensio-46ab17260/" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">↗</span><span class="sr-only"> (nouvel onglet)</span></a></li>
+          <li><a href="https://www.instagram.com/andastudio27/" target="_blank" rel="noopener">Instagram <span aria-hidden="true">↗</span><span class="sr-only"> (nouvel onglet)</span></a></li>
+        </ul>
+      </div>
+
+      <form class="contact-form" action="https://formsubmit.co/amandine.ascensio@hotmail.fr" method="POST">
+        <h2 class="contact-form__title">Discutons de votre projet</h2>
+        <input type="hidden" name="_subject" value="Nouvelle demande depuis le portfolio">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="text" name="_honey" class="sr-only" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="contact-form__row">
+          <div class="field">
+            <label for="prenom">Prénom</label>
+            <input type="text" id="prenom" name="prenom" autocomplete="given-name" placeholder="Marie" required>
+          </div>
+          <div class="field">
+            <label for="nom">Nom</label>
+            <input type="text" id="nom" name="nom" autocomplete="family-name" placeholder="Dupont" required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" autocomplete="email" placeholder="marie.dupont@exemple.fr" required>
+        </div>
+        <div class="field">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5" placeholder="Parlez-moi de votre projet…" required></textarea>
+        </div>
+        <button type="submit" class="btn btn--holo contact-form__submit">Envoyer la demande</button>
+      </form>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <span class="label">© 2026 Amandine Ascensio ✦ Conçu avec passion et pixels</span>
+    <span class="footer__legal">
+      <a href="mentions-legales.html">Mentions légales</a>
+      <a href="politique-confidentialite.html">Confidentialité</a>
+    </span>
+  </footer>
+
+  <script src="y2k.js"></script>
+  <script src="accessibility.js"></script>
+</body>
+</html>

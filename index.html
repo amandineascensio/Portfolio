@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Amandine Ascensio — UI/UX Designer</title>
-  <meta name="description" content="Portfolio d'Amandine Ascensio, UI/UX Designer entre design digital et culture mode : product design, design system, création visuelle et accessibilité.">
+  <meta name="description" content="Portfolio d'Amandine Ascensio, UI/UX Designer entre design digital et culture mode.">
   <meta name="author" content="Amandine Ascensio">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#08070c">
@@ -43,27 +43,27 @@
   <link rel="icon" type="image/svg+xml" href="assets/svg/logo.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="y2k.css">
   <link rel="stylesheet" href="a11y.css">
 </head>
-<body class="y2k">
+<body class="y2k home">
 
   <a class="skip" href="#main">Aller au contenu</a>
   <div class="grain" aria-hidden="true"></div>
-  <div class="cursor" aria-hidden="true">✦</div>
+
 
   <!-- NAVIGATION -->
   <header class="nav">
-    <a href="#top" class="nav__logo" aria-label="Amandine Ascensio, retour en haut">
+    <a href="index.html" class="nav__logo" aria-label="Amandine Ascensio, accueil" aria-current="page">
       <span class="nav__star" aria-hidden="true">✦</span><span>anda<span class="nav__dot">.</span>studio</span>
     </a>
     <nav aria-label="Navigation principale">
       <ul class="nav__links" id="navLinks">
-        <li><a href="#collection">Collection</a></li>
-        <li><a href="#atelier">Atelier</a></li>
-        <li><a href="#cv">Parcours</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="projets.html">Projets</a></li>
+        <li><a href="parcours.html">Parcours</a></li>
+        <li><a href="competences.html">Compétences</a></li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
     <div class="nav__right">
@@ -75,43 +75,37 @@
   </header>
 
   <main id="main">
-
     <!-- HERO -->
     <div class="hero-wrap">
     <div class="hero__orb" aria-hidden="true"></div>
-    <section class="hero" id="top" aria-labelledby="hero-title">
-      <p class="hero__kicker label">
-        <span class="status">Product Designer chez Bamptee</span>
-        <span>Portfolio 2026 · Île-de-France</span>
-      </p>
-
-      <h1 class="hero__title" id="hero-title">
-        <span class="hero__line chrome">Amandine</span>
-        <span class="hero__line hero__line--serif holo-text">Ascensio</span>
-        <span class="sr-only">, UI/UX designer</span>
-      </h1>
-
-      <div class="hero__portrait">
-        <div class="hero__ring" aria-hidden="true">
-          <svg viewBox="0 0 200 200">
-            <defs><path id="ringPath" d="M100,100 m-82,0 a82,82 0 1,1 164,0 a82,82 0 1,1 -164,0"/></defs>
-            <text><textPath href="#ringPath">UI/UX DESIGNER ✦ DIGITAL COUTURE ✦ DESIGN SYSTEM ✦ </textPath></text>
-          </svg>
-        </div>
-        <img src="assets/images/avatar.png" alt="Portrait illustré d'Amandine Ascensio" width="874" height="874">
-        <span class="sticker sticker--1" aria-hidden="true">✦ New season</span>
-        <span class="sticker sticker--2" aria-hidden="true">Made in Figma</span>
+    <section class="hero hero--v1" id="top" aria-labelledby="hero-title">
+      <!-- Disposition de la V1 : avatar à gauche posé en bas, rond derrière, étoiles au trait -->
+      <div class="hero__visual" aria-hidden="true">
+        <div class="hero__circle"></div>
+        <img src="assets/svg/etoile-3.svg" alt="" class="hero__star hero__star--1">
+        <img src="assets/svg/etoile-1.svg" alt="" class="hero__star hero__star--2">
+        <img src="assets/svg/etoile-2.svg" alt="" class="hero__star hero__star--3">
+        <img src="assets/svg/etoile-1.svg" alt="" class="hero__star hero__star--4">
+        <img src="assets/images/avatar.png" alt="" class="hero__avatar" width="874" height="874">
       </div>
 
-      <p class="hero__lead">
-        Designer digitale, je compose des interfaces comme on construit une
-        <em class="serif">collection</em>&nbsp;: une silhouette claire, des matières justes
-        et ce petit détail qui fait tourner les têtes.
-      </p>
+      <div class="hero__content">
 
-      <div class="hero__cta">
-        <a href="#collection" class="btn btn--holo">Voir la collection <span class="btn__arrow" aria-hidden="true">↘</span></a>
-        <a href="#contact" class="btn btn--ghost">Me contacter</a>
+        <h1 class="hero__title" id="hero-title">
+          <span class="hero__line chrome">Amandine</span>
+          <span class="hero__line hero__line--serif holo-text">Ascensio</span>
+          <span class="sr-only">, UI/UX designer</span>
+        </h1>
+
+        <p class="hero__lead">
+          Je suis Amandine, je conçois des expériences web belles, claires et
+          <em class="serif">mémorables</em>, qui allient design UI/UX, accessibilité et identité visuelle.
+        </p>
+
+        <div class="hero__cta">
+          <a href="projets.html" class="btn btn--holo">Voir mes projets <span class="btn__arrow" aria-hidden="true">↘</span></a>
+          <a href="contact.html" class="btn btn--ghost">Me contacter</a>
+        </div>
       </div>
     </section>
     </div>
@@ -119,197 +113,14 @@
     <!-- BANDEAU -->
     <div class="marquee" aria-hidden="true">
       <div class="marquee__track">
-        <span>UI Design</span><i>✦</i><span>Design System</span><i>✦</i><span>Accessibilité</span><i>✦</i><span>Prototypage</span><i>✦</i><span>Photomontage</span><i>✦</i><span>Intégration web</span><i>✦</i>
-        <span>UI Design</span><i>✦</i><span>Design System</span><i>✦</i><span>Accessibilité</span><i>✦</i><span>Prototypage</span><i>✦</i><span>Photomontage</span><i>✦</i><span>Intégration web</span><i>✦</i>
+        <span>Product Design</span><i>✦</i><span>Intégration web</span><i>✦</i><span>Design System</span><i>✦</i><span>Prototypage</span><i>✦</i><span>Accessibilité</span><i>✦</i><span>Identité visuelle</span><i>✦</i>
+        <span>Product Design</span><i>✦</i><span>Intégration web</span><i>✦</i><span>Design System</span><i>✦</i><span>Prototypage</span><i>✦</i><span>Accessibilité</span><i>✦</i><span>Identité visuelle</span><i>✦</i>
       </div>
     </div>
-
-    <!-- COLLECTION -->
-    <section class="collection" id="collection" aria-labelledby="collection-title">
-      <header class="section-head">
-        <p class="section-head__eyebrow label"><b>01 — Projets</b><span>4 looks</span></p>
-        <h2 class="section-head__title" id="collection-title">La <em class="serif holo-text">collection</em></h2>
-        <p class="section-head__aside">Quatre projets, quatre univers. Clique sur un look pour entrer dans les coulisses.</p>
-      </header>
-
-      <div class="collection__inner">
-        <ul class="runway" id="runway">
-          <li class="look" style="--look-hue: 330deg">
-            <a href="projet-masm.html" class="look__link">
-              <div class="look__media">
-                <span class="look__num label">Look 01</span>
-                <img src="assets/images/figma/masm-mockup.webp" alt="" loading="lazy" width="700" height="1050">
-              </div>
-              <div class="look__info">
-                <div class="look__head"><h3 class="look__name">MASM</h3><span class="look__go" aria-hidden="true">→</span></div>
-                <p class="look__desc">Site vitrine haut de gamme pour un artisan menuisier : identité, UI et intégration.</p>
-                <ul class="look__tags" aria-label="Compétences"><li>Figma</li><li>UI/UX</li><li>HTML/CSS/JS</li></ul>
-              </div>
-            </a>
-          </li>
-          <li class="look" style="--look-hue: 95deg">
-            <a href="projet-spoonia.html" class="look__link">
-              <div class="look__media look__media--top">
-                <span class="look__num label">Look 02</span>
-                <img src="assets/images/figma/sp-landing.webp" alt="" loading="lazy" width="1512" height="4916">
-              </div>
-              <div class="look__info">
-                <div class="look__head"><h3 class="look__name">Spoonia</h3><span class="look__go" aria-hidden="true">→</span></div>
-                <p class="look__desc">App de micro-nutrition bienveillante, pensée WCAG 2.2 AA. Six mois, équipe de cinq.</p>
-                <ul class="look__tags" aria-label="Compétences"><li>UX research</li><li>UI</li><li>Community</li></ul>
-              </div>
-            </a>
-          </li>
-          <li class="look" style="--look-hue: 160deg">
-            <a href="projet-beatway.html" class="look__link">
-              <div class="look__media look__media--contain">
-                <span class="look__num label">Look 03</span>
-                <img src="assets/images/figma/bw-mockup-main.webp" alt="" loading="lazy" width="491" height="436">
-              </div>
-              <div class="look__info">
-                <div class="look__head"><h3 class="look__name">BeatWay</h3><span class="look__go" aria-hidden="true">→</span></div>
-                <p class="look__desc">Navigation 2050 qui s'adapte au rythme, au stress et à l'environnement.</p>
-                <ul class="look__tags" aria-label="Compétences"><li>Concours</li><li>Mobile</li><li>Prototype</li></ul>
-              </div>
-            </a>
-          </li>
-          <li class="look" style="--look-hue: 265deg">
-            <a href="projet-vforvape.html" class="look__link">
-              <div class="look__media">
-                <span class="look__num label">Look 04</span>
-                <img src="assets/images/vforvape/KAIJU.png" alt="" loading="lazy" width="3240" height="1080">
-              </div>
-              <div class="look__info">
-                <div class="look__head"><h3 class="look__name">V for Vape</h3><span class="look__go" aria-hidden="true">→</span></div>
-                <p class="look__desc">32 bannières, 30 univers : un an de photomontage et de direction visuelle.</p>
-                <ul class="look__tags" aria-label="Compétences"><li>Photoshop</li><li>DA</li><li>Réseaux</li></ul>
-              </div>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- ATELIER -->
-    <section class="atelier" id="atelier" aria-labelledby="atelier-title">
-      <header class="section-head">
-        <p class="section-head__eyebrow label"><b>02 — À propos</b><span>Backstage</span></p>
-        <h2 class="section-head__title" id="atelier-title">L'<em class="serif holo-text">atelier</em></h2>
-      </header>
-
-      <div class="atelier__grid">
-        <figure class="atelier__photo">
-          <div class="atelier__frame">
-            <img src="assets/images/about.png" alt="Illustration d'Amandine travaillant sur une maquette à son bureau" loading="lazy" width="1024" height="1024">
-          </div>
-          <figcaption class="label">Au bureau, entre deux composants Figma</figcaption>
-        </figure>
-
-        <div class="atelier__text">
-          <p class="atelier__quote serif">Curieuse de nature, designer par conviction.</p>
-          <p>Salut&nbsp;! Moi c'est Amandine. Je crée des interfaces qui donnent envie de rester : belles, intuitives, et vraiment pensées pour les gens qui les utilisent.</p>
-          <p>Mon parcours n'a rien d'une ligne droite : langues étrangères, commerce, management chez E.Leclerc… À chaque étape, j'ai appris à écouter et à comprendre ce que les gens veulent vraiment. Le design a été la pièce qui manquait.</p>
-          <p>Aujourd'hui en alternance chez <strong>Bamptee</strong>, je conçois des interfaces web et mobiles, crée des composants Figma et fais évoluer le design system, du premier trait jusqu'à l'intégration HTML/CSS.</p>
-          <p>J'ai l'œil pour les détails qui n'ont l'air de rien mais qui changent tout. Comme en mode : la coupe, la matière, la finition.</p>
-        </div>
-      </div>
-
-      <ul class="services">
-        <li class="service"><span class="label">01</span><h3>Product Design</h3><p>Interfaces responsive web &amp; mobile centrées utilisateur.</p></li>
-        <li class="service"><span class="label">02</span><h3>Intégration web</h3><p>Sites sur mesure, performants et évolutifs.</p></li>
-        <li class="service"><span class="label">03</span><h3>Design System</h3><p>Bibliothèques de composants cohérentes.</p></li>
-        <li class="service"><span class="label">04</span><h3>Création visuelle</h3><p>Photomontage, bannières, contenus réseaux.</p></li>
-      </ul>
-    </section>
-
-    <!-- PARCOURS -->
-    <section class="cv" id="cv" aria-labelledby="cv-title">
-      <header class="section-head">
-        <p class="section-head__eyebrow label"><b>03 — Parcours</b><span>2019 → 2026</span></p>
-        <h2 class="section-head__title" id="cv-title">Le <em class="serif holo-text">parcours</em></h2>
-      </header>
-
-      <div class="cv__cols">
-        <div>
-          <h3 class="cv__label label">Expérience</h3>
-          <ol class="timeline">
-            <li>
-              <span class="timeline__date label">Sept. 2024 — aujourd'hui</span>
-              <h4>Product Designer, alternance</h4>
-              <p class="timeline__where">Bamptee, Saint-Soupplets</p>
-              <p>Interfaces responsive web/mobile, déclinaison de maquettes selon le design system, création et maintenance de composants UI dans Figma, évolution du design system, accessibilité et cohérence visuelle.</p>
-            </li>
-            <li>
-              <span class="timeline__date label">Sept. 2023 — Sept. 2024</span>
-              <h4>Assistance Marketing &amp; RH, alternance</h4>
-              <p class="timeline__where">Dentaurum France, Lognes</p>
-              <p>Organisation d'évènements, création et diffusion de newsletters, tableaux Excel, contrôle de factures.</p>
-            </li>
-            <li>
-              <span class="timeline__date label">Sept. 2020 — Sept. 2023</span>
-              <h4>Hôtesse de caisse, superviseure, service financier</h4>
-              <p class="timeline__where">E.Leclerc, Mareuil-lès-Meaux</p>
-              <p>Management d'équipe, gestion de planning, fixation d'objectifs, accueil clientèle.</p>
-            </li>
-          </ol>
-        </div>
-
-        <div>
-          <h3 class="cv__label label">Formations</h3>
-          <ol class="timeline">
-            <li><span class="timeline__date label">2025 — 2026</span><h4>Bachelor 3 · Webdesign</h4><p class="timeline__where">My Digital School, Paris</p></li>
-            <li><span class="timeline__date label">2023 — 2025</span><h4>Bachelor 1 &amp; 2 · Gestion &amp; Administration des Ventes</h4><p class="timeline__where">Ascencia Business School, Lognes</p></li>
-            <li><span class="timeline__date label">2019 — 2022</span><h4>Licence Langues Étrangères Appliquées</h4><p class="timeline__where">Université Gustave Eiffel, Champs-sur-Marne</p></li>
-            <li><span class="timeline__date label">2019</span><h4>Baccalauréat Littéraire</h4><p class="timeline__where">Lycée Jean Vilar, Meaux</p></li>
-          </ol>
-        </div>
-      </div>
-
-      <div class="skills">
-        <div>
-          <h3 class="label">Hard skills</h3>
-          <ul class="chips chips--key">
-            <li>UI Design</li><li>UX Research</li><li>Design System</li><li>Prototypage</li><li>Accessibilité</li><li>HTML / CSS</li>
-          </ul>
-        </div>
-        <div>
-          <h3 class="label">Outils</h3>
-          <ul class="chips">
-            <li>Figma</li><li>Photoshop</li><li>WordPress</li><li>Elementor</li><li>Notion</li><li>Slack</li><li>Trello</li>
-          </ul>
-        </div>
-        <div>
-          <h3 class="label">Soft skills</h3>
-          <ul class="chips">
-            <li>Créativité</li><li>Sens du détail</li><li>Curiosité</li><li>Écoute active</li><li>Esprit d'équipe</li><li>Adaptabilité</li><li>Organisation</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section class="contact" id="contact" aria-labelledby="contact-title">
-      <p class="label">04 — Contact</p>
-      <h2 class="contact__title" id="contact-title">
-        <span>Construisons</span>
-        <span class="holo-text">quelque chose</span>
-        <span class="serif">de beau.</span>
-      </h2>
-      <p class="contact__sub">Un projet, une alternance, une question ? Ou parlons simplement design, ça marche aussi.</p>
-      <div class="contact__actions">
-        <a class="btn btn--holo contact__mail" href="mailto:amandine.ascensio@hotmail.fr">amandine.ascensio@hotmail.fr <span aria-hidden="true">↗</span></a>
-        <button type="button" class="btn btn--ghost" id="copyMail" data-mail="amandine.ascensio@hotmail.fr">Copier l'adresse</button>
-      </div>
-      <p class="copy-status" id="copyStatus" role="status" aria-live="polite"></p>
-      <ul class="contact__socials">
-        <li><a href="https://www.linkedin.com/in/amandine-ascensio-46ab17260/" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">↗</span><span class="sr-only"> (nouvel onglet)</span></a></li>
-        <li><a href="https://www.instagram.com/andastudio27/" target="_blank" rel="noopener">Instagram <span aria-hidden="true">↗</span><span class="sr-only"> (nouvel onglet)</span></a></li>
-      </ul>
-    </section>
   </main>
 
   <footer class="footer">
-    <span class="label">© 2026 Amandine Ascensio ✦ Fait main, avec beaucoup de café</span>
+    <span class="label">© 2026 Amandine Ascensio ✦ Conçu avec passion et pixels</span>
     <span class="footer__legal">
       <a href="mentions-legales.html">Mentions légales</a>
       <a href="politique-confidentialite.html">Confidentialité</a>

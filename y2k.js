@@ -3,24 +3,6 @@
   var finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   function calm() { return reduce || document.body.classList.contains('a11y-no-animations'); }
 
-  // Petite étoile qui suit la souris
-  var cursor = document.querySelector('.cursor');
-  if (cursor && finePointer) {
-    var x = -100, y = -100, cx = -100, cy = -100;
-    document.addEventListener('mousemove', function(e) {
-      x = e.clientX; y = e.clientY;
-      cursor.classList.add('is-on');
-      cursor.classList.toggle('is-hover', !!e.target.closest('a, button'));
-    });
-    document.documentElement.addEventListener('mouseleave', function() { cursor.classList.remove('is-on'); });
-    (function loop() {
-      var k = calm() ? 1 : 0.25;
-      cx += (x - cx) * k; cy += (y - cy) * k;
-      cursor.style.left = cx + 'px'; cursor.style.top = cy + 'px';
-      requestAnimationFrame(loop);
-    })();
-  }
-
   // Menu mobile
   var burger = document.getElementById('navBurger');
   var links = document.getElementById('navLinks');
@@ -72,6 +54,18 @@
     });
   }
 
+  // Cartes projets : au toucher, un premier tap retourne la carte, le second ouvre le projet
+  document.querySelectorAll('.flip').forEach(function(card) {
+    card.addEventListener('click', function(e) {
+      if (finePointer) return;
+      if (!card.classList.contains('is-flipped')) {
+        e.preventDefault();
+        document.querySelectorAll('.flip.is-flipped').forEach(function(c) { c.classList.remove('is-flipped'); });
+        card.classList.add('is-flipped');
+      }
+    });
+  });
+
   // Copier l'adresse mail
   var copyBtn = document.getElementById('copyMail');
   var copyStatus = document.getElementById('copyStatus');
@@ -89,8 +83,8 @@
   }
 
   // Apparitions au scroll
-  var targets = document.querySelectorAll('.section-head, .look, .atelier__photo, .atelier__text, .service, .timeline li, .skills > div, .contact__title, .case__body > section');
-  if ('IntersectionObserver' in window && !reduce) {
+  var targets = document.querySelectorAll('.section-head, .look, .flip, .bento__card, .atelier__photo, .atelier__text, .service, .timeline li, .skills > div, .contact__title, .case__body > section');
+  if ('IntersectionObserver' in window && !reduce && !document.body.classList.contains('no-reveal')) {
     var io = new IntersectionObserver(function(entries) {
       entries.forEach(function(en) {
         if (en.isIntersecting) { en.target.classList.add('is-in'); io.unobserve(en.target); }

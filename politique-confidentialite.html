@@ -22,7 +22,7 @@
   <link rel="icon" type="image/svg+xml" href="assets/svg/logo.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="projet-detail.css">
   <link rel="stylesheet" href="y2k.css">
@@ -33,7 +33,6 @@
 
   <a class="skip" href="#main">Aller au contenu</a>
   <div class="grain" aria-hidden="true"></div>
-  <div class="cursor" aria-hidden="true">✦</div>
 
   <!-- NAVIGATION -->
   <header class="nav">
@@ -42,10 +41,10 @@
     </a>
     <nav aria-label="Navigation principale">
       <ul class="nav__links" id="navLinks">
-        <li><a href="index.html#collection">Collection</a></li>
-        <li><a href="index.html#atelier">Atelier</a></li>
-        <li><a href="index.html#cv">Parcours</a></li>
-        <li><a href="index.html#contact">Contact</a></li>
+        <li><a href="projets.html">Projets</a></li>
+        <li><a href="parcours.html">Parcours</a></li>
+        <li><a href="competences.html">Compétences</a></li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
     <div class="nav__right">
@@ -79,9 +78,9 @@
       <h2>3. Données collectées</h2>
       <p>Ce site peut collecter les données suivantes :</p>
       <ul>
-        <li><strong>Via le formulaire de contact :</strong> prénom, nom, adresse email et message. Ces données sont collectées uniquement lorsque vous les soumettez volontairement.</li>
+        <li><strong>Via le formulaire de contact :</strong> prénom, nom, adresse email et message. Ces données sont collectées uniquement lorsque vous les soumettez volontairement, et transmises par l'intermédiaire du service FormSubmit (voir la section 7).</li>
         <li><strong>Données de navigation :</strong> adresse IP, type de navigateur, pages visitées, date et heure de visite. Ces données sont collectées automatiquement à des fins statistiques.</li>
-        <li><strong>Données de préférences :</strong> vos choix d'accessibilité et de curseur sont stockés localement dans votre navigateur (localStorage) et ne sont jamais transmis à un serveur.</li>
+        <li><strong>Données de préférences :</strong> vos choix d'accessibilité sont stockés localement dans votre navigateur (localStorage) et ne sont jamais transmis à un serveur.</li>
       </ul>
 
       <h2>4. Finalité du traitement</h2>
@@ -107,10 +106,16 @@
       </ul>
 
       <h2>7. Destinataires des données</h2>
-      <p>Vos données personnelles ne sont ni vendues, ni échangées, ni louées à des tiers. Elles sont destinées uniquement à Amandine Ascensio. Aucun transfert de données hors de l'Union Européenne n'est effectué, à l'exception de l'hébergement du site sur GitHub Pages (États-Unis), couvert par les clauses contractuelles types de la Commission Européenne.</p>
+      <p>Vos données personnelles ne sont ni vendues, ni échangées, ni louées à des tiers. Elles sont destinées uniquement à Amandine Ascensio.</p>
+      <p>Pour assurer le fonctionnement du site, certaines données transitent par les prestataires techniques suivants :</p>
+      <ul>
+        <li><strong>FormSubmit</strong> (formsubmit.co) : les informations saisies dans le formulaire de contact (prénom, nom, adresse email et message) sont transmises à ce service, qui les achemine par email à Amandine Ascensio.</li>
+        <li><strong>Vercel Inc.</strong> (vercel.com) : hébergement du site.</li>
+      </ul>
+      <p>Ces prestataires sont situés aux États-Unis. Aucun autre transfert de données hors de l'Union Européenne n'est effectué ; ces transferts sont encadrés par les clauses contractuelles types de la Commission Européenne.</p>
 
       <h2>8. Cookies</h2>
-      <p>Ce site n'utilise pas de cookies de tracking ou publicitaires. Les préférences d'accessibilité et de curseur sont stockées via le localStorage de votre navigateur, qui ne constitue pas un cookie au sens de la directive ePrivacy.</p>
+      <p>Ce site n'utilise pas de cookies de tracking ou publicitaires. Les préférences d'accessibilité sont stockées via le localStorage de votre navigateur, qui ne constitue pas un cookie au sens de la directive ePrivacy.</p>
 
       <h2>9. Vos droits</h2>
       <p>Conformément au RGPD, vous disposez des droits suivants concernant vos données personnelles :</p>
@@ -134,7 +139,7 @@
   </main>
 
   <footer class="footer">
-    <span class="mono">© 2026 Amandine Ascensio ✦ fait main, avec beaucoup de café</span>
+    <span class="mono">© 2026 Amandine Ascensio ✦ Conçu avec passion et pixels</span>
     <span class="footer__legal">
       <a href="mentions-legales.html">Mentions légales</a>
       <a href="politique-confidentialite.html">Confidentialité</a>
