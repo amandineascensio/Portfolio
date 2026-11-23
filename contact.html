@@ -58,55 +58,48 @@
 
   <main id="main">
 
-    <section class="page contact contact--page" aria-labelledby="contact-title">
-      <div class="contact__intro">
-        <h1 class="contact__title" id="contact-title">
-          <span>Un projet</span>
-          <span class="serif holo-text">en tête&nbsp;?</span>
-        </h1>
-        <p class="contact__sub">Discutons de votre projet autour d'un café virtuel. Je serais ravie de donner vie à vos idées&nbsp;!</p>
-        <div class="contact__actions">
-          <a class="btn btn--holo contact__mail" href="mailto:amandine.ascensio@hotmail.fr">Envoyer un mail <span aria-hidden="true">↗</span></a>
-          <button type="button" class="btn btn--ghost" id="copyMail" data-mail="amandine.ascensio@hotmail.fr">Copier l'adresse</button>
+    <section class="page contact-v2" aria-labelledby="contact-title">
+      <div class="contact-v2__intro">
+        <img class="contact-v2__star contact-v2__star--lg" src="assets/svg/figma/star-contact-lg.svg" alt="" width="64" height="64">
+        <img class="contact-v2__star contact-v2__star--sm" src="assets/svg/figma/star-contact-sm.svg" alt="" width="34" height="34">
+        <h1 class="contact-v2__title" id="contact-title"><span>Un projet</span><span class="holo-text">en tête&nbsp;?</span></h1>
+        <p class="contact-v2__sub">Discutons de votre projet autour d'un café virtuel. Je serais <span>ravie</span> de donner vie à vos idées&nbsp;!</p>
+        <div class="contact-v2__actions">
+          <a class="cta-grad" href="mailto:amandine.ascensio@hotmail.fr">Envoyer un mail <img src="assets/svg/figma/arrow-ne.svg" alt="" width="16" height="16"></a>
+          <button type="button" class="cta-ghost" id="copyMail" data-mail="amandine.ascensio@hotmail.fr">Copier l'adresse</button>
         </div>
         <p class="copy-status" id="copyStatus" role="status" aria-live="polite"></p>
-        <ul class="contact__socials">
-          <li><a href="https://www.linkedin.com/in/amandine-ascensio-46ab17260/" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">↗</span><span class="sr-only"> (nouvel onglet)</span></a></li>
-          <li><a href="https://www.instagram.com/andastudio27/" target="_blank" rel="noopener">Instagram <span aria-hidden="true">↗</span><span class="sr-only"> (nouvel onglet)</span></a></li>
-        </ul>
+        <div class="contact-v2__social">
+          <span class="contact-v2__social-label">Me suivre</span>
+          <a href="https://www.linkedin.com/in/amandine-ascensio-46ab17260/" target="_blank" rel="noopener">LinkedIn ↗<span class="sr-only"> (nouvel onglet)</span></a>
+          <a href="https://www.instagram.com/andastudio27/" target="_blank" rel="noopener">Instagram ↗<span class="sr-only"> (nouvel onglet)</span></a>
+        </div>
       </div>
 
-      <form class="contact-form" action="https://formsubmit.co/amandine.ascensio@hotmail.fr" method="POST">
-        <h2 class="contact-form__title">Discutons de votre projet</h2>
-        <input type="hidden" name="_subject" value="Nouvelle demande depuis le portfolio">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="text" name="_honey" class="sr-only" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <div class="contact-form__row">
-          <div class="field">
-            <label for="prenom">Prénom</label>
-            <input type="text" id="prenom" name="prenom" autocomplete="given-name" placeholder="Marie" required>
+      <div class="contact-v2__form-wrap">
+        <div class="contact-v2__glow" aria-hidden="true"></div>
+        <form class="contact-v2__form" action="https://formsubmit.co/amandine.ascensio@hotmail.fr" method="POST">
+          <span class="contact-v2__badge" aria-hidden="true">Un café<br>virtuel ?</span>
+          <h2 class="contact-v2__form-title">Discutons de votre projet</h2>
+          <input type="hidden" name="_subject" value="Nouvelle demande depuis le portfolio">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="text" name="_honey" class="sr-only" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <div class="contact-v2__row">
+            <label class="fld"><span>Prénom</span><input type="text" name="prenom" autocomplete="given-name" placeholder="Marie" required></label>
+            <label class="fld"><span>Nom</span><input type="text" name="nom" autocomplete="family-name" placeholder="Dupont" required></label>
           </div>
-          <div class="field">
-            <label for="nom">Nom</label>
-            <input type="text" id="nom" name="nom" autocomplete="family-name" placeholder="Dupont" required>
-          </div>
-        </div>
-        <div class="field">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" autocomplete="email" placeholder="marie.dupont@exemple.fr" required>
-        </div>
-        <div class="field">
-          <label for="message">Message</label>
-          <textarea id="message" name="message" rows="5" placeholder="Parlez-moi de votre projet…" required></textarea>
-        </div>
-        <button type="submit" class="btn btn--holo contact-form__submit">Envoyer la demande</button>
-      </form>
+          <label class="fld"><span>Email</span><input type="email" name="email" autocomplete="email" placeholder="marie.dupont@exemple.fr" required></label>
+          <label class="fld"><span>Message</span><textarea name="message" rows="5" placeholder="Parlez-moi de votre projet…" required></textarea></label>
+          <button type="submit" class="cta-grad contact-v2__submit">Envoyer la demande <img src="assets/svg/figma/arrow-right.svg" alt="" width="16" height="16"></button>
+        </form>
+        <img class="contact-v2__star contact-v2__star--md" src="assets/svg/figma/star-contact-md.svg" alt="" width="48" height="48">
+      </div>
     </section>
 
   </main>
 
   <footer class="footer">
-    <span class="label">© 2026 Amandine Ascensio ✦ Conçu avec passion et pixels</span>
+    <span class="footer__copy"><span>© 2026 Amandine Ascensio</span><span>Conçu avec passion et pixels</span></span>
     <span class="footer__legal">
       <a href="mentions-legales.html">Mentions légales</a>
       <a href="politique-confidentialite.html">Confidentialité</a>

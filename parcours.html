@@ -58,50 +58,96 @@
 
   <main id="main">
 
-    <section class="page cv" aria-labelledby="page-title">
+    <section class="page parcours" aria-labelledby="page-title">
       <header class="section-head">
         <h1 class="section-head__title" id="page-title">Mon <em class="serif holo-text">parcours</em></h1>
         <p class="section-head__aside">Langues, commerce, management… puis le design, la pièce qui manquait.</p>
       </header>
 
-      <div class="cv__cols">
-        <div>
-          <h2 class="cv__label label">Expérience</h2>
-          <ol class="timeline">
-            <li>
-              <span class="timeline__date label">Sept. 2024 — Présent</span>
-              <h4>Product Designer, Alternance</h4>
-              <p class="timeline__where">Bamptee, Saint-Soupplets</p>
-              <p>Conception d'interfaces responsive (web/mobile), déclinaison de maquettes selon le design system existant, création et maintenance de composants UI dans Figma, contribution à l'évolution du design system, respect des règles d'accessibilité et de cohérence visuelle.</p>
-              <ul class="timeline__tags" aria-label="Compétences mobilisées"><li>Figma</li><li>Design System</li><li>Responsive</li><li>Composants UI</li><li>Accessibilité</li></ul>
-            </li>
-            <li>
-              <span class="timeline__date label">Sept. 2023 — Sept. 2024</span>
-              <h4>Assistance Marketing &amp; RH, Alternance</h4>
-              <p class="timeline__where">Dentaurum France, Lognes</p>
-              <p>Organisation d'évènements, création et diffusion de newsletters, traitement du courrier, mise en place de tableaux Excel, contrôle de factures.</p>
-              <ul class="timeline__tags" aria-label="Compétences mobilisées"><li>Marketing</li><li>Communication</li><li>Excel</li><li>RH</li></ul>
-            </li>
-            <li>
-              <span class="timeline__date label">Sept. 2020 — Sept. 2023</span>
-              <h4>Hôtesse de caisse, Superviseur, Service financier</h4>
-              <p class="timeline__where">E.Leclerc, Mareuil-lès-Meaux</p>
-              <p>Management d'une équipe d'hôtesses de caisse, gestion d'un planning, vérification des modes de règlement, fixation d'objectifs, accueil et renseignement clientèle.</p>
-              <ul class="timeline__tags" aria-label="Compétences mobilisées"><li>Management</li><li>Gestion d'équipe</li><li>Service client</li></ul>
-            </li>
-          </ol>
-        </div>
-
-        <div>
-          <h2 class="cv__label label">Formations</h2>
-          <ol class="timeline">
-            <li><span class="timeline__date label">2026 – 2027<span class="timeline__cat">UX/UI</span></span><h4>MBA 1 – UX/UI Designer</h4><p class="timeline__where">My Digital School, Paris</p></li>
-            <li><span class="timeline__date label">2025 – 2026<span class="timeline__cat">Webdesign</span></span><h4>Bachelor 3 – Webdesign</h4><p class="timeline__where">My Digital School, Paris</p></li>
-            <li><span class="timeline__date label">2023 – 2025<span class="timeline__cat">Commerce</span></span><h4>Bachelor 1 &amp; 2 – Gestion &amp; Administration des Ventes</h4><p class="timeline__where">Ascencia Business School, Lognes</p></li>
-            <li><span class="timeline__date label">2019 – 2022<span class="timeline__cat">Langues</span></span><h4>Licence en Langues Étrangères Appliquées</h4><p class="timeline__where">Université Gustave Eiffel, Champs-sur-Marne</p></li>
-            <li><span class="timeline__date label">2019<span class="timeline__cat">Baccalauréat</span></span><h4>Baccalauréat Littéraire</h4><p class="timeline__where">Lycée Jean Vilar, Meaux</p></li>
-          </ol>
-        </div>
+      <div class="tl">
+        <p class="sr-only">Expériences à gauche, formations à droite, de la plus récente à la plus ancienne.</p>
+        <div class="tl-axis" aria-hidden="true"><img class="tl-axis__halo" src="assets/images/frise-halo.png" alt=""><img class="tl-axis__line" src="assets/images/frise-ligne.png" alt=""><span class="tl-axis__end"></span></div>
+        <ol class="tl-rows">
+      <li class="tl-row">
+        <article class="tl-card tl-card--exp tl-card--now" style="--acc: var(--acc-lime)">
+          <div class="tl-card__meta"><span class="tl-card__date">Sept. 2024 — Présent</span><span class="tl-tag">Design</span><span class="tl-now"><span class="tl-now__dot"></span>En poste</span></div>
+          <div class="tl-card__head">
+            <h3 class="tl-card__title">Product Designer, Alternance</h3>
+            <p class="tl-card__org"><span>Bamptee</span> · Saint-Soupplets</p>
+          </div>
+          <p class="tl-card__desc">Conception d'interfaces responsive (web/mobile), déclinaison de maquettes selon le design system existant, création et maintenance de composants UI dans Figma, contribution à l'évolution du design system, respect des règles d'accessibilité et de cohérence visuelle.</p>
+          <ul class="tl-chips" aria-label="Compétences mobilisées"><li>Figma</li><li>Design System</li><li>Responsive</li><li>Composants UI</li><li>Accessibilité</li></ul>
+        </article>
+        <div class="tl-node" aria-hidden="true"><span class="tl-link" style="--from: var(--acc-lime)"></span><span class="tl-year tl-year--now">Aujourd'hui</span><span class="tl-link tl-link--r" style="--from: var(--acc-lime)"></span></div>
+        <article class="tl-card tl-card--edu" style="--acc: var(--acc-lime)">
+          <div class="tl-card__meta"><span class="tl-card__date">2026 – 2027</span><span class="tl-tag">UX/UI</span></div>
+          <div class="tl-card__head">
+            <h3 class="tl-card__title">MBA 1 – UX/UI Designer</h3>
+            <p class="tl-card__org"><span>My Digital School</span> · Paris</p>
+          </div>
+        </article>
+      </li>
+      <li class="tl-row">
+        <div class="tl-spacer" aria-hidden="true"></div>
+        <div class="tl-node" aria-hidden="true"><span class="tl-link tl-link--empty"></span><span class="tl-year">2025</span><span class="tl-link tl-link--r" style="--from: var(--acc-lime)"></span></div>
+        <article class="tl-card tl-card--edu" style="--acc: var(--acc-lime)">
+          <div class="tl-card__meta"><span class="tl-card__date">2025 – 2026</span><span class="tl-tag">Webdesign</span></div>
+          <div class="tl-card__head">
+            <h3 class="tl-card__title">Bachelor 3 – Webdesign</h3>
+            <p class="tl-card__org"><span>My Digital School</span> · Paris</p>
+          </div>
+        </article>
+      </li>
+      <li class="tl-row">
+        <article class="tl-card tl-card--exp" style="--acc: var(--acc-violet)">
+          <div class="tl-card__meta"><span class="tl-card__date">Sept. 2023 — Sept. 2024</span><span class="tl-tag">Marketing</span></div>
+          <div class="tl-card__head">
+            <h3 class="tl-card__title">Assistance Marketing &amp; RH, Alternance</h3>
+            <p class="tl-card__org"><span>Dentaurum France</span> · Lognes</p>
+          </div>
+          <p class="tl-card__desc">Organisation d'évènements, création et diffusion de newsletters, traitement du courrier, mise en place de tableaux Excel, contrôle de factures.</p>
+          <ul class="tl-chips" aria-label="Compétences mobilisées"><li>Marketing</li><li>Communication</li><li>Excel</li><li>RH</li></ul>
+        </article>
+        <div class="tl-node" aria-hidden="true"><span class="tl-link" style="--from: var(--acc-violet)"></span><span class="tl-year">2023</span><span class="tl-link tl-link--r" style="--from: var(--acc-cyan)"></span></div>
+        <article class="tl-card tl-card--edu" style="--acc: var(--acc-cyan)">
+          <div class="tl-card__meta"><span class="tl-card__date">2023 – 2025</span><span class="tl-tag">Commerce</span></div>
+          <div class="tl-card__head">
+            <h3 class="tl-card__title">Bachelor 1 &amp; 2 – Gestion &amp; Administration des Ventes</h3>
+            <p class="tl-card__org"><span>Ascencia Business School</span> · Lognes</p>
+          </div>
+        </article>
+      </li>
+      <li class="tl-row">
+        <article class="tl-card tl-card--exp" style="--acc: var(--acc-cyan)">
+          <div class="tl-card__meta"><span class="tl-card__date">Sept. 2020 — Sept. 2023</span><span class="tl-tag">Management</span></div>
+          <div class="tl-card__head">
+            <h3 class="tl-card__title">Hôtesse de caisse, Superviseur, Service financier</h3>
+            <p class="tl-card__org"><span>E.Leclerc</span> · Mareuil-lès-Meaux</p>
+          </div>
+          <p class="tl-card__desc">Management d'une équipe d'hôtesses de caisse, gestion d'un planning, vérification des modes de règlement, fixation d'objectifs, accueil et renseignement clientèle.</p>
+          <ul class="tl-chips" aria-label="Compétences mobilisées"><li>Management</li><li>Gestion d'équipe</li><li>Service client</li></ul>
+        </article>
+        <div class="tl-node" aria-hidden="true"><span class="tl-link" style="--from: var(--acc-cyan)"></span><span class="tl-year">2020</span><span class="tl-link tl-link--r" style="--from: var(--acc-rose)"></span></div>
+        <article class="tl-card tl-card--edu" style="--acc: var(--acc-rose)">
+          <div class="tl-card__meta"><span class="tl-card__date">2019 – 2022</span><span class="tl-tag">Langues</span></div>
+          <div class="tl-card__head">
+            <h3 class="tl-card__title">Licence en Langues Étrangères Appliquées</h3>
+            <p class="tl-card__org"><span>Université Gustave Eiffel</span> · Champs-sur-Marne</p>
+          </div>
+        </article>
+      </li>
+      <li class="tl-row">
+        <div class="tl-spacer" aria-hidden="true"></div>
+        <div class="tl-node" aria-hidden="true"><span class="tl-link tl-link--empty"></span><span class="tl-year">2019</span><span class="tl-link tl-link--r" style="--from: var(--acc-rose)"></span></div>
+        <article class="tl-card tl-card--edu" style="--acc: var(--acc-rose)">
+          <div class="tl-card__meta"><span class="tl-card__date">2019</span><span class="tl-tag">Baccalauréat</span></div>
+          <div class="tl-card__head">
+            <h3 class="tl-card__title">Baccalauréat Littéraire</h3>
+            <p class="tl-card__org"><span>Lycée Jean Vilar</span> · Meaux</p>
+          </div>
+        </article>
+      </li>
+        </ol>
       </div>
     </section>
 
@@ -109,7 +155,7 @@
   </main>
 
   <footer class="footer">
-    <span class="label">© 2026 Amandine Ascensio ✦ Conçu avec passion et pixels</span>
+    <span class="footer__copy"><span>© 2026 Amandine Ascensio</span><span>Conçu avec passion et pixels</span></span>
     <span class="footer__legal">
       <a href="mentions-legales.html">Mentions légales</a>
       <a href="politique-confidentialite.html">Confidentialité</a>
