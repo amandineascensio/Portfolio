@@ -206,3 +206,28 @@
   text-transform: none !important; letter-spacing: -.03em;
 }
 .case .projet-stats__number { letter-spacing: -.02em; }
+
+/* ==========================================================
+   Libellés → vrais titres (même règle que la page Compétences)
+   Plus de petites capitales espacées : typo des titres, en minuscules
+   ========================================================== */
+.case [class*="__label"], .case .projet-instagram__post-label {
+  font-family: var(--f-display) !important; font-weight: 800 !important; text-transform: none !important;
+  letter-spacing: -.02em !important; line-height: 1.15;
+}
+/* Titres de section (Le contexte, Mon rôle, La problématique, Conformité…) */
+.case .projet-contexte__label,
+.case .projet-problematique__card > .projet-problematique__label,
+.case .projet-a11y__label {
+  display: block; font-size: 24px !important; color: var(--text) !important; margin-bottom: 4px;
+}
+/* Titres de cartes (Stress urbain, Lisibilité…) */
+.case .projet-problematique__item .projet-problematique__label { display: block; font-size: 19px !important; color: var(--acc-lime) !important; }
+.case .projet-instagram__post-label { font-size: 17px !important; color: var(--text) !important; }
+/* Infos du projet : Mon rôle / Durée / Outils */
+.case .projet-hero__meta-item strong { font-family: var(--f-display); font-size: 16px; font-weight: 700; letter-spacing: 0; text-transform: none; color: var(--muted); }
+body.a11y-lightmode .case .projet-problematique__item .projet-problematique__label { color: var(--acc-lime) !important; }
+/* Libellé suivi d'un titre : plus petit et coloré, pour garder la hiérarchie */
+.case .projet-contexte__col:not(.projet-contexte__col--right) > .projet-contexte__label,
+.case .projet-problematique__card > .projet-problematique__label,
+.case .projet-a11y__label { font-size: 18px !important; color: var(--acc-lime) !important; margin-bottom: 6px; }
