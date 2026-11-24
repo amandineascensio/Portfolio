@@ -385,3 +385,6 @@ body.a11y-lightmode .case .projet-stats__col .projet-stats__number { color: var(
   .case .projet-contexte__col, .case .projet-contexte__col--left { padding: 0 !important; background: none !important; border: 0 !important; }
   .case .projet-problematique__item { transform: none; }
 }
+/* La problématique occupe toute la largeur du contenu */
+.case .projet-problematique__card, .case .projet-problematique__heading { max-width: none !important; width: 100% !important; }
+.case .projet-problematique__heading { text-wrap: wrap !important; font-size: clamp(32px, 4vw, 60px) !important; }
