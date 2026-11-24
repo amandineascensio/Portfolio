@@ -1348,6 +1348,9 @@ main > section.tools-board { padding-bottom: 96px; }
   .nav__links { max-height: calc(100vh - var(--nav-top) - var(--nav-h) - 24px); overflow-y: auto; }
   .y2k .a11y-panel.a11y-panel--menubar { left: var(--pad) !important; right: var(--pad) !important; width: auto !important; max-height: calc(100vh - var(--nav-top) - var(--nav-h) - 24px) !important; }
 }
-@media (max-height: 500px) and (orientation: landscape) {
+@media (max-width: 720px) and (max-height: 500px) and (orientation: landscape) {
   .nav__links a { font-size: 20px; padding: 8px 0; }
 }
+/* Logo seul (sans texte) : zone cliquable carrée de 44px */
+.nav__logo { min-width: 44px; justify-content: center; }
+.nav__mark { width: 32px; height: 32px; }
