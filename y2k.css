@@ -1358,3 +1358,7 @@ main > section.tools-board { padding-bottom: 96px; }
 @media (max-height: 500px) and (orientation: landscape) {
   .nav__links a { font-size: 20px; padding: 8px 0; }
 }
+/* Contact : mêmes étoiles que l'accueil */
+.contact-v2__star--lg { width: 64px; height: auto; }
+.contact-v2__star--sm { width: 34px; height: auto; }
+.contact-v2__star--md { width: 48px; height: auto; }
