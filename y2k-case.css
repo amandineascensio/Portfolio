@@ -403,3 +403,6 @@ body.a11y-lightmode .case .projet-stats__col .projet-stats__number { color: var(
 .case .projet-stats__intro { display: block !important; justify-content: flex-start !important; align-items: flex-start !important; }
 .case .projet-stats__intro :is(h2, h3, p:first-child) { font-size: clamp(26px, 2.4vw, 34px) !important; line-height: 1.1 !important; }
 .case .projet-stats__col .projet-stats__number { line-height: .9 !important; }
+
+/* Pas de trait de séparation au-dessus des titres de section */
+.case [class$="__title"]:not(.projet-hero__title), .case .projet-personas__title { border-top: 0 !important; padding-top: 0 !important; }
