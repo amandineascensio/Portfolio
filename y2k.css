@@ -1177,3 +1177,31 @@ main > section.page.contact-v2 > * { max-width: none; margin: 0; }
 .hero--v1 .hero__star--5 { position: static; width: 55px; animation: fadeIn .8s ease 1.3s both, twinkle 5s ease-in-out 2.6s infinite; }
 @media (max-width: 1280px) { .hero.hero--v1 { column-gap: 56px; } }
 @media (max-width: 960px) { .hero__star-wrap { left: 4%; } }
+
+/* ---- Mode clair : composants de la maquette Figma ---- */
+body.a11y-lightmode { --acc-lime: #4d6b00; --acc-violet: #5b3fc4; --acc-cyan: #006b80; --acc-rose: #b0166e; }
+body.a11y-lightmode .tl-card, body.a11y-lightmode .tl-card--edu, body.a11y-lightmode .tl-card--now { background: #fff; border-color: var(--line); filter: none; }
+body.a11y-lightmode .tl-card--now { border-color: var(--acc-lime); }
+body.a11y-lightmode .tl-chips li { background: #f1eef7; border-color: var(--line); color: var(--text-2); }
+body.a11y-lightmode .tl-year { background: #fff; border-color: var(--line-strong); color: var(--text); }
+body.a11y-lightmode .tl-year--now { background: var(--acc-lime); color: #fff; }
+body.a11y-lightmode .tl-now { background: #fff; color: var(--text); }
+body.a11y-lightmode .tl-axis__end { background: var(--bg); }
+body.a11y-lightmode .y2k .case-next, body.a11y-lightmode.y2k .case-next { background: #fff; border-color: var(--line); color: var(--text); }
+body.a11y-lightmode .case-next strong { color: var(--text); }
+body.a11y-lightmode .tools-board__title span { color: var(--acc-cyan); }
+body.a11y-lightmode .tool-stk[class*="outline"] { background: #fff; }
+body.a11y-lightmode .band--soft { background: var(--bg); }
+body.a11y-lightmode .contact-v2__form { background: #fff; border-color: var(--acc-rose); }
+body.a11y-lightmode .fld > span { color: var(--text-2); }
+body.a11y-lightmode .fld input, body.a11y-lightmode .fld textarea { background: #fff; border-color: var(--line-strong); color: var(--text); }
+body.a11y-lightmode .fld input::placeholder, body.a11y-lightmode .fld textarea::placeholder { color: #6e687d; }
+body.a11y-lightmode .cta-ghost { background: #fff; border-color: var(--line-strong); color: var(--text); }
+body.a11y-lightmode .contact-v2__social a { color: var(--text); border-color: var(--line-strong); }
+/* Stickers pleins : on garde les pastels (texte foncé dessus) */
+body.a11y-lightmode .tool-stk--lime { background: #d6ff8a; }
+body.a11y-lightmode .tool-stk--rose { background: #ff9ae3; }
+body.a11y-lightmode .tool-stk--cyan { background: #7fe9ff; }
+body.a11y-lightmode .tool-stk--violet { background: #b69cff; }
+body.a11y-lightmode .tool-stk--white { background: #fff; border: 1px solid var(--line-strong); }
+body.a11y-lightmode .band--hard { background: #d6ff8a; }
