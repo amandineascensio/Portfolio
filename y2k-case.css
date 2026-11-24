@@ -406,3 +406,50 @@ body.a11y-lightmode .case .projet-stats__col .projet-stats__number { color: var(
 
 /* Pas de trait de séparation au-dessus des titres de section */
 .case [class$="__title"]:not(.projet-hero__title), .case .projet-personas__title { border-top: 0 !important; padding-top: 0 !important; }
+
+/* ==========================================================
+   PAGES PROJET — responsive (neutralise l'ancien thème mobile)
+   ========================================================== */
+@media (max-width: 1100px) {
+  .case .projet-hero__container { gap: 40px; }
+  .case .projet-process__steps { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+  .case .projet-personas__grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+}
+@media (max-width: 900px) {
+  .case .projet-hero__container { flex-direction: column !important; align-items: flex-start !important; }
+  .case .projet-hero__text, .case .projet-hero__visual { width: 100% !important; max-width: 100% !important; text-align: left !important; }
+  .case .projet-hero__meta { justify-content: flex-start !important; gap: 24px 40px !important; }
+  .case .projet-hero__visual { justify-content: center !important; }
+
+  /* Chiffres : grille 2 colonnes, sans boîtes ni pointillés */
+  .case .projet-stats__card { display: grid !important; grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 28px 24px !important; padding: 0 !important; }
+  .case .projet-stats__intro { grid-column: 1 / -1; text-align: left !important; border: 0 !important; padding: 0 !important; }
+  .case .projet-stats__intro :is(h2, h3, p:first-child) { text-align: left !important; border: 0 !important; }
+  .case .projet-stats__col { background: none !important; border: 0 !important; border-top: 1px solid var(--line-strong) !important; border-radius: 0 !important; padding: 16px 0 0 !important; text-align: left !important; box-shadow: none !important; }
+  .case .projet-stats__separator { display: none !important; }
+
+  /* Étapes, personae, accessibilité */
+  .case .projet-process__steps { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 28px 24px !important; }
+  .case .projet-process__step { flex-direction: column !important; gap: 0 !important; }
+  .case .projet-personas__grid { grid-template-columns: 1fr !important; }
+  .case .projet-a11y__card { padding: 0 !important; }
+  .case .projet-a11y__pillars { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+
+  /* Titres de sections à gauche */
+  .case [class$="__title"]:not(.projet-hero__title), .case [class$="__subtitle"], .case [class*="__heading"] { text-align: left !important; }
+
+  /* Instagram : défilement horizontal propre, aligné sur les marges */
+  .case .projet-instagram__row { scroll-snap-type: x mandatory; scrollbar-width: none; }
+  .case .projet-instagram__row::-webkit-scrollbar { display: none; }
+  .case .projet-instagram__slide { scroll-snap-align: start; flex: 0 0 auto; }
+}
+@media (max-width: 560px) {
+  .case .projet-process__steps, .case .projet-a11y__pillars { grid-template-columns: 1fr !important; }
+  .case .projet-stats__col .projet-stats__number { font-size: 44px !important; }
+  .case .projet-hero__meta { gap: 16px 28px !important; }
+  .case-top { gap: 8px; }
+}
+@media (min-width: 1800px) {
+  .case .projet-problematique__item { min-height: 220px; padding: 36px !important; }
+  .case .projet-problematique__item p { font-size: 17px !important; max-width: 46ch; }
+}

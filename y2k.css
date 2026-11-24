@@ -1168,7 +1168,7 @@ main > section.page.contact-v2 > * { max-width: none; margin: 0; }
 /* ==========================================================
    ACCUEIL — étoiles et grille selon la maquette Figma
    ========================================================== */
-.hero.hero--v1 { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); column-gap: 120px; }
+@media (min-width: 961px) { .hero.hero--v1 { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); column-gap: 120px; } }
 .hero--v1 .hero__star--1 { width: 110px; top: 10%; left: 0; right: auto; }
 .hero--v1 .hero__star--2 { width: 70px; top: 6%; right: 6%; left: auto; }
 .hero--v1 .hero__star--3 { width: 55px; top: 28.69%; right: .06%; left: auto; }
@@ -1240,3 +1240,121 @@ body.a11y-contrast .band--soft span, body.a11y-contrast .band--soft i { color: #
 /* Rythme vertical : 96px avant le bloc « page suivante » sur toutes les pages */
 main > section.page.collection { padding-bottom: 96px; }
 main > section.tools-board { padding-bottom: 96px; }
+
+
+/* ==========================================================
+   RESPONSIVE — passe complète (mobile, tablette, paysage, grands écrans)
+   Points de rupture : 1360 · 1100 · 960 · 720 · 480 · 360
+   ========================================================== */
+
+/* Cibles tactiles : 44px minimum */
+.nav__logo { min-height: 44px; }
+.contact-v2__social a { display: inline-flex; align-items: center; min-height: 44px; padding-bottom: 0; }
+.footer__legal a { display: inline-flex; align-items: center; min-height: 44px; }
+
+/* --- Accueil : hero en une colonne sous 960px (inspiré de la V1) --- */
+@media (max-width: 960px) {
+  .home .hero.hero--v1 {
+    display: flex; flex-direction: column; align-items: center; text-align: center;
+    min-height: 0; padding: calc(var(--menubar-h) + 32px) var(--pad) 0; gap: 8px;
+  }
+  .hero--v1 .hero__content { order: 1; align-items: center; padding-bottom: 8px; max-width: 560px; }
+  .hero--v1 .hero__lead { margin-inline: auto; }
+  .hero--v1 .hero__cta { justify-content: center; width: 100%; }
+  .hero--v1 .hero__title { font-size: clamp(40px, 11vw, 72px) !important; }
+  .hero--v1 .hero__line { margin-inline: auto; }
+  .hero--v1 .hero__visual {
+    order: 2; position: relative; width: 100%; max-width: 520px; height: min(62vw, 440px); min-height: 260px;
+    margin: 8px auto 0; overflow: visible;
+  }
+  .hero--v1 .hero__circle { width: min(78%, 400px); }
+  .hero--v1 .hero__avatar { height: 108%; }
+  .hero--v1 .hero__star--1 { width: 64px; left: 2%; top: 4%; }
+  .hero--v1 .hero__star--2 { width: 44px; right: 4%; top: 0; }
+  .hero--v1 .hero__star--3 { width: 36px; right: 0; top: 40%; }
+  .hero--v1 .hero__star--4 { width: 28px; top: 2%; left: 52%; }
+  .hero__star-wrap { left: 0; top: 42%; }
+  .hero__star-wrap .hero__star--5 { width: 36px; }
+  .home .hero-wrap { overflow: hidden; }
+}
+@media (max-width: 720px) {
+  .hero--v1 .hero__cta .btn { flex: 1 1 auto; min-width: 0; }
+  .hero--v1 .hero__lead { font-size: 17px; }
+}
+@media (max-width: 400px) {
+  .hero--v1 .hero__cta { flex-direction: column; }
+  .hero--v1 .hero__cta .btn { width: 100%; }
+}
+/* Téléphone à l'horizontale : texte et avatar côte à côte */
+@media (max-width: 960px) and (orientation: landscape) and (max-height: 500px) {
+  .home .hero.hero--v1 { display: grid; grid-template-columns: 1fr 1fr; align-items: center; text-align: left; padding-top: calc(var(--menubar-h) + 12px); }
+  .hero--v1 .hero__content { order: 2; align-items: flex-start; }
+  .hero--v1 .hero__cta { justify-content: flex-start; }
+  .hero--v1 .hero__line { margin-inline: 0; }
+  .hero--v1 .hero__title { font-size: clamp(32px, 6vw, 48px) !important; }
+  .hero--v1 .hero__lead { font-size: 15px; margin-inline: 0; }
+  .hero--v1 .hero__visual { order: 1; height: calc(100vh - var(--menubar-h) - 20px); min-height: 0; margin: 0; }
+}
+
+/* --- Pages intérieures : espace sous la nav flottante --- */
+@media (max-width: 960px) {
+  main > section.page { padding-top: calc(var(--menubar-h) + 32px); min-height: 0; }
+  .section-head { gap: 12px; }
+  .section-head__aside { text-align: left !important; max-width: 46ch; }
+  .y2k .case-wrap { padding-top: calc(var(--menubar-h) + 16px); }
+}
+
+/* --- Compétences : cartes et textes qui ne débordent jamais --- */
+@media (max-width: 1360px) {
+  .tcards { grid-template-columns: repeat(2, minmax(0, 330px)); }
+  .tcard { width: 100%; }
+  .tcard__desc { width: auto; right: 26px; }
+}
+@media (max-width: 760px) {
+  .tcards { grid-template-columns: minmax(0, 400px); gap: 28px; }
+  .tcard { height: auto; min-height: 360px; aspect-ratio: auto; display: flex; flex-direction: column; justify-content: flex-end; padding: 26px; }
+  .tcard__title, .tcard__desc { position: static; width: auto; }
+  .tcard__title { margin-bottom: 12px; font-size: clamp(34px, 10vw, 46px); line-height: .95; }
+  .tcard__num { font-size: 200px; line-height: 200px; }
+}
+@media (max-width: 480px) {
+  .tool-stk { transform: rotate(calc(var(--rot) / 2)); }
+  .tool-stk strong { font-size: 20px; }
+  .tool-stk--circle { width: 120px; height: 120px; }
+  .tool-stk--pill, .tool-stk--rect { padding: 16px 22px; }
+}
+
+/* --- Parcours : 2 colonnes compactes entre 900 et 1100px --- */
+@media (min-width: 901px) and (max-width: 1100px) {
+  .tl-row { grid-template-columns: minmax(0, 1fr) 96px minmax(0, 1fr); }
+  .tl-card { padding: 20px; }
+  .tl-card__title { font-size: 20px; line-height: 1.25; }
+}
+
+/* --- Contact --- */
+@media (max-width: 1100px) {
+  .contact-v2__intro { max-width: 640px; }
+  .contact-v2__title { font-size: clamp(48px, 9vw, 88px); line-height: .95; }
+}
+@media (max-width: 400px) {
+  .contact-v2__badge { width: 72px; height: 72px; font-size: 10.5px; right: 8px; top: -34px; }
+  .contact-v2__social { gap: 8px 20px; }
+}
+
+/* --- Pied de page --- */
+@media (max-width: 720px) { .footer { gap: 8px; } .footer__legal { gap: 20px; } }
+
+/* --- Très grands écrans : on garde une mesure de lecture --- */
+@media (min-width: 1800px) {
+  .hero--v1 .hero__title { font-size: min(4.4vw, 9vh, 88px) !important; }
+  .hero--v1 .hero__lead { font-size: 22px; max-width: 34em; }
+}
+
+/* Menu et panneau d'accessibilité : toujours dans l'écran, symétriques */
+@media (max-width: 720px) {
+  .nav__links { max-height: calc(100vh - var(--nav-top) - var(--nav-h) - 24px); overflow-y: auto; }
+  .y2k .a11y-panel.a11y-panel--menubar { left: var(--pad) !important; right: var(--pad) !important; width: auto !important; max-height: calc(100vh - var(--nav-top) - var(--nav-h) - 24px) !important; }
+}
+@media (max-height: 500px) and (orientation: landscape) {
+  .nav__links a { font-size: 20px; padding: 8px 0; }
+}
