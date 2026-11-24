@@ -1205,3 +1205,14 @@ body.a11y-lightmode .tool-stk--cyan { background: #7fe9ff; }
 body.a11y-lightmode .tool-stk--violet { background: #b69cff; }
 body.a11y-lightmode .tool-stk--white { background: #fff; border: 1px solid var(--line-strong); }
 body.a11y-lightmode .band--hard { background: #d6ff8a; }
+
+/* Bandeaux de compétences : boucle sans saut + contour propre */
+/* L'espacement est porté par chaque élément (et non par gap) : les deux copies font exactement 50 % */
+.band__track { gap: 0; }
+.band__track > * { margin-right: 40px; }
+/* Contour : le remplissage (couleur du fond) recouvre les traits internes des lettres variables */
+.band--soft span, .band--soft i {
+  color: #08070c; -webkit-text-stroke: 3px var(--acc-rose); paint-order: stroke fill;
+}
+body.a11y-lightmode .band--soft span, body.a11y-lightmode .band--soft i { color: var(--bg); }
+body.a11y-contrast .band--soft span, body.a11y-contrast .band--soft i { color: #000; }
