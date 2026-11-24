@@ -1216,3 +1216,19 @@ body.a11y-lightmode .band--hard { background: #d6ff8a; }
 }
 body.a11y-lightmode .band--soft span, body.a11y-lightmode .band--soft i { color: var(--bg); }
 body.a11y-contrast .band--soft span, body.a11y-contrast .band--soft i { color: #000; }
+
+/* Titres de section de la page Compétences : vrais titres, typo des titres */
+.sec-title {
+  margin: 0; font-family: var(--f-display); font-weight: 800; font-size: 40px; line-height: 1.05;
+  letter-spacing: -1.2px; color: var(--text); text-transform: none !important;
+}
+.sec-title__amp { color: var(--acc-rose); }
+.skills-block--do { gap: 36px; }
+.skills-bands > .skills-bands__title { top: 24px; }
+.skills-bands { height: 370px; }
+.band--hard { top: 92px; } .band--soft { top: 220px; }
+@media (max-width: 760px) {
+  .sec-title { font-size: 30px; letter-spacing: -.8px; }
+  .skills-bands > .skills-bands__title { top: 8px; }
+  .skills-bands { height: 300px; } .band--hard { top: 80px; } .band--soft { top: 175px; }
+}
