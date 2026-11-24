@@ -1354,3 +1354,16 @@ main > section.tools-board { padding-bottom: 96px; }
 /* Logo seul (sans texte) : zone cliquable carrée de 44px */
 .nav__logo { min-width: 44px; justify-content: center; }
 .nav__mark { width: 32px; height: 32px; }
+
+/* Lien CV */
+.nav__links a.nav__cv { color: var(--text); border: 1px solid var(--line-strong); }
+.nav__links a.nav__cv:hover { border-color: var(--acc-lime); color: var(--acc-lime); }
+.section-head__side { display: flex; flex-direction: column; align-items: flex-end; gap: 16px; }
+.section-head__side .section-head__aside { text-align: right; }
+@media (max-width: 960px) { .section-head__side { align-items: flex-start; } .section-head__side .section-head__aside { text-align: left; } }
+@media (max-width: 720px) { .nav__links a.nav__cv { border: 0; border-bottom: 1px solid var(--line); color: var(--acc-lime); } }
+.nav__cv-tag { display: none; }
+@media (max-width: 720px) {
+  .nav__links a.nav__cv { color: var(--text); display: flex; align-items: center; gap: 10px; }
+  .nav__cv-tag { display: inline-block; padding: 3px 8px; border-radius: 999px; border: 1px solid var(--line-strong); font-family: var(--f-body); font-size: 11px; font-weight: 500; letter-spacing: .08em; color: var(--muted); }
+}
